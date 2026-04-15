@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiche 1 — Cadre institutionnel et réglementaire</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --accent: #4f8ef7;
+      --accent2: #7c5cfc;
+      --green: #22c55e;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #2d3348;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+
+    /* NAV */
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      font-size: 0.82rem;
+    }
+    .nav a {
+      color: var(--accent);
+      text-decoration: none;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .nav a:hover { background: rgba(79,142,247,0.1); }
+    .nav-center { color: var(--muted); }
+
+    /* HEADER FICHE */
+    .fiche-header {
+      background: linear-gradient(135deg, #1a1d27, #22263a);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent2);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .fiche-header::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      right: -20%;
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(124,92,252,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .fiche-num {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--accent2);
+      font-weight: 700;
+      margin-bottom: 0.4rem;
+    }
+    .fiche-header h1 {
+      font-size: 1.8rem;
+      font-weight: 800;
+      color: var(--text);
+      margin-bottom: 1rem;
+    }
+    .fiche-meta {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+    .meta-pill {
+      padding: 0.3rem 0.9rem;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 600;
+    }
+    .pill-questions { background: rgba(79,142,247,0.15); color: #93c5fd; border: 1px solid rgba(79,142,247,0.3); }
+    .pill-cat { background: rgba(124,92,252,0.15); color: #c4b5fd; border: 1px solid rgba(124,92,252,0.3); }
+    .pill-jour { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+
+    /* SECTIONS */
+    section { margin-bottom: 2rem; }
+    .section-title {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+      margin-bottom: 1rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon {
+      width: 24px;
+      height: 24px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.9rem;
+    }
+
+    /* TABLE MOTS CLES */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+      background: var(--surface);
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+    }
+    th {
+      background: var(--surface2);
+      padding: 0.7rem 1rem;
+      text-align: left;
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--muted);
+      font-weight: 600;
+    }
+    td {
+      padding: 0.7rem 1rem;
+      border-top: 1px solid var(--border);
+      vertical-align: top;
+    }
+    td:first-child { font-weight: 700; color: var(--accent); white-space: nowrap; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    /* 5 POINTS */
+    .points-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .point-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--accent2);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+    }
+    .point-num {
+      font-size: 0.7rem;
+      font-weight: 800;
+      color: var(--accent2);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+    .point-title {
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 0.4rem;
+      font-size: 0.95rem;
+    }
+    .point-body { color: var(--muted); font-size: 0.875rem; }
+    .point-body ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+    .point-body li { margin-bottom: 0.2rem; }
+    .highlight { color: var(--text); font-weight: 600; }
+
+    /* PIEGES */
+    .pieges-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .piege-item {
+      background: rgba(239,68,68,0.06);
+      border: 1px solid rgba(239,68,68,0.2);
+      border-left: 3px solid var(--red);
+      border-radius: 0 8px 8px 0;
+      padding: 1rem 1.2rem;
+    }
+    .piege-label {
+      font-size: 0.72rem;
+      font-weight: 800;
+      color: #fca5a5;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 0.3rem;
+    }
+    .piege-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .piege-body { color: var(--muted); font-size: 0.875rem; }
+    blockquote {
+      border-left: 2px solid var(--border);
+      padding-left: 1rem;
+      margin: 0.4rem 0;
+      color: var(--muted);
+      font-style: italic;
+      font-size: 0.875rem;
+    }
+
+    /* MEMO VISUEL */
+    .memo-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 1.5rem;
+      font-family: 'Courier New', monospace;
+      font-size: 0.82rem;
+      color: var(--text);
+      line-height: 1.8;
+      overflow-x: auto;
+    }
+    .memo-level {
+      color: var(--accent);
+      font-weight: 700;
+      letter-spacing: 0.05em;
+    }
+    .memo-sep { color: var(--border); }
+    .memo-entity { color: #93c5fd; }
+    .memo-entity-b { color: #c4b5fd; }
+    .memo-note { color: var(--muted); }
+
+    /* SCHEMA VISUEL */
+    .schema {
+      display: grid;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 0.5rem;
+    }
+    .schema-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      background: var(--bg);
+    }
+    .schema-cell {
+      background: var(--surface);
+      padding: 0.8rem 1rem;
+    }
+    .schema-cell.full { grid-column: 1 / -1; background: var(--surface2); }
+    .schema-label { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.2rem; }
+    .schema-value { font-weight: 700; font-size: 0.9rem; }
+    .col-amf { color: var(--accent); }
+    .col-acpr { color: var(--accent2); }
+
+    /* QCM */
+    .qcm-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .qcm-item {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .qcm-header {
+      background: var(--surface2);
+      padding: 0.6rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .qcm-cat {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+    .cat-c { color: var(--accent); }
+    .cat-a { color: var(--accent2); }
+    .qcm-body { padding: 1.2rem; }
+    .qcm-question {
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 1rem;
+      font-size: 0.92rem;
+      line-height: 1.6;
+    }
+    .qcm-choices { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .choice {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.7rem;
+      padding: 0.6rem 0.9rem;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      font-size: 0.875rem;
+      background: var(--bg);
+    }
+    .choice.correct {
+      background: rgba(34,197,94,0.08);
+      border-color: rgba(34,197,94,0.4);
+      color: #86efac;
+    }
+    .choice-letter {
+      font-weight: 800;
+      min-width: 18px;
+      font-size: 0.85rem;
+    }
+    .correct .choice-letter { color: var(--green); }
+    .qcm-explication {
+      background: rgba(34,197,94,0.06);
+      border: 1px solid rgba(34,197,94,0.2);
+      border-radius: 7px;
+      padding: 0.8rem 1rem;
+      font-size: 0.82rem;
+      color: #86efac;
+    }
+    .qcm-explication strong { color: #4ade80; }
+
+    /* ALERTE */
+    .alerte-box {
+      background: rgba(245,158,11,0.06);
+      border: 1px solid rgba(245,158,11,0.25);
+      border-left: 3px solid var(--orange);
+      border-radius: 0 10px 10px 0;
+      padding: 1.2rem 1.4rem;
+    }
+    .alerte-item { margin-bottom: 1rem; }
+    .alerte-item:last-child { margin-bottom: 0; }
+    .alerte-tag {
+      display: inline-block;
+      padding: 0.15rem 0.6rem;
+      background: rgba(245,158,11,0.2);
+      color: #fcd34d;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      margin-bottom: 0.4rem;
+    }
+    .alerte-title { font-weight: 700; color: var(--text); font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .alerte-body { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+
+    /* FOOTER */
+    .fiche-footer {
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: gap;
+      gap: 1rem;
+    }
+    .next-btn {
+      display: inline-block;
+      padding: 0.7rem 1.5rem;
+      background: linear-gradient(135deg, var(--accent), var(--accent2));
+      color: white;
+      text-decoration: none;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      transition: opacity 0.2s;
+    }
+    .next-btn:hover { opacity: 0.85; }
+    .footer-info { color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- NAV -->
+  <div class="nav">
+    <a href="plan-revision.html">← Plan de révision</a>
+    <span class="nav-center">Fiche 1 / 12</span>
+    <a href="fiche-02-deontologie.html">Fiche suivante →</a>
+  </div>
+
+  <!-- HEADER -->
+  <div class="fiche-header">
+    <div class="fiche-num">Thème 1 · J1 — 15 avril 2026</div>
+    <h1>Cadre institutionnel<br>et réglementaire</h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-questions">~8 questions à l'examen</span>
+      <span class="meta-pill pill-cat">Catégorie C dominante</span>
+      <span class="meta-pill pill-jour">J1 · 15 avril</span>
+    </div>
+  </div>
+
+  <!-- MOTS CLES -->
+  <section>
+    <div class="section-title">
+      <div class="section-icon">🔑</div>
+      Mots-clés à retenir
+    </div>
+    <table>
+      <thead>
+        <tr>
+          <th>Terme</th>
+          <th>Définition en 1 ligne</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>AMF</td><td>Autorité des Marchés Financiers — régulateur français des marchés et des acteurs financiers</td></tr>
+        <tr><td>ACPR</td><td>Autorité de Contrôle Prudentiel et de Résolution — supervise banques et assurances</td></tr>
+        <tr><td>ESMA</td><td>Autorité européenne des marchés financiers — coordonne les régulateurs nationaux (AMF, BaFin…)</td></tr>
+        <tr><td>MIF2</td><td>Directive Marchés d'Instruments Financiers — régit les conditions d'exercice des services d'investissement</td></tr>
+        <tr><td>AIFM</td><td>Directive sur les Gestionnaires de Fonds Alternatifs (hedge funds, SCPI…)</td></tr>
+        <tr><td>OPCVM / UCITS</td><td>Directive encadrant les fonds harmonisés vendables dans toute l'UE via passeport européen</td></tr>
+        <tr><td>Règlement EU</td><td>Acte européen d'application directe, sans transposition nationale nécessaire</td></tr>
+        <tr><td>Directive EU</td><td>Acte européen qui impose un objectif mais laisse aux États le choix des moyens de transposition</td></tr>
+        <tr><td>PSI</td><td>Prestataire de Services d'Investissement — entité agréée pour fournir des services financiers</td></tr>
+        <tr><td>Agrément</td><td>Autorisation délivrée par l'AMF ou l'ACPR pour exercer une activité réglementée</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5 POINTS -->
+  <section>
+    <div class="section-title">
+      <div class="section-icon">⭐</div>
+      L'essentiel en 5 points
+    </div>
+    <div class="points-list">
+
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">AMF ≠ ACPR : deux régulateurs, deux périmètres</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">AMF</span> → marchés financiers, produits d'épargne, sociétés de gestion (SGP), conseillers en investissement (CIF)</li>
+            <li><span class="highlight">ACPR</span> → établissements bancaires, compagnies d'assurance, solidité financière des acteurs</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">La hiérarchie des normes européennes (du plus fort au moins fort)</div>
+        <div class="point-body">
+          Règlement EU → Directive EU → Loi nationale → Règlement AMF
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">ESMA chapeaute les régulateurs nationaux — mais n'agrée pas</div>
+        <div class="point-body">
+          <ul>
+            <li>ESMA émet des guidelines et normes techniques (RTS / ITS)</li>
+            <li>Elle ne supervise pas directement les acteurs — elle coordonne les AMF de chaque pays membre</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">Les 3 grandes directives à connaître absolument</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">MIF2</span> → services d'investissement, protection clients, transparence des marchés</li>
+            <li><span class="highlight">AIFM</span> → gestion de fonds alternatifs (non-OPCVM : hedge funds, SCPI, FCPR…)</li>
+            <li><span class="highlight">OPCVM / UCITS</span> → fonds harmonisés vendables dans toute l'UE avec passeport européen</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Le passeport européen</div>
+        <div class="point-body">
+          Un PSI agréé dans un État membre peut exercer dans toute l'UE <span class="highlight">sans agrément supplémentaire</span>, par simple notification au régulateur du pays d'accueil.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PIEGES -->
+  <section>
+    <div class="section-title">
+      <div class="section-icon">⚠️</div>
+      Ce qui piège les candidats
+    </div>
+    <div class="pieges-list">
+
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">AMF vs ACPR : qui fait quoi quand les deux s'appliquent ?</div>
+        <div class="piege-body">
+          Une banque qui vend des fonds est surveillée par les <strong style="color:var(--text)">DEUX</strong> simultanément — ACPR pour l'activité bancaire, AMF pour le conseil en investissement. Ne choisir qu'un seul régulateur est une erreur classique.
+        </div>
+      </div>
+
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">Règlement ≠ Directive : la distinction est testée directement</div>
+        <div class="piege-body">
+          Un <strong style="color:var(--text)">règlement</strong> (SFDR, MiCA, MAR) s'applique directement en droit national sans vote du Parlement. Une <strong style="color:var(--text)">directive</strong> (MIF2, AIFM) doit être transposée. L'examen exploite souvent cette distinction.
+        </div>
+      </div>
+
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">ESMA n'agrée pas les acteurs financiers</div>
+        <div class="piege-body">
+          ESMA ne délivre aucun agrément aux PSI. C'est l'AMF (en France) qui agrée. ESMA n'intervient en direct que sur quelques acteurs très spécifiques : agences de notation, référentiels centraux de transactions.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MEMO VISUEL -->
+  <section>
+    <div class="section-title">
+      <div class="section-icon">🗺️</div>
+      Mémo visuel — Architecture des régulateurs
+    </div>
+
+    <div class="schema">
+      <div class="schema-row">
+        <div class="schema-cell full">
+          <div class="schema-label">Niveau européen</div>
+          <div style="font-size:0.85rem; color:var(--muted); margin-top:0.3rem;">
+            Commission → propose &nbsp;|&nbsp; Parlement + Conseil → votent &nbsp;|&nbsp; <span style="color:#93c5fd; font-weight:700;">ESMA</span> → coordonne & normalise (RTS/ITS)
+          </div>
+        </div>
+      </div>
+      <div class="schema-row">
+        <div class="schema-cell">
+          <div class="schema-label">Régulateur marché (France)</div>
+          <div class="schema-value col-amf">AMF</div>
+          <div style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">
+            Marchés · Produits d'épargne<br>SGP · CIF · PSCA
+          </div>
+        </div>
+        <div class="schema-cell">
+          <div class="schema-label">Régulateur prudentiel (France)</div>
+          <div class="schema-value col-acpr">ACPR</div>
+          <div style="font-size:0.8rem; color:var(--muted); margin-top:0.3rem;">
+            Banques · Assurances<br>Solvabilité des acteurs
+          </div>
+        </div>
+      </div>
+      <div class="schema-row">
+        <div class="schema-cell full">
+          <div class="schema-label">Acteurs supervisés (PSI)</div>
+          <div style="font-size:0.85rem; color:var(--muted); margin-top:0.3rem;">
+            Banques · Courtiers · SGP · CIF · PSCA → <strong style="color:var(--text)">Agrément obligatoire</strong> avant tout exercice
+          </div>
+        </div>
+      </div>
+      <div class="schema-row">
+        <div class="schema-cell full">
+          <div class="schema-label">Hiérarchie des normes</div>
+          <div style="font-size:0.85rem; margin-top:0.3rem;">
+            <span style="color:#93c5fd;">Règlement EU</span>
+            <span style="color:var(--muted)"> (direct) → </span>
+            <span style="color:#c4b5fd;">Directive EU</span>
+            <span style="color:var(--muted)"> (transposée) → </span>
+            <span style="color:var(--text);">Loi nationale</span>
+            <span style="color:var(--muted)"> → </span>
+            <span style="color:#86efac;">Règlement AMF</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QCM -->
+  <section>
+    <div class="section-title">
+      <div class="section-icon">📝</div>
+      Questions-type d'entraînement
+    </div>
+    <div class="qcm-list">
+
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem; color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">
+            Quelle autorité est compétente pour agréer une société de gestion de portefeuille (SGP) en France ?
+          </div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>L'ACPR</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>L'ESMA</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>L'AMF</span></div>
+          </div>
+          <div class="qcm-explication">
+            <strong>Explication :</strong> L'AMF est l'autorité compétente pour agréer et superviser les SGP en France. L'ACPR surveille banques et assurances. L'ESMA coordonne les régulateurs nationaux mais n'agrée pas directement les acteurs.
+          </div>
+        </div>
+      </div>
+
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem; color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">
+            Un gestionnaire de fonds alternatifs agréé en Allemagne souhaite commercialiser ses fonds en France. Quelle procédure doit-il suivre ?
+          </div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Obtenir un nouvel agrément auprès de l'AMF</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>Notifier l'AMF via la procédure de passeport européen</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Obtenir un accord de l'ESMA avant toute commercialisation en France</span></div>
+          </div>
+          <div class="qcm-explication">
+            <strong>Explication :</strong> La directive AIFM prévoit un passeport européen permettant à un gestionnaire agréé dans un État membre d'opérer dans toute l'UE par simple notification au régulateur du pays d'accueil (ici l'AMF). Aucun nouvel agrément n'est requis.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ALERTE -->
+  <section>
+    <div class="section-title">
+      <div class="section-icon">🚨</div>
+      Alerte 2025-2026
+    </div>
+    <div class="alerte-box">
+
+      <div class="alerte-item">
+        <div class="alerte-tag">Nouveau · Janvier 2025</div>
+        <div class="alerte-title">DORA — Digital Operational Resilience Act</div>
+        <div class="alerte-body">
+          Règlement européen applicable depuis janvier 2025. Impose aux PSI des exigences strictes de <strong style="color:var(--text)">résilience opérationnelle numérique</strong> : tests de pénétration, gestion des risques IT, reporting des incidents cyber. Peut apparaître dans des questions sur le cadre réglementaire — retenir que c'est un <strong style="color:var(--text)">règlement</strong> (application directe, pas de transposition).
+        </div>
+      </div>
+
+      <div class="alerte-item">
+        <div class="alerte-tag">Évolution · EMIR Refit</div>
+        <div class="alerte-title">EMIR Refit — allègement pour les petites contreparties</div>
+        <div class="alerte-body">
+          Évolution du règlement sur les produits dérivés OTC, avec allègement des obligations de compensation et de reporting pour les contreparties non-financières de petite taille. À mentionner si une question porte sur les dérivés OTC et les obligations de déclaration.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="fiche-footer">
+    <div class="footer-info">
+      Fiche 1 / 12 · Cadre institutionnel et réglementaire<br>
+      Examen AMF · 4 mai 2026
+    </div>
+    <a href="fiche-02-deontologie.html" class="next-btn">Fiche 2 — Déontologie →</a>
+  </div>
+
+</div>
+</body>
+</html>

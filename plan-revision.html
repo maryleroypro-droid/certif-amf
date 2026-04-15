@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Plan de Révision AMF — 19 Jours</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --accent: #4f8ef7;
+      --accent2: #7c5cfc;
+      --green: #22c55e;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #2d3348;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container { max-width: 1200px; margin: 0 auto; }
+
+    /* HEADER */
+    header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 2.5rem;
+      background: linear-gradient(135deg, #1a1d27, #22263a);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+    header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(ellipse at center, rgba(79,142,247,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    header h1 {
+      font-size: 2.2rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #4f8ef7, #7c5cfc);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    header p {
+      color: var(--muted);
+      font-size: 1rem;
+    }
+    .exam-date {
+      display: inline-block;
+      margin-top: 1rem;
+      padding: 0.4rem 1.2rem;
+      background: rgba(239,68,68,0.15);
+      border: 1px solid rgba(239,68,68,0.4);
+      border-radius: 999px;
+      color: #fca5a5;
+      font-weight: 700;
+      font-size: 0.95rem;
+    }
+
+    /* SEUILS BANNER */
+    .seuils {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-bottom: 2.5rem;
+    }
+    .seuil-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+      text-align: center;
+    }
+    .seuil-card .label { color: var(--muted); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; margin-bottom: 0.3rem; }
+    .seuil-card .value { font-size: 1.5rem; font-weight: 800; }
+    .seuil-card.catC .value { color: var(--accent); }
+    .seuil-card.catA .value { color: var(--accent2); }
+    .seuil-card.esg .value { color: var(--green); }
+    .seuil-card.total .value { color: var(--orange); }
+
+    /* SEMAINES */
+    .week-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin: 2.5rem 0 1rem;
+    }
+    .week-badge {
+      padding: 0.3rem 1rem;
+      border-radius: 999px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      white-space: nowrap;
+    }
+    .week-1 .week-badge { background: rgba(34,197,94,0.2); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+    .week-2 .week-badge { background: rgba(245,158,11,0.2); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+    .week-3 .week-badge { background: rgba(239,68,68,0.2); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+    .week-line { flex: 1; height: 1px; background: var(--border); }
+    .week-desc { color: var(--muted); font-size: 0.85rem; }
+
+    /* TABLE */
+    .table-wrapper {
+      overflow-x: auto;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      margin-bottom: 1rem;
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    thead tr {
+      background: var(--surface2);
+    }
+    th {
+      padding: 0.9rem 1rem;
+      text-align: left;
+      color: var(--muted);
+      font-weight: 600;
+      font-size: 0.78rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-bottom: 1px solid var(--border);
+      white-space: nowrap;
+    }
+    tbody tr {
+      border-bottom: 1px solid var(--border);
+      transition: background 0.15s;
+    }
+    tbody tr:last-child { border-bottom: none; }
+    tbody tr:hover { background: rgba(255,255,255,0.03); }
+    td {
+      padding: 0.9rem 1rem;
+      vertical-align: top;
+    }
+
+    /* DAY BADGE */
+    .day-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border-radius: 10px;
+      font-weight: 800;
+      font-size: 0.9rem;
+    }
+    .phase-fondamentaux .day-badge { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+    .phase-technique .day-badge { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+    .phase-complement .day-badge { background: rgba(79,142,247,0.15); color: #93c5fd; border: 1px solid rgba(79,142,247,0.3); }
+    .phase-simulation .day-badge { background: rgba(239,68,68,0.15); color: #fca5a5; border: 1px solid rgba(239,68,68,0.3); }
+
+    /* THEME TAG */
+    .theme-tag {
+      display: inline-block;
+      padding: 0.2rem 0.7rem;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      margin-bottom: 0.3rem;
+    }
+    .tag-reg { background: rgba(124,92,252,0.15); color: #c4b5fd; }
+    .tag-ana { background: rgba(79,142,247,0.15); color: #93c5fd; }
+    .tag-esg { background: rgba(34,197,94,0.15); color: #86efac; }
+    .tag-sim { background: rgba(239,68,68,0.15); color: #fca5a5; }
+    .tag-rev { background: rgba(245,158,11,0.15); color: #fcd34d; }
+
+    .theme-name { font-weight: 700; color: var(--text); margin-bottom: 0.2rem; }
+
+    /* TIMING */
+    .timing {
+      font-size: 0.78rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* LIVRABLE */
+    .livrable {
+      background: rgba(79,142,247,0.08);
+      border-left: 3px solid var(--accent);
+      padding: 0.5rem 0.7rem;
+      border-radius: 0 6px 6px 0;
+      font-size: 0.8rem;
+      color: #93c5fd;
+      margin-top: 0.3rem;
+    }
+    .livrable::before {
+      content: '✓ ';
+      font-weight: 700;
+    }
+
+    .sous-themes {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    /* RECAP */
+    .recap {
+      margin-top: 3rem;
+    }
+    .recap h2 {
+      font-size: 1.3rem;
+      margin-bottom: 1.5rem;
+      color: var(--text);
+    }
+    .recap-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+    .recap-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.2rem;
+    }
+    .recap-card h3 {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 0.8rem;
+    }
+    .recap-card ul {
+      list-style: none;
+      font-size: 0.88rem;
+    }
+    .recap-card ul li {
+      padding: 0.3rem 0;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .recap-card ul li:last-child { border-bottom: none; }
+    .charge-high { color: var(--orange); font-weight: 600; }
+    .charge-med { color: var(--green); font-weight: 600; }
+    .charge-low { color: var(--accent); font-weight: 600; }
+
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      color: var(--muted);
+      font-size: 0.8rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 768px) {
+      header h1 { font-size: 1.5rem; }
+      td, th { padding: 0.6rem 0.7rem; }
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <header>
+    <h1>Plan de Révision AMF — 19 Jours</h1>
+    <p>Certification AMF Généraliste · Candidat libre · Découverte totale du programme</p>
+    <div class="exam-date">📅 Examen : 4 mai 2026</div>
+  </header>
+
+  <!-- SEUILS -->
+  <div class="seuils">
+    <div class="seuil-card total">
+      <div class="label">Format</div>
+      <div class="value">120 QCM</div>
+      <div class="timing">3 choix · 1 bonne réponse · 2h</div>
+    </div>
+    <div class="seuil-card catC">
+      <div class="label">Catégorie C</div>
+      <div class="value">70 / 87</div>
+      <div class="timing">Seuil 80,5% obligatoire</div>
+    </div>
+    <div class="seuil-card catA">
+      <div class="label">Catégorie A</div>
+      <div class="value">27 / 33</div>
+      <div class="timing">Seuil 81,8% obligatoire</div>
+    </div>
+    <div class="seuil-card esg">
+      <div class="label">ESG / Finance durable</div>
+      <div class="value">~15 questions</div>
+      <div class="timing">12,5% de l'examen — priorité absolue</div>
+    </div>
+  </div>
+
+  <!-- SEMAINE 1 -->
+  <div class="week-header week-1">
+    <span class="week-badge">SEMAINE 1 · 15–21 avril</span>
+    <div class="week-line"></div>
+    <span class="week-desc">Fondamentaux + ESG — montée progressive</span>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Jour</th>
+          <th>Date</th>
+          <th>Thème</th>
+          <th>Sous-thèmes prioritaires</th>
+          <th>Temps & Format</th>
+          <th>Livrable de fin de séance</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="phase-fondamentaux">
+          <td><div class="day-badge">J1</div></td>
+          <td>15 avr.</td>
+          <td>
+            <span class="theme-tag tag-reg">Réglementaire</span>
+            <div class="theme-name">Cadre institutionnel<br>et réglementaire</div>
+          </td>
+          <td class="sous-themes">AMF, ACPR, ESMA, BCE — rôles et périmètres<br>Textes fondateurs (MIF2, AIFM, OPCVM)<br>Hiérarchie des normes européennes</td>
+          <td>
+            <div class="timing">45 min fiche</div>
+            <div class="timing">30 min QCM ciblés</div>
+            <div class="timing">15 min résumé oral</div>
+          </td>
+          <td><div class="livrable">Réciter le rôle de l'AMF vs ACPR vs ESMA de mémoire</div></td>
+        </tr>
+
+        <tr class="phase-fondamentaux">
+          <td><div class="day-badge">J2</div></td>
+          <td>16 avr.</td>
+          <td>
+            <span class="theme-tag tag-reg">Réglementaire</span>
+            <div class="theme-name">Déontologie<br>et conformité</div>
+          </td>
+          <td class="sous-themes">Obligations professionnelles<br>Conflits d'intérêts ; devoir de conseil<br>Abus de marché (MAR) — 3 types</td>
+          <td>
+            <div class="timing">40 min fiche</div>
+            <div class="timing">40 min QCM</div>
+            <div class="timing">10 min flashcards</div>
+          </td>
+          <td><div class="livrable">Définir : manipulation de cours, opération d'initié, divulgation illicite</div></td>
+        </tr>
+
+        <tr class="phase-fondamentaux">
+          <td><div class="day-badge">J3</div></td>
+          <td>17 avr.</td>
+          <td>
+            <span class="theme-tag tag-ana">Analytique</span>
+            <div class="theme-name">Instruments financiers<br>et marchés (1/2)</div>
+          </td>
+          <td class="sous-themes">Actions, obligations, titres hybrides<br>Caractéristiques et droits attachés<br>Marchés primaire / secondaire</td>
+          <td>
+            <div class="timing">50 min fiche</div>
+            <div class="timing">40 min QCM</div>
+            <div class="timing">20 min schéma de synthèse</div>
+          </td>
+          <td><div class="livrable">Tableau comparatif action / obligation / titre hybride complété de mémoire</div></td>
+        </tr>
+
+        <tr class="phase-fondamentaux">
+          <td><div class="day-badge">J4</div></td>
+          <td>18 avr.</td>
+          <td>
+            <span class="theme-tag tag-ana">Analytique</span>
+            <div class="theme-name">Instruments financiers<br>et marchés (2/2)</div>
+          </td>
+          <td class="sous-themes">Produits dérivés (options, futures, swaps)<br>OPCVM / FIA ; produits structurés<br>Titrisation — mécanisme et risques</td>
+          <td>
+            <div class="timing">50 min fiche</div>
+            <div class="timing">40 min QCM</div>
+            <div class="timing">20 min erreurs analysées</div>
+          </td>
+          <td><div class="livrable">Expliquer call/put + différence OPCVM/FIA en 3 phrases</div></td>
+        </tr>
+
+        <tr class="phase-fondamentaux">
+          <td><div class="day-badge">J5</div></td>
+          <td>19 avr.</td>
+          <td>
+            <span class="theme-tag tag-esg">ESG · Priorité</span>
+            <div class="theme-name">Finance durable / ESG<br>(1/2)</div>
+          </td>
+          <td class="sous-themes">Définitions ESG ; SFDR articles 6 / 8 / 9<br>Taxonomie européenne — 6 objectifs<br>Critères E, S, G détaillés</td>
+          <td>
+            <div class="timing">50 min fiche</div>
+            <div class="timing">40 min QCM</div>
+            <div class="timing">20 min mémo SFDR</div>
+          </td>
+          <td><div class="livrable">Distinguer art. 6 / 8 / 9 SFDR + 3 critères taxonomie de mémoire</div></td>
+        </tr>
+
+        <tr class="phase-fondamentaux">
+          <td><div class="day-badge">J6</div></td>
+          <td>20 avr.</td>
+          <td>
+            <span class="theme-tag tag-esg">ESG · Priorité</span>
+            <div class="theme-name">Finance durable / ESG<br>(2/2)</div>
+          </td>
+          <td class="sous-themes">Labels ISR, Greenfin, Eurosif<br>6 stratégies ESG (exclusion, best-in-class…)<br>PAI ; greenwashing — définition et risques</td>
+          <td>
+            <div class="timing">45 min fiche</div>
+            <div class="timing">45 min QCM</div>
+            <div class="timing">20 min comparatif labels</div>
+          </td>
+          <td><div class="livrable">Lister les 6 stratégies ESG + définir PAI (Principal Adverse Impacts)</div></td>
+        </tr>
+
+        <tr class="phase-fondamentaux">
+          <td><div class="day-badge">J7</div></td>
+          <td>21 avr.</td>
+          <td>
+            <span class="theme-tag tag-reg">Réglementaire</span>
+            <div class="theme-name">Protection des investisseurs<br>/ MIF2</div>
+          </td>
+          <td class="sous-themes">Classification : retail / pro / contrepartie éligible<br>KYC et test d'adéquation<br>Best execution ; information précontractuelle</td>
+          <td>
+            <div class="timing">45 min fiche</div>
+            <div class="timing">45 min QCM scénarios</div>
+            <div class="timing">20 min cas pratiques</div>
+          </td>
+          <td><div class="livrable">Classifier 5 profils clients + obligations par catégorie</div></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SEMAINE 2 -->
+  <div class="week-header week-2">
+    <span class="week-badge">SEMAINE 2 · 22–28 avril</span>
+    <div class="week-line"></div>
+    <span class="week-desc">Gestion collective + Marchés + Réglementaire — pic de charge</span>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Jour</th>
+          <th>Date</th>
+          <th>Thème</th>
+          <th>Sous-thèmes prioritaires</th>
+          <th>Temps & Format</th>
+          <th>Livrable de fin de séance</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="phase-technique">
+          <td><div class="day-badge">J8</div></td>
+          <td>22 avr.</td>
+          <td>
+            <span class="theme-tag tag-ana">Analytique</span>
+            <div class="theme-name">Gestion de portefeuille<br>et collective (1/2)</div>
+          </td>
+          <td class="sous-themes">OPCVM : SICAV, FCP, ETF<br>Politique de placement ; valeur liquidative<br>Frais et commissions</td>
+          <td>
+            <div class="timing">50 min fiche</div>
+            <div class="timing">40 min QCM</div>
+            <div class="timing">20 min calculs simples</div>
+          </td>
+          <td><div class="livrable">Calculer une VL + expliquer différence SICAV / FCP</div></td>
+        </tr>
+
+        <tr class="phase-technique">
+          <td><div class="day-badge">J9</div></td>
+          <td>23 avr.</td>
+          <td>
+            <span class="theme-tag tag-ana">Analytique</span>
+            <div class="theme-name">Gestion de portefeuille<br>et collective (2/2)</div>
+          </td>
+          <td class="sous-themes">FIA : FCPR, FPCI, SCPI, OPCI, hedge funds<br>Gestion sous mandat — obligations<br>Ratio de risque ; reporting</td>
+          <td>
+            <div class="timing">45 min fiche</div>
+            <div class="timing">45 min QCM</div>
+            <div class="timing">20 min tableau récapitulatif</div>
+          </td>
+          <td><div class="livrable">Tableau FIA de mémoire (nom, investisseurs, actifs cibles)</div></td>
+        </tr>
+
+        <tr class="phase-technique">
+          <td><div class="day-badge">J10</div></td>
+          <td>24 avr.</td>
+          <td>
+            <span class="theme-tag tag-reg">Réglementaire</span>
+            <div class="theme-name">Lutte contre<br>le blanchiment (LCB-FT)</div>
+          </td>
+          <td class="sous-themes">3 stades : placement / empilement / intégration<br>Vigilance simple vs renforcée<br>Circuit TRACFIN ; PPE ; seuils</td>
+          <td>
+            <div class="timing">45 min fiche</div>
+            <div class="timing">45 min QCM</div>
+            <div class="timing">20 min schéma circuit</div>
+          </td>
+          <td><div class="livrable">Décrire le circuit TRACFIN + définir PPE et vigilance renforcée</div></td>
+        </tr>
+
+        <tr class="phase-technique">
+          <td><div class="day-badge">J11</div></td>
+          <td>25 avr.</td>
+          <td>
+            <span class="theme-tag tag-ana">Analytique</span>
+            <div class="theme-name">Fiscalité des produits<br>financiers</div>
+          </td>
+          <td class="sous-themes">PFU flat tax 30% vs barème progressif<br>PEA : règles, plafonds, cas de sortie<br>Assurance-vie : abattements, durées</td>
+          <td>
+            <div class="timing">40 min fiche</div>
+            <div class="timing">50 min QCM calcul</div>
+            <div class="timing">20 min tableau fiscal</div>
+          </td>
+          <td><div class="livrable">Calculer l'imposition d'une plus-value selon 3 scénarios</div></td>
+        </tr>
+
+        <tr class="phase-technique">
+          <td><div class="day-badge">J12</div></td>
+          <td>26 avr.</td>
+          <td>
+            <span class="theme-tag tag-ana">Analytique</span>
+            <div class="theme-name">Analyse financière</div>
+          </td>
+          <td class="sous-themes">Analyse fondamentale vs technique<br>Ratios clés : PER, P/B, EV/EBITDA<br>Lecture de bilan ; notation crédit</td>
+          <td>
+            <div class="timing">45 min fiche</div>
+            <div class="timing">45 min QCM</div>
+            <div class="timing">20 min exercices ratios</div>
+          </td>
+          <td><div class="livrable">Calculer PER, P/B, EV/EBITDA à partir de données brutes</div></td>
+        </tr>
+
+        <tr class="phase-technique">
+          <td><div class="day-badge">J13</div></td>
+          <td>27 avr.</td>
+          <td>
+            <span class="theme-tag tag-ana">Analytique</span>
+            <div class="theme-name">Fonctionnement des marchés<br>et infrastructures</div>
+          </td>
+          <td class="sous-themes">Euronext ; marchés réglementés vs MTF vs OTF<br>Chambres de compensation (LCH)<br>Dépositaires (Euroclear) ; types d'ordres</td>
+          <td>
+            <div class="timing">45 min fiche</div>
+            <div class="timing">45 min QCM</div>
+            <div class="timing">20 min schéma infrastructure</div>
+          </td>
+          <td><div class="livrable">Schéma du cycle : ordre → exécution → compensation → règlement</div></td>
+        </tr>
+
+        <tr class="phase-technique">
+          <td><div class="day-badge">J14</div></td>
+          <td>28 avr.</td>
+          <td>
+            <span class="theme-tag tag-reg">Réglementaire</span>
+            <div class="theme-name">Cryptoactifs et MiCA</div>
+          </td>
+          <td class="sous-themes">Utility token, security token, e-money token<br>Régulation MiCA 2024 — obligations CASP<br>PSAN ; risques spécifiques</td>
+          <td>
+            <div class="timing">40 min fiche</div>
+            <div class="timing">40 min QCM</div>
+            <div class="timing">30 min lecture MiCA résumé</div>
+          </td>
+          <td><div class="livrable">Classer 5 cryptoactifs selon la taxonomie MiCA</div></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- SEMAINE 3 -->
+  <div class="week-header week-3">
+    <span class="week-badge">SEMAINE 3 · 29 avril–3 mai</span>
+    <div class="week-line"></div>
+    <span class="week-desc">Complément + Simulations + Révision ciblée — charge décroissante</span>
+  </div>
+
+  <div class="table-wrapper">
+    <table>
+      <thead>
+        <tr>
+          <th>Jour</th>
+          <th>Date</th>
+          <th>Thème</th>
+          <th>Sous-thèmes prioritaires</th>
+          <th>Temps & Format</th>
+          <th>Livrable de fin de séance</th>
+        </tr>
+      </thead>
+      <tbody>
+
+        <tr class="phase-complement">
+          <td><div class="day-badge">J15</div></td>
+          <td>29 avr.</td>
+          <td>
+            <span class="theme-tag tag-reg">Réglementaire</span>
+            <div class="theme-name">Assurance-vie<br>et épargne retraite</div>
+          </td>
+          <td class="sous-themes">Contrat monosupport / multisupport<br>Fonds euro vs UC ; fiscalité 8 ans / 150K€<br>PER individuel, collectif, catégoriel</td>
+          <td>
+            <div class="timing">40 min fiche</div>
+            <div class="timing">40 min QCM</div>
+            <div class="timing">30 min comparatif PER / AV</div>
+          </td>
+          <td><div class="livrable">Comparer fiscalité assurance-vie vs PER en sortie capital</div></td>
+        </tr>
+
+        <tr class="phase-complement">
+          <td><div class="day-badge">J16</div></td>
+          <td>30 avr.</td>
+          <td>
+            <span class="theme-tag tag-rev">Révision</span>
+            <div class="theme-name">Révision croisée<br>thématique</div>
+          </td>
+          <td class="sous-themes">ESG + gestion collective<br>MIF2 + déontologie<br>LCB + KYC ; fiscalité + instruments</td>
+          <td>
+            <div class="timing">30 min mind map global</div>
+            <div class="timing">60 min QCM mixte</div>
+            <div class="timing">30 min points faibles</div>
+          </td>
+          <td><div class="livrable">Mind map des connexions inter-thèmes complété</div></td>
+        </tr>
+
+        <tr class="phase-simulation">
+          <td><div class="day-badge">J17</div></td>
+          <td>1 mai</td>
+          <td>
+            <span class="theme-tag tag-sim">Simulation</span>
+            <div class="theme-name">Simulation complète n°1</div>
+          </td>
+          <td class="sous-themes">120 questions toutes catégories<br>Conditions réelles — 2h chrono sans aide<br>Correction immédiate après</td>
+          <td>
+            <div class="timing">120 min simulation chrono</div>
+            <div class="timing">30 min correction ciblée</div>
+            <div class="timing">20 min liste des lacunes</div>
+          </td>
+          <td><div class="livrable">Score par thème + liste des points sous 80% à retravailler J18-J19</div></td>
+        </tr>
+
+        <tr class="phase-simulation">
+          <td><div class="day-badge">J18</div></td>
+          <td>2 mai</td>
+          <td>
+            <span class="theme-tag tag-rev">Révision</span>
+            <div class="theme-name">Révision chirurgicale<br>(points faibles J17)</div>
+          </td>
+          <td class="sous-themes">Ciblage exclusif sur thèmes sous 80%<br>Fiches des notions défaillantes<br>Re-QCM sur zones faibles</td>
+          <td>
+            <div class="timing">60 min fiches ciblées</div>
+            <div class="timing">60 min QCM zones faibles</div>
+            <div class="timing">30 min relecture mémos</div>
+          </td>
+          <td><div class="livrable">Maîtriser les 10 notions les plus défaillantes en simulation</div></td>
+        </tr>
+
+        <tr class="phase-simulation">
+          <td><div class="day-badge">J19</div></td>
+          <td>3 mai</td>
+          <td>
+            <span class="theme-tag tag-sim">Simulation</span>
+            <div class="theme-name">Simulation complète n°2<br>+ préparation mentale</div>
+          </td>
+          <td class="sous-themes">120 questions — conditions examen strictes<br>Sans notes, chrono rigide<br>Préparation logistique J-1</td>
+          <td>
+            <div class="timing">120 min simulation finale</div>
+            <div class="timing">30 min vérification réponses</div>
+            <div class="timing">Préparation logistique</div>
+          </td>
+          <td><div class="livrable">Score ≥ 80% dans les deux catégories. Prêt pour le 4 mai.</div></td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+
+  <!-- RECAP -->
+  <div class="recap">
+    <h2>Récapitulatif stratégique</h2>
+    <div class="recap-grid">
+
+      <div class="recap-card">
+        <h3>Charge par semaine</h3>
+        <ul>
+          <li><span>S1 · 15–21 avril — Fondamentaux + ESG</span> <span class="charge-med">Moyenne ↗</span></li>
+          <li><span>S2 · 22–28 avril — Technique + Marchés</span> <span class="charge-high">Élevée ⚠</span></li>
+          <li><span>S3 · 29 avr.–3 mai — Simulations</span> <span class="charge-low">Décroissante ↘</span></li>
+        </ul>
+      </div>
+
+      <div class="recap-card">
+        <h3>Ordre de priorité des thèmes</h3>
+        <ul>
+          <li><span>1. Instruments financiers et marchés</span></li>
+          <li><span>2. Déontologie et conformité</span></li>
+          <li><span>3. Cadre institutionnel</span></li>
+          <li><span>4. Gestion de portefeuille</span></li>
+          <li><span>5. Finance durable / ESG ⭐</span></li>
+          <li><span>6. Protection investisseurs / MIF2</span></li>
+          <li><span>7. LCB-FT</span></li>
+          <li><span>8. Fiscalité</span></li>
+          <li><span>9. Analyse financière</span></li>
+          <li><span>10. Marchés et infrastructures</span></li>
+          <li><span>11. Cryptoactifs / MiCA</span></li>
+          <li><span>12. Assurance-vie / Épargne retraite</span></li>
+        </ul>
+      </div>
+
+      <div class="recap-card">
+        <h3>Règles d'or le jour J</h3>
+        <ul>
+          <li><span>Ne jamais laisser une réponse vide</span> <span style="color:var(--green)">✓</span></li>
+          <li><span>Valider les 2 seuils séparément</span> <span style="color:var(--green)">✓</span></li>
+          <li><span>ESG = 15 questions ne pas négliger</span> <span style="color:var(--green)">✓</span></li>
+          <li><span>Comprendre, pas mémoriser (2000+ questions)</span> <span style="color:var(--green)">✓</span></li>
+          <li><span>Pas de points négatifs</span> <span style="color:var(--green)">✓</span></li>
+        </ul>
+      </div>
+
+    </div>
+  </div>
+
+  <footer>
+    Plan généré le 15 avril 2026 · Certification AMF Généraliste · Examen le 4 mai 2026
+  </footer>
+
+</div>
+</body>
+</html>

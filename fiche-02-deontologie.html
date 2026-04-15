@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiche 2 — Déontologie et conformité</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --accent: #4f8ef7;
+      --accent2: #7c5cfc;
+      --green: #22c55e;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #2d3348;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+
+    .nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      font-size: 0.82rem;
+    }
+    .nav a {
+      color: var(--accent);
+      text-decoration: none;
+      padding: 0.3rem 0.8rem;
+      border: 1px solid var(--accent);
+      border-radius: 6px;
+      transition: background 0.2s;
+    }
+    .nav a:hover { background: rgba(79,142,247,0.1); }
+    .nav-center { color: var(--muted); }
+
+    .fiche-header {
+      background: linear-gradient(135deg, #1a1d27, #22263a);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--accent2);
+      border-radius: 12px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .fiche-header::before {
+      content: '';
+      position: absolute;
+      top: -60%; right: -20%;
+      width: 300px; height: 300px;
+      background: radial-gradient(circle, rgba(124,92,252,0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+    .fiche-num { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); font-weight: 700; margin-bottom: 0.4rem; }
+    .fiche-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
+    .fiche-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .meta-pill { padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .pill-questions { background: rgba(79,142,247,0.15); color: #93c5fd; border: 1px solid rgba(79,142,247,0.3); }
+    .pill-cat { background: rgba(124,92,252,0.15); color: #c4b5fd; border: 1px solid rgba(124,92,252,0.3); }
+    .pill-jour { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+
+    section { margin-bottom: 2rem; }
+    .section-title {
+      display: flex; align-items: center; gap: 0.7rem;
+      font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .section-icon { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    th { background: var(--surface2); padding: 0.7rem 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+    td { padding: 0.7rem 1rem; border-top: 1px solid var(--border); vertical-align: top; }
+    td:first-child { font-weight: 700; color: var(--accent); white-space: nowrap; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .points-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .point-item { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent2); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .point-num { font-size: 0.7rem; font-weight: 800; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .point-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .point-body { color: var(--muted); font-size: 0.875rem; }
+    .point-body ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+    .point-body li { margin-bottom: 0.25rem; }
+    .highlight { color: var(--text); font-weight: 600; }
+
+    .pieges-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .piege-item { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .piege-label { font-size: 0.72rem; font-weight: 800; color: #fca5a5; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .piege-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .piege-body { color: var(--muted); font-size: 0.875rem; }
+
+    /* SCHEMA ABUS */
+    .abus-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .abus-cell {
+      background: var(--surface);
+      padding: 1rem;
+    }
+    .abus-cell.header-row {
+      background: var(--surface2);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--muted);
+      font-weight: 700;
+      padding: 0.6rem 1rem;
+    }
+    .abus-name { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .abus-name.initie { color: #f87171; }
+    .abus-name.manipulation { color: #fb923c; }
+    .abus-name.divulgation { color: #facc15; }
+    .abus-def { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .abus-ex { font-size: 0.75rem; color: var(--border); margin-top: 0.5rem; font-style: italic; }
+    .abus-ex span { color: var(--muted); }
+
+    /* OBLIGATIONS TABLE */
+    .oblig-grid {
+      display: grid;
+      grid-template-columns: 1fr 2fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .oblig-cell {
+      background: var(--surface);
+      padding: 0.8rem 1rem;
+      font-size: 0.85rem;
+    }
+    .oblig-cell.label { background: var(--surface2); font-weight: 700; color: var(--accent); font-size: 0.82rem; }
+    .oblig-cell.header { background: var(--surface2); color: var(--muted); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; font-weight: 600; }
+    .oblig-cell.value { color: var(--muted); line-height: 1.5; }
+
+    .qcm-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .qcm-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .qcm-header { background: var(--surface2); padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .qcm-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .cat-c { color: var(--accent); }
+    .cat-a { color: var(--accent2); }
+    .qcm-body { padding: 1.2rem; }
+    .qcm-question { font-weight: 600; color: var(--text); margin-bottom: 1rem; font-size: 0.92rem; line-height: 1.6; }
+    .qcm-choices { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .choice { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.6rem 0.9rem; border-radius: 7px; border: 1px solid var(--border); font-size: 0.875rem; background: var(--bg); }
+    .choice.correct { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .choice-letter { font-weight: 800; min-width: 18px; font-size: 0.85rem; }
+    .correct .choice-letter { color: var(--green); }
+    .qcm-explication { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 7px; padding: 0.8rem 1rem; font-size: 0.82rem; color: #86efac; }
+    .qcm-explication strong { color: #4ade80; }
+
+    .alerte-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25); border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; padding: 1.2rem 1.4rem; }
+    .alerte-item { margin-bottom: 1rem; }
+    .alerte-item:last-child { margin-bottom: 0; }
+    .alerte-tag { display: inline-block; padding: 0.15rem 0.6rem; background: rgba(245,158,11,0.2); color: #fcd34d; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+    .alerte-title { font-weight: 700; color: var(--text); font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .alerte-body { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+
+    .fiche-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .next-btn { display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.88rem; transition: opacity 0.2s; }
+    .next-btn:hover { opacity: 0.85; }
+    .footer-info { color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- NAV -->
+  <div class="nav">
+    <a href="fiche-01-cadre-institutionnel.html">← Fiche 1</a>
+    <span class="nav-center">Fiche 2 / 12</span>
+    <a href="fiche-03-instruments-financiers-1.html">Fiche suivante →</a>
+  </div>
+
+  <!-- HEADER -->
+  <div class="fiche-header">
+    <div class="fiche-num">Thème 2 · J2 — 16 avril 2026</div>
+    <h1>Déontologie<br>et conformité</h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-questions">~10 questions à l'examen</span>
+      <span class="meta-pill pill-cat">Catégories A & C — mixte</span>
+      <span class="meta-pill pill-jour">J2 · 16 avril</span>
+    </div>
+  </div>
+
+  <!-- MOTS CLES -->
+  <section>
+    <div class="section-title"><div class="section-icon">🔑</div>Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>MAR</td><td>Market Abuse Regulation — règlement européen définissant et sanctionnant les 3 abus de marché</td></tr>
+        <tr><td>Opération d'initié</td><td>Utilisation d'une information privilégiée (non publique, précise, significative) pour négocier un instrument financier</td></tr>
+        <tr><td>Manipulation de cours</td><td>Action visant artificiellement à influencer le cours d'un instrument financier (ordres fictifs, rumeurs…)</td></tr>
+        <tr><td>Divulgation illicite</td><td>Communication d'une information privilégiée à un tiers en dehors du cadre normal de l'exercice professionnel</td></tr>
+        <tr><td>Information privilégiée</td><td>Information non publique, précise, susceptible d'influencer significativement le cours d'un instrument</td></tr>
+        <tr><td>Conflit d'intérêts</td><td>Situation où l'intérêt du professionnel peut entrer en opposition avec celui de son client</td></tr>
+        <tr><td>Muraille de Chine</td><td>Barrière organisationnelle séparant les activités pouvant générer des informations privilégiées des activités de marché</td></tr>
+        <tr><td>RCSI</td><td>Responsable de la Conformité des Services d'Investissement — fonction obligatoire dans tout PSI</td></tr>
+        <tr><td>Devoir de conseil</td><td>Obligation du professionnel de recommander des produits adaptés au profil et aux objectifs du client</td></tr>
+        <tr><td>Lanceur d'alerte</td><td>Personne signalant de bonne foi une violation réglementaire — protégée par la loi Sapin 2</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5 POINTS -->
+  <section>
+    <div class="section-title"><div class="section-icon">⭐</div>L'essentiel en 5 points</div>
+    <div class="points-list">
+
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">Les 3 abus de marché définis par MAR — à connaître par cœur</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Opération d'initié</span> : négocier sur la base d'une information privilégiée</li>
+            <li><span class="highlight">Manipulation de cours</span> : fausser le prix ou le volume d'un instrument</li>
+            <li><span class="highlight">Divulgation illicite</span> : communiquer une info privilégiée hors cadre professionnel</li>
+          </ul>
+          MAR est un <span class="highlight">règlement</span> (application directe) — pas une directive.
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">Les 4 obligations déontologiques fondamentales du professionnel</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Loyauté</span> : agir dans l'intérêt exclusif du client</li>
+            <li><span class="highlight">Compétence</span> : disposer des connaissances nécessaires à l'exercice</li>
+            <li><span class="highlight">Diligence</span> : traiter les dossiers avec soin et célérité</li>
+            <li><span class="highlight">Transparence</span> : informer le client de tout conflit d'intérêts, de tous frais, de tous risques</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">Gestion des conflits d'intérêts — 3 niveaux de réponse</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Prévenir</span> : politique de prévention (muraille de Chine, registre des conflits)</li>
+            <li><span class="highlight">Détecter</span> : cartographie des risques, contrôles internes</li>
+            <li><span class="highlight">Gérer ou divulguer</span> : si le conflit ne peut être évité, l'informer clairement au client avant d'agir</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">Le RCSI — fonction clé obligatoire dans tout PSI</div>
+        <div class="point-body">
+          Le Responsable de la Conformité des Services d'Investissement veille au respect des obligations réglementaires en interne. Il est <span class="highlight">distinct du dirigeant</span>, rapporte à la direction, et dispose d'une <span class="highlight">indépendance garantie</span>. Sa désignation est obligatoire et son identité communiquée à l'AMF.
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Loi Sapin 2 — protection des lanceurs d'alerte</div>
+        <div class="point-body">
+          Toute personne signalant de bonne foi une violation réglementaire est protégée contre les représailles (licenciement, sanctions). Le signalement interne est prioritaire, mais le signalement externe (AMF, Parquet) est possible. Cette protection est un droit <span class="highlight">irréfragable</span> — l'employeur ne peut pas s'y opposer.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PIEGES -->
+  <section>
+    <div class="section-title"><div class="section-icon">⚠️</div>Ce qui piège les candidats</div>
+    <div class="pieges-list">
+
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">Divulgation illicite ≠ manipulation de cours</div>
+        <div class="piege-body">
+          La divulgation illicite, c'est <strong style="color:var(--text)">transmettre</strong> une info privilégiée. La manipulation de cours, c'est <strong style="color:var(--text)">agir</strong> pour fausser un cours. On peut divulguer sans manipuler (et inversement). L'examen propose souvent des cas concrets pour tester cette distinction.
+        </div>
+      </div>
+
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">Une information privilégiée doit réunir 3 conditions cumulatives</div>
+        <div class="piege-body">
+          Elle doit être <strong style="color:var(--text)">non publique</strong> ET <strong style="color:var(--text)">précise</strong> ET <strong style="color:var(--text)">susceptible d'influencer significativement le cours</strong>. Si une seule condition manque, ce n'est pas une information privilégiée au sens de MAR. L'examen teste souvent si les 3 conditions sont réunies dans un scénario.
+        </div>
+      </div>
+
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">Conflit d'intérêts : divulguer ne suffit pas toujours</div>
+        <div class="piege-body">
+          Si le conflit est trop important et ne peut être géré de façon satisfaisante, le professionnel doit <strong style="color:var(--text)">refuser la mission</strong>, pas juste l'informer. La divulgation seule ne blanchit pas le professionnel si le conflit reste non géré.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MEMO VISUEL -->
+  <section>
+    <div class="section-title"><div class="section-icon">🗺️</div>Mémo visuel — Les 3 abus de marché (MAR)</div>
+
+    <div class="abus-grid">
+      <div class="abus-cell header-row">Abus</div>
+      <div class="abus-cell header-row">Définition</div>
+      <div class="abus-cell header-row">Exemple concret</div>
+
+      <div class="abus-cell">
+        <div class="abus-name initie">Opération d'initié</div>
+      </div>
+      <div class="abus-cell abus-def">Négocier un instrument sur la base d'une information privilégiée (non publique, précise, significative)</div>
+      <div class="abus-cell abus-def">Un directeur financier achète des actions de sa société avant l'annonce d'une OPA</div>
+
+      <div class="abus-cell">
+        <div class="abus-name manipulation">Manipulation de cours</div>
+      </div>
+      <div class="abus-cell abus-def">Fausser artificiellement le cours ou le volume d'un instrument par des ordres, des transactions ou des informations trompeuses</div>
+      <div class="abus-cell abus-def">Passer des ordres d'achat et de vente simultanés pour gonfler artificiellement le volume d'échange</div>
+
+      <div class="abus-cell">
+        <div class="abus-name divulgation">Divulgation illicite</div>
+      </div>
+      <div class="abus-cell abus-def">Communiquer une information privilégiée à un tiers hors du cadre normal de l'exercice professionnel</div>
+      <div class="abus-cell abus-def">Un analyste révèle à un ami les résultats trimestriels d'une société avant publication officielle</div>
+    </div>
+
+    <div style="margin-top: 1.2rem;">
+      <div class="oblig-grid">
+        <div class="oblig-cell header">Obligation</div>
+        <div class="oblig-cell header">Ce que ça implique concrètement</div>
+
+        <div class="oblig-cell label">Loyauté</div>
+        <div class="oblig-cell value">Agir dans l'intérêt exclusif du client, jamais pour son propre compte ou celui d'un tiers</div>
+
+        <div class="oblig-cell label">Compétence</div>
+        <div class="oblig-cell value">Connaître les produits recommandés, se former en continu, ne pas conseiller hors de son domaine d'expertise</div>
+
+        <div class="oblig-cell label">Diligence</div>
+        <div class="oblig-cell value">Traiter les dossiers sans délai, exécuter les ordres dans les meilleures conditions (best execution)</div>
+
+        <div class="oblig-cell label">Transparence</div>
+        <div class="oblig-cell value">Informer des frais, des conflits d'intérêts, des risques — avant et pendant la relation commerciale</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QCM -->
+  <section>
+    <div class="section-title"><div class="section-icon">📝</div>Questions-type d'entraînement</div>
+    <div class="qcm-list">
+
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem; color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">
+            Parmi les comportements suivants, lequel constitue une manipulation de cours au sens du règlement MAR ?
+          </div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Un analyste communique à son frère les résultats d'une société avant leur publication</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>Un dirigeant achète des actions de sa propre société avant l'annonce d'un résultat positif</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>Un trader passe des ordres d'achat et de vente croisés pour créer une apparence d'activité sur un titre</span></div>
+          </div>
+          <div class="qcm-explication">
+            <strong>Explication :</strong> Les ordres croisés artificiels pour gonfler le volume constituent une manipulation de cours. A est une divulgation illicite. B est une opération d'initié. Ces trois comportements sont distincts même s'ils sont tous interdits par MAR.
+          </div>
+        </div>
+      </div>
+
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem; color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">
+            Un conseiller en investissement d'une banque réalise qu'il existe un conflit d'intérêts entre la recommandation qu'il s'apprête à faire à son client et les intérêts de la banque. Quelle est la marche à suivre correcte ?
+          </div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Il peut poursuivre la recommandation sans aucune formalité, le conflit étant courant dans la profession</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>Il doit informer clairement le client du conflit avant de formuler toute recommandation, et si le conflit ne peut être géré, s'abstenir</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Il suffit de noter le conflit dans le registre interne sans en informer le client</span></div>
+          </div>
+          <div class="qcm-explication">
+            <strong>Explication :</strong> MIF2 impose une gestion active des conflits d'intérêts : prévenir, puis détecter, puis divulguer au client. Si le conflit ne peut être résolu de façon satisfaisante, le professionnel doit s'abstenir de formuler la recommandation. La notation interne seule est insuffisante.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ALERTE -->
+  <section>
+    <div class="section-title"><div class="section-icon">🚨</div>Alerte 2025-2026</div>
+    <div class="alerte-box">
+
+      <div class="alerte-item">
+        <div class="alerte-tag">MAR révisé · 2024-2025</div>
+        <div class="alerte-title">Élargissement du périmètre de MAR aux cryptoactifs</div>
+        <div class="alerte-body">
+          Avec l'entrée en vigueur de <strong style="color:var(--text)">MiCA</strong> et les révisions de MAR, les abus de marché sur les cryptoactifs admis à la négociation sur des plateformes réglementées tombent désormais sous des régimes de surveillance similaires à MAR. Les trois types d'abus (initié, manipulation, divulgation) s'appliquent progressivement à ce secteur.
+        </div>
+      </div>
+
+      <div class="alerte-item">
+        <div class="alerte-tag">Loi Sapin 2 · Renforcée</div>
+        <div class="alerte-title">Protection des lanceurs d'alerte — directive européenne transposée</div>
+        <div class="alerte-body">
+          La directive européenne sur les lanceurs d'alerte (2019/1937) a été transposée en droit français. Elle renforce la protection et oblige les entreprises de plus de 50 salariés à mettre en place un <strong style="color:var(--text)">canal de signalement interne sécurisé</strong>. Ce point peut apparaître dans des QCM sur la conformité.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="fiche-footer">
+    <div class="footer-info">
+      Fiche 2 / 12 · Déontologie et conformité<br>
+      Examen AMF · 4 mai 2026
+    </div>
+    <a href="fiche-03-instruments-financiers-1.html" class="next-btn">Fiche 3 — Instruments financiers (1/2) →</a>
+  </div>
+
+</div>
+</body>
+</html>
