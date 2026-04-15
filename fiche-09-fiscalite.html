@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiche 9 — Fiscalité des produits financiers</title>
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+      --accent: #4f8ef7; --accent2: #7c5cfc; --green: #22c55e;
+      --orange: #f59e0b; --red: #ef4444; --text: #e2e8f0;
+      --muted: #94a3b8; --border: #2d3348;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.7; padding: 2rem 1rem; }
+    .container { max-width: 860px; margin: 0 auto; }
+    .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; font-size: 0.82rem; }
+    .nav a { color: var(--accent); text-decoration: none; padding: 0.3rem 0.8rem; border: 1px solid var(--accent); border-radius: 6px; }
+    .nav a:hover { background: rgba(79,142,247,0.1); }
+    .nav-center { color: var(--muted); }
+    .fiche-header { background: linear-gradient(135deg, #1a1d27, #22263a); border: 1px solid var(--border); border-top: 3px solid var(--orange); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    .fiche-num { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--orange); font-weight: 700; margin-bottom: 0.4rem; }
+    .fiche-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
+    .fiche-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .meta-pill { padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .pill-questions { background: rgba(245,158,11,0.15); color: #fcd34d; border: 1px solid rgba(245,158,11,0.3); }
+    .pill-cat { background: rgba(124,92,252,0.15); color: #c4b5fd; border: 1px solid rgba(124,92,252,0.3); }
+    .pill-jour { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+    section { margin-bottom: 2rem; }
+    .section-title { display: flex; align-items: center; gap: 0.7rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    th { background: var(--surface2); padding: 0.7rem 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+    td { padding: 0.7rem 1rem; border-top: 1px solid var(--border); vertical-align: top; font-size: 0.85rem; }
+    td:first-child { font-weight: 700; color: var(--orange); }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .points-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .point-item { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--orange); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .point-num { font-size: 0.7rem; font-weight: 800; color: var(--orange); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .point-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .point-body { color: var(--muted); font-size: 0.875rem; }
+    .point-body ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+    .point-body li { margin-bottom: 0.25rem; }
+    .highlight { color: var(--text); font-weight: 600; }
+    .pieges-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .piege-item { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .piege-label { font-size: 0.72rem; font-weight: 800; color: #fca5a5; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .piege-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .piege-body { color: var(--muted); font-size: 0.875rem; }
+    /* FISCAL TABLE */
+    .fiscal-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .fc { background: var(--surface); padding: 0.8rem 1rem; font-size: 0.82rem; }
+    .fc.hdr { background: var(--surface2); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 700; }
+    .fc.lbl { background: var(--surface2); font-weight: 700; color: var(--orange); font-size: 0.85rem; }
+    .fc-val { color: var(--muted); line-height: 1.5; }
+    .num { font-size: 1.3rem; font-weight: 900; color: var(--orange); }
+    /* PEA */
+    .pea-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .pea-header { background: var(--surface2); padding: 0.8rem 1.2rem; font-weight: 700; font-size: 0.9rem; color: #93c5fd; }
+    .pea-body { padding: 1rem 1.2rem; }
+    .pea-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 0.8rem; margin-top: 0.5rem; }
+    .pea-card { background: var(--surface2); border-radius: 8px; padding: 0.8rem; text-align: center; }
+    .pea-val { font-size: 1rem; font-weight: 800; color: #60a5fa; margin-bottom: 0.2rem; }
+    .pea-label { font-size: 0.72rem; color: var(--muted); }
+    .qcm-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .qcm-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .qcm-header { background: var(--surface2); padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .qcm-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+    .cat-c { color: var(--accent); } .cat-a { color: var(--accent2); }
+    .qcm-body { padding: 1.2rem; }
+    .qcm-question { font-weight: 600; color: var(--text); margin-bottom: 1rem; font-size: 0.92rem; line-height: 1.6; }
+    .qcm-choices { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .choice { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.6rem 0.9rem; border-radius: 7px; border: 1px solid var(--border); font-size: 0.875rem; background: var(--bg); }
+    .choice.correct { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .choice-letter { font-weight: 800; min-width: 18px; }
+    .correct .choice-letter { color: var(--green); }
+    .qcm-explication { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 7px; padding: 0.8rem 1rem; font-size: 0.82rem; color: #86efac; }
+    .qcm-explication strong { color: #4ade80; }
+    .alerte-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25); border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; padding: 1.2rem 1.4rem; }
+    .alerte-item { margin-bottom: 1rem; }
+    .alerte-item:last-child { margin-bottom: 0; }
+    .alerte-tag { display: inline-block; padding: 0.15rem 0.6rem; background: rgba(245,158,11,0.2); color: #fcd34d; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .alerte-title { font-weight: 700; color: var(--text); font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .alerte-body { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+    .fiche-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .next-btn { display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.88rem; }
+    .footer-info { color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="fiche-08-lcb-ft.html">← Fiche 8</a>
+    <span class="nav-center">Fiche 9 / 12</span>
+    <a href="fiche-10-analyse-financiere.html">Fiche suivante →</a>
+  </div>
+
+  <div class="fiche-header">
+    <div class="fiche-num">Thème 9 · J11 — 25 avril 2026</div>
+    <h1>Fiscalité des produits<br>financiers</h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-questions">~8 questions à l'examen</span>
+      <span class="meta-pill pill-cat">Catégories A & C — mixte</span>
+      <span class="meta-pill pill-jour">J11 · 25 avril</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">🔑 Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>PFU (Flat tax)</td><td>Prélèvement Forfaitaire Unique de 30% sur les revenus du capital (12,8% IR + 17,2% PS)</td></tr>
+        <tr><td>Barème progressif</td><td>Option alternative au PFU — imposition selon la tranche marginale d'imposition du foyer fiscal</td></tr>
+        <tr><td>Plus-value mobilière</td><td>Gain réalisé lors de la cession d'un titre — imposable au PFU ou au barème sur option</td></tr>
+        <tr><td>PEA</td><td>Plan d'Épargne en Actions — enveloppe fiscale favorisant l'investissement en actions européennes</td></tr>
+        <tr><td>PEA-PME</td><td>Variante du PEA dédiée aux PME et ETI — plafond distinct de 225 000 €</td></tr>
+        <tr><td>Abattement pour durée</td><td>Réduction de l'assiette imposable selon la durée de détention (uniquement pour titres acquis avant 2018)</td></tr>
+        <tr><td>Prélèvements sociaux (PS)</td><td>17,2% sur les revenus du capital (CSG 9,2% + CRDS 0,5% + autres)</td></tr>
+        <tr><td>IFI</td><td>Impôt sur la Fortune Immobilière — s'applique aux patrimoines immobiliers nets > 1,3 M€</td></tr>
+        <tr><td>Compte-titres ordinaire (CTO)</td><td>Enveloppe sans avantage fiscal — imposition chaque année sur dividendes et plus-values réalisées</td></tr>
+        <tr><td>Rachat partiel</td><td>Retrait partiel d'une assurance-vie — seule la quote-part de gains dans le rachat est imposable</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-title">⭐ L'essentiel en 5 points</div>
+    <div class="points-list">
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">Le PFU — flat tax à 30% : composition à retenir</div>
+        <div class="point-body">
+          <span class="highlight">30%</span> = <span class="highlight">12,8%</span> d'impôt sur le revenu + <span class="highlight">17,2%</span> de prélèvements sociaux.<br>
+          S'applique par défaut sur : dividendes, intérêts, plus-values de cession de valeurs mobilières.<br>
+          Option barème progressif possible si plus favorable (revenus modestes).
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">PEA — les règles fondamentales</div>
+        <div class="point-body">
+          <ul>
+            <li>Plafond versements : <span class="highlight">150 000 €</span> (PEA classique) + <span class="highlight">225 000 €</span> (PEA-PME)</li>
+            <li>Actifs éligibles : actions et fonds investis à ≥75% en actions de sociétés de l'EEE</li>
+            <li>Avant 5 ans : retrait = clôture du PEA + imposition au PFU</li>
+            <li>Après 5 ans : gains <span class="highlight">exonérés d'IR</span> (mais PS 17,2% toujours dus)</li>
+            <li>Après 8 ans : possibilité de rente viagère exonérée d'IR</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">Fiscalité de l'assurance-vie — le régime des 8 ans</div>
+        <div class="point-body">
+          <ul>
+            <li>Avant 8 ans : gains imposés au PFU (30%) ou barème sur option</li>
+            <li>Après 8 ans : abattement annuel de <span class="highlight">4 600 € (personne seule)</span> ou <span class="highlight">9 200 € (couple)</span> sur les gains, puis 7,5% d'IR + 17,2% PS (soit 24,7%) sur l'excédent</li>
+            <li>Primes versées après le 27/09/2017 > 150 000 € : PFU de 30% même après 8 ans</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">En cas de rachat partiel d'assurance-vie</div>
+        <div class="point-body">
+          Seule la quote-part de gains dans le rachat est imposable, pas le capital. Formule :
+          <br><span style="color:var(--text); font-weight:600;">Gains imposables = Rachat × (Plus-value totale / Valeur totale du contrat)</span><br>
+          Ce calcul proportionnel est souvent testé sous forme de QCM de calcul.
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Compte-titres ordinaire — pas d'avantage fiscal mais pas de contrainte</div>
+        <div class="point-body">
+          Sur un CTO : dividendes et coupons sont imposés <span class="highlight">chaque année</span> au PFU. Les plus-values sont imposées à la cession. Pas de plafond de versement, pas de restriction sur les actifs éligibles, pas de pénalité en cas de retrait. La seule enveloppe véritablement libre.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">⚠️ Ce qui piège les candidats</div>
+    <div class="pieges-list">
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">PEA après 5 ans : exonération d'IR, pas de PS</div>
+        <div class="piege-body">Les prélèvements sociaux (17,2%) sont toujours dus, même après 5 ans sur un PEA. L'exonération ne porte que sur la part IR (12,8%). Dire "le PEA est totalement exonéré après 5 ans" est faux.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">Assurance-vie après 8 ans : l'abattement s'applique aux gains, pas aux retraits</div>
+        <div class="piege-body">L'abattement de 4 600 € / 9 200 € s'applique sur la <strong style="color:var(--text)">quote-part de gains</strong> dans le rachat, pas sur le montant total retiré. Un retrait de 50 000 € dont 5 000 € de gains → seuls les 5 000 € de gains bénéficient de l'abattement.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">Le PEA peut détenir des fonds — pas seulement des actions directes</div>
+        <div class="piege-body">Un PEA peut contenir des OPCVM (SICAV, FCP, ETF) à condition qu'ils soient investis à ≥75% en actions d'entreprises de l'EEE. Des fonds très diversifiés peuvent être éligibles si ce seuil est respecté.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🗺️ Mémo visuel — Comparatif des enveloppes fiscales</div>
+    <div class="fiscal-grid">
+      <div class="fc hdr">Critère</div>
+      <div class="fc hdr">PEA</div>
+      <div class="fc hdr">Assurance-vie</div>
+
+      <div class="fc lbl">Plafond</div>
+      <div class="fc fc-val">150 000 € (+ 225 000 € PEA-PME)</div>
+      <div class="fc fc-val">Aucun plafond de versement</div>
+
+      <div class="fc lbl">Actifs éligibles</div>
+      <div class="fc fc-val">Actions EEE, fonds ≥75% actions EEE</div>
+      <div class="fc fc-val">Fonds euro, UC (actions, oblig, immo…)</div>
+
+      <div class="fc lbl">Fiscalité avant échéance</div>
+      <div class="fc fc-val" style="color:#f87171;">Retrait avant 5 ans = clôture + PFU 30%</div>
+      <div class="fc fc-val">Avant 8 ans : PFU 30% sur les gains</div>
+
+      <div class="fc lbl">Fiscalité optimale</div>
+      <div class="fc fc-val" style="color:#86efac;">Après 5 ans : IR exonéré, PS 17,2% seulement</div>
+      <div class="fc fc-val" style="color:#86efac;">Après 8 ans : abattement 4 600 € puis 7,5% IR + 17,2% PS</div>
+
+      <div class="fc lbl">Retrait partiel possible</div>
+      <div class="fc fc-val">Non avant 5 ans (clôture) · Oui après 5 ans</div>
+      <div class="fc fc-val">Oui à tout moment (rachat partiel ou total)</div>
+    </div>
+
+    <div style="margin-top:1rem; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:1rem 1.2rem;">
+      <div style="font-weight:700; color:var(--text); margin-bottom:0.6rem; font-size:0.88rem;">PFU — Décomposition du 30%</div>
+      <div style="display:flex; gap:1rem; flex-wrap:wrap;">
+        <div style="flex:1; min-width:120px; background:var(--surface2); border-radius:8px; padding:0.8rem; text-align:center;">
+          <div style="font-size:1.4rem; font-weight:900; color:#60a5fa;">12,8%</div>
+          <div style="font-size:0.75rem; color:var(--muted);">Impôt sur le revenu</div>
+        </div>
+        <div style="display:flex; align-items:center; color:var(--muted); font-size:1.2rem;">+</div>
+        <div style="flex:1; min-width:120px; background:var(--surface2); border-radius:8px; padding:0.8rem; text-align:center;">
+          <div style="font-size:1.4rem; font-weight:900; color:#a78bfa;">17,2%</div>
+          <div style="font-size:0.75rem; color:var(--muted);">Prélèvements sociaux</div>
+        </div>
+        <div style="display:flex; align-items:center; color:var(--muted); font-size:1.2rem;">=</div>
+        <div style="flex:1; min-width:120px; background:rgba(245,158,11,0.1); border:1px solid rgba(245,158,11,0.3); border-radius:8px; padding:0.8rem; text-align:center;">
+          <div style="font-size:1.4rem; font-weight:900; color:var(--orange);">30%</div>
+          <div style="font-size:0.75rem; color:var(--muted);">PFU total (flat tax)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">📝 Questions-type d'entraînement</div>
+    <div class="qcm-list">
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un investisseur retire 10 000 € de son PEA ouvert depuis 3 ans. Quelle est la conséquence fiscale ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Le retrait est exonéré d'impôt car le PEA bénéficie d'une exonération totale</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>Seuls les gains sont imposés au PFU de 30%, le PEA reste ouvert</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>Le retrait avant 5 ans entraîne la clôture du PEA, les gains sont imposés au PFU de 30%</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Tout retrait (même partiel) avant 5 ans entraîne la clôture automatique du PEA. Les gains sont alors soumis au PFU de 30% (12,8% IR + 17,2% PS). Le PEA est fermé et ne peut pas être reconstitué.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Calcul / Application</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un contrat d'assurance-vie de 9 ans a une valeur de rachat totale de 120 000 € dont 20 000 € de gains. Le titulaire effectue un rachat partiel de 12 000 €. Quel est le montant de gains imposables dans ce rachat ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>12 000 € — la totalité du rachat est imposable</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>20 000 € — la totalité des gains du contrat est imposable lors d'un rachat</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>2 000 € — quote-part de gains = 12 000 × (20 000 / 120 000)</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Quote-part de gains = 12 000 × (20 000 / 120 000) = 12 000 × 16,67% = 2 000 €. Seuls ces 2 000 € sont imposables. Après 8 ans, l'abattement de 4 600 € (personne seule) couvre entièrement ces gains → imposition nulle sur la part IR dans cet exemple.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🚨 Alerte 2025-2026</div>
+    <div class="alerte-box">
+      <div class="alerte-item">
+        <div class="alerte-tag">PLF 2025</div>
+        <div class="alerte-title">Cryptoactifs — imposition au PFU confirmée</div>
+        <div class="alerte-body">Les plus-values sur cession de cryptoactifs sont soumises au PFU de 30% depuis 2023 (loi de finances 2022). Option barème progressif possible. Les échanges entre cryptoactifs ne sont pas imposables — seule la conversion en monnaie légale est un fait générateur. Point susceptible d'apparaître dans des QCM croisant fiscalité et cryptoactifs.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fiche-footer">
+    <div class="footer-info">Fiche 9 / 12 · Fiscalité des produits financiers<br>Examen AMF · 4 mai 2026</div>
+    <a href="fiche-10-analyse-financiere.html" class="next-btn">Fiche 10 — Analyse financière →</a>
+  </div>
+</div>
+</body>
+</html>

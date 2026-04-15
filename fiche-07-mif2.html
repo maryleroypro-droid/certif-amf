@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiche 7 — Protection des investisseurs / MIF2</title>
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+      --accent: #4f8ef7; --accent2: #7c5cfc; --green: #22c55e;
+      --orange: #f59e0b; --red: #ef4444; --text: #e2e8f0;
+      --muted: #94a3b8; --border: #2d3348;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.7; padding: 2rem 1rem; }
+    .container { max-width: 860px; margin: 0 auto; }
+    .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; font-size: 0.82rem; }
+    .nav a { color: var(--accent); text-decoration: none; padding: 0.3rem 0.8rem; border: 1px solid var(--accent); border-radius: 6px; }
+    .nav a:hover { background: rgba(79,142,247,0.1); }
+    .nav-center { color: var(--muted); }
+    .fiche-header { background: linear-gradient(135deg, #1a1d27, #22263a); border: 1px solid var(--border); border-top: 3px solid var(--accent2); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    .fiche-num { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); font-weight: 700; margin-bottom: 0.4rem; }
+    .fiche-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
+    .fiche-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .meta-pill { padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .pill-questions { background: rgba(79,142,247,0.15); color: #93c5fd; border: 1px solid rgba(79,142,247,0.3); }
+    .pill-cat { background: rgba(124,92,252,0.15); color: #c4b5fd; border: 1px solid rgba(124,92,252,0.3); }
+    .pill-jour { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+    section { margin-bottom: 2rem; }
+    .section-title { display: flex; align-items: center; gap: 0.7rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    th { background: var(--surface2); padding: 0.7rem 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+    td { padding: 0.7rem 1rem; border-top: 1px solid var(--border); vertical-align: top; font-size: 0.85rem; }
+    td:first-child { font-weight: 700; color: var(--accent); }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .points-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .point-item { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent2); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .point-num { font-size: 0.7rem; font-weight: 800; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .point-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .point-body { color: var(--muted); font-size: 0.875rem; }
+    .point-body ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+    .point-body li { margin-bottom: 0.25rem; }
+    .highlight { color: var(--text); font-weight: 600; }
+    .pieges-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .piege-item { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .piege-label { font-size: 0.72rem; font-weight: 800; color: #fca5a5; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .piege-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .piege-body { color: var(--muted); font-size: 0.875rem; }
+    /* CLASSIFICATION CLIENTS */
+    .clients-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .client-cell { background: var(--surface); padding: 1rem; }
+    .client-cell.hdr { background: var(--surface2); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; padding: 0.6rem 1rem; }
+    .client-name { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.4rem; }
+    .c-retail { color: #60a5fa; }
+    .c-pro { color: #a78bfa; }
+    .c-eligible { color: #f87171; }
+    .client-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .client-badge { display: inline-block; padding: 0.15rem 0.5rem; border-radius: 4px; font-size: 0.7rem; font-weight: 700; margin-top: 0.5rem; }
+    .badge-max { background: rgba(96,165,250,0.2); color: #93c5fd; }
+    .badge-med { background: rgba(167,139,250,0.2); color: #c4b5fd; }
+    .badge-min { background: rgba(248,113,113,0.2); color: #fca5a5; }
+    .qcm-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .qcm-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .qcm-header { background: var(--surface2); padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .qcm-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+    .cat-c { color: var(--accent); } .cat-a { color: var(--accent2); }
+    .qcm-body { padding: 1.2rem; }
+    .qcm-question { font-weight: 600; color: var(--text); margin-bottom: 1rem; font-size: 0.92rem; line-height: 1.6; }
+    .qcm-choices { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .choice { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.6rem 0.9rem; border-radius: 7px; border: 1px solid var(--border); font-size: 0.875rem; background: var(--bg); }
+    .choice.correct { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .choice-letter { font-weight: 800; min-width: 18px; }
+    .correct .choice-letter { color: var(--green); }
+    .qcm-explication { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 7px; padding: 0.8rem 1rem; font-size: 0.82rem; color: #86efac; }
+    .qcm-explication strong { color: #4ade80; }
+    .alerte-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25); border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; padding: 1.2rem 1.4rem; }
+    .alerte-item { margin-bottom: 1rem; }
+    .alerte-item:last-child { margin-bottom: 0; }
+    .alerte-tag { display: inline-block; padding: 0.15rem 0.6rem; background: rgba(245,158,11,0.2); color: #fcd34d; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .alerte-title { font-weight: 700; color: var(--text); font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .alerte-body { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+    .fiche-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .next-btn { display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.88rem; }
+    .footer-info { color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="fiche-06-esg-2.html">← Fiche 6</a>
+    <span class="nav-center">Fiche 7 / 12</span>
+    <a href="fiche-08-lcb-ft.html">Fiche suivante →</a>
+  </div>
+
+  <div class="fiche-header">
+    <div class="fiche-num">Thème 7 · J7 — 21 avril 2026</div>
+    <h1>Protection des investisseurs<br>/ MIF2</h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-questions">~10 questions à l'examen</span>
+      <span class="meta-pill pill-cat">Catégories A & C — mixte</span>
+      <span class="meta-pill pill-jour">J7 · 21 avril</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">🔑 Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>MIF2</td><td>Directive Marchés d'Instruments Financiers — cadre européen de protection des investisseurs et de transparence</td></tr>
+        <tr><td>Client non professionnel</td><td>Client retail — bénéficie du niveau de protection maximal (information, test d'adéquation)</td></tr>
+        <tr><td>Client professionnel</td><td>Entreprise ou personne remplissant 2/3 critères (capital ≥500k€, bilan ≥20M€, chiffre d'affaires ≥40M€)</td></tr>
+        <tr><td>Contrepartie éligible</td><td>PSI, établissements de crédit, assureurs — niveau de protection minimal, accès à tous les marchés</td></tr>
+        <tr><td>Test d'adéquation</td><td>Évaluation de la situation financière, des objectifs et de la tolérance au risque du client avant conseil</td></tr>
+        <tr><td>Test de caractère approprié</td><td>Vérification des connaissances et de l'expérience du client pour les services sans conseil</td></tr>
+        <tr><td>Best execution</td><td>Obligation d'exécuter les ordres dans les meilleures conditions possibles (prix, coûts, rapidité…)</td></tr>
+        <tr><td>KYC</td><td>Know Your Customer — procédure de connaissance client obligatoire avant toute relation d'affaires</td></tr>
+        <tr><td>DIC / KID</td><td>Document d'Information Clé — document standardisé synthétisant les caractéristiques d'un produit complexe (PRIIPs)</td></tr>
+        <tr><td>Opt-in / Opt-out</td><td>Possibilité pour un client de demander à changer de catégorie (non-pro → pro ou inversement)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-title">⭐ L'essentiel en 5 points</div>
+    <div class="points-list">
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">Les 3 catégories de clients MIF2 — hiérarchie de protection</div>
+        <div class="point-body">Protection décroissante : non professionnel (max) → professionnel → contrepartie éligible (min). Voir mémo visuel.</div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">Test d'adéquation vs test de caractère approprié</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Adéquation</span> : obligatoire pour les services de conseil et gestion sous mandat — évalue situation financière + objectifs + tolérance au risque</li>
+            <li><span class="highlight">Caractère approprié</span> : pour les services d'exécution sans conseil — évalue seulement connaissances et expérience</li>
+            <li>Si le client refuse de répondre au test : le PSI peut quand même exécuter l'ordre (execution only) mais doit avertir</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">Critères du client professionnel — 2 sur 3</div>
+        <div class="point-body">
+          Pour être classé professionnel sur demande (opt-in), un client non-pro doit remplir <span class="highlight">au moins 2 des 3 critères</span> :
+          <ul>
+            <li>Portefeuille d'instruments financiers ≥ <span class="highlight">500 000 €</span></li>
+            <li>Avoir effectué au moins <span class="highlight">10 transactions</span> significatives par trimestre sur 4 trimestres</li>
+            <li>Expérience professionnelle dans le secteur financier d'au moins <span class="highlight">1 an</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">Best execution — 5 facteurs d'exécution</div>
+        <div class="point-body">
+          Le PSI doit exécuter les ordres dans les meilleures conditions selon : <span class="highlight">prix</span>, <span class="highlight">coûts</span>, <span class="highlight">rapidité</span>, <span class="highlight">probabilité d'exécution</span>, <span class="highlight">taille de l'ordre</span>. Pour les clients non professionnels, le prix total (prix + coûts) est le critère prépondérant.
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Document d'Information Clé (DIC/KID) — PRIIPs</div>
+        <div class="point-body">
+          Document standardisé de <span class="highlight">maximum 3 pages</span> obligatoire pour tout produit packagé complexe (PRIIP). Contient : description, risques (indicateur synthétique 1-7), scénarios de performance, coûts, durée recommandée. Doit être remis avant toute souscription.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">⚠️ Ce qui piège les candidats</div>
+    <div class="pieges-list">
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">Le test d'adéquation est plus complet que le test de caractère approprié</div>
+        <div class="piege-body">L'adéquation évalue 3 dimensions (situation financière, objectifs, tolérance au risque) et est obligatoire pour tout conseil. Le caractère approprié n'évalue que 2 dimensions (connaissances, expérience) et s'applique aux services sans conseil. Ne pas les confondre dans un scénario.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">Un client professionnel peut demander à être traité comme non professionnel</div>
+        <div class="piege-body">L'opt-out existe : un client professionnel peut demander par écrit à bénéficier de la protection maximale (client retail). L'inverse (opt-in) est possible mais soumis aux 3 critères. Ces deux mécanismes sont souvent testés.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">La best execution ne signifie pas forcément le meilleur prix</div>
+        <div class="piege-body">Best execution prend en compte 5 facteurs, pas uniquement le prix. Pour un ordre urgent, la rapidité d'exécution peut primer. Pour un ordre très large, la probabilité d'exécution totale peut être déterminante. C'est une obligation de moyens, pas de résultat.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🗺️ Mémo visuel — Classification clients MIF2</div>
+    <div class="clients-grid">
+      <div class="client-cell hdr">Catégorie</div>
+      <div class="client-cell hdr">Qui ?</div>
+      <div class="client-cell hdr">Protection & obligations PSI</div>
+      <div class="client-cell"><div class="client-name c-retail">Non professionnel</div><div class="client-badge badge-max">Protection maximale</div></div>
+      <div class="client-cell client-desc">Particuliers, PME sans expertise financière. Catégorie par défaut si doute.</div>
+      <div class="client-cell client-desc">Test d'adéquation complet · DIC obligatoire · Information maximale · Meilleure protection contractuelle</div>
+      <div class="client-cell"><div class="client-name c-pro">Professionnel</div><div class="client-badge badge-med">Protection intermédiaire</div></div>
+      <div class="client-cell client-desc">Grandes entreprises (2/3 critères), institutionnels, SGP, fonds. Peuvent demander opt-out.</div>
+      <div class="client-cell client-desc">Test d'adéquation allégé · Certaines informations non obligatoires · Accès à plus de produits</div>
+      <div class="client-cell"><div class="client-name c-eligible">Contrepartie éligible</div><div class="client-badge badge-min">Protection minimale</div></div>
+      <div class="client-cell client-desc">PSI, établissements de crédit, assureurs, gouvernements, banques centrales.</div>
+      <div class="client-cell client-desc">Pas de test d'adéquation · Pas de DIC · Accès à tous les marchés · Peut renoncer à la protection</div>
+    </div>
+
+    <div style="margin-top:1.2rem; background:var(--surface); border:1px solid var(--border); border-radius:10px; padding:1rem 1.2rem; font-size:0.83rem;">
+      <div style="font-weight:700; color:var(--text); margin-bottom:0.5rem;">Critères opt-in (non-pro → pro) — 2 sur 3 :</div>
+      <div style="display:grid; grid-template-columns:repeat(3,1fr); gap:0.8rem; margin-top:0.3rem;">
+        <div style="background:var(--surface2); border-radius:8px; padding:0.7rem; text-align:center;">
+          <div style="font-size:1.1rem; font-weight:900; color:#a78bfa;">500K€</div>
+          <div style="font-size:0.75rem; color:var(--muted);">Portefeuille d'instruments financiers</div>
+        </div>
+        <div style="background:var(--surface2); border-radius:8px; padding:0.7rem; text-align:center;">
+          <div style="font-size:1.1rem; font-weight:900; color:#a78bfa;">10 opérations</div>
+          <div style="font-size:0.75rem; color:var(--muted);">Par trimestre sur 4 trimestres</div>
+        </div>
+        <div style="background:var(--surface2); border-radius:8px; padding:0.7rem; text-align:center;">
+          <div style="font-size:1.1rem; font-weight:900; color:#a78bfa;">1 an</div>
+          <div style="font-size:0.75rem; color:var(--muted);">Expérience professionnelle en finance</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">📝 Questions-type d'entraînement</div>
+    <div class="qcm-list">
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Dans le cadre de MIF2, quel test est obligatoire lorsqu'un PSI fournit un service de conseil en investissement à un client non professionnel ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Le test de caractère approprié, portant sur les connaissances et l'expérience du client</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>Le test d'adéquation, portant sur la situation financière, les objectifs et la tolérance au risque</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Aucun test n'est obligatoire pour les clients non professionnels qui sont déjà protégés par la loi</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Le test d'adéquation est obligatoire pour tout service de conseil. Il évalue 3 dimensions : situation financière, objectifs d'investissement, tolérance au risque. Le test de caractère approprié (uniquement connaissances + expérience) s'applique aux services sans conseil.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un client particulier dispose d'un portefeuille de 600 000 € en instruments financiers et a réalisé en moyenne 12 transactions par trimestre sur les 4 derniers trimestres. Il demande à être reclassé comme client professionnel. Le PSI peut-il accéder à cette demande ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Non, seules les entreprises peuvent être classées comme clients professionnels</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>Oui, le client remplit 2 des 3 critères requis pour l'opt-in professionnel</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Non, les 3 critères doivent être remplis simultanément pour accéder au statut professionnel</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> L'opt-in professionnel nécessite 2 critères sur 3. Ici : portefeuille ≥500k€ ✓ et ≥10 opérations/trimestre sur 4 trimestres ✓. Il manque le 3e critère (expérience pro ≥1 an) mais ce n'est pas nécessaire. La demande doit être faite par écrit et le PSI doit avertir des protections perdues.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🚨 Alerte 2025-2026</div>
+    <div class="alerte-box">
+      <div class="alerte-item">
+        <div class="alerte-tag">MIF2 Review · En cours</div>
+        <div class="alerte-title">Révision de MIF2 — simplification et marché des capitaux</div>
+        <div class="alerte-body">La Commission européenne travaille sur une révision de MIF2 dans le cadre de l'Union des marchés de capitaux (CMU). Objectifs : simplifier les obligations de reporting, améliorer la transparence sur les marchés obligataires, revoir les règles de recherche financière. Pour l'examen mai 2026 : les règles actuelles restent applicables.</div>
+      </div>
+      <div class="alerte-item">
+        <div class="alerte-tag">PRIIPs · Extension 2024</div>
+        <div class="alerte-title">Le DIC/KID étendu aux OPCVM actions à partir de 2024</div>
+        <div class="alerte-body">Le Document d'Information Clé (format PRIIPs) remplace désormais le DICI (Document d'Information Clé pour l'Investisseur) pour les OPCVM. Le format est standardisé à 3 pages maximum, avec un indicateur de risque sur une échelle de 1 à 7 et des scénarios de performance.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fiche-footer">
+    <div class="footer-info">Fiche 7 / 12 · Protection des investisseurs / MIF2<br>Examen AMF · 4 mai 2026</div>
+    <a href="fiche-08-lcb-ft.html" class="next-btn">Fiche 8 — LCB-FT →</a>
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiche 4 — Instruments financiers et marchés (2/2)</title>
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+      --accent: #4f8ef7; --accent2: #7c5cfc; --green: #22c55e;
+      --orange: #f59e0b; --red: #ef4444; --text: #e2e8f0;
+      --muted: #94a3b8; --border: #2d3348;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.7; padding: 2rem 1rem; }
+    .container { max-width: 860px; margin: 0 auto; }
+    .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; font-size: 0.82rem; }
+    .nav a { color: var(--accent); text-decoration: none; padding: 0.3rem 0.8rem; border: 1px solid var(--accent); border-radius: 6px; }
+    .nav a:hover { background: rgba(79,142,247,0.1); }
+    .nav-center { color: var(--muted); }
+    .fiche-header { background: linear-gradient(135deg, #1a1d27, #22263a); border: 1px solid var(--border); border-top: 3px solid var(--accent2); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    .fiche-num { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); font-weight: 700; margin-bottom: 0.4rem; }
+    .fiche-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
+    .fiche-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .meta-pill { padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .pill-questions { background: rgba(79,142,247,0.15); color: #93c5fd; border: 1px solid rgba(79,142,247,0.3); }
+    .pill-cat { background: rgba(124,92,252,0.15); color: #c4b5fd; border: 1px solid rgba(124,92,252,0.3); }
+    .pill-jour { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+    section { margin-bottom: 2rem; }
+    .section-title { display: flex; align-items: center; gap: 0.7rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    th { background: var(--surface2); padding: 0.7rem 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+    td { padding: 0.7rem 1rem; border-top: 1px solid var(--border); vertical-align: top; }
+    td:first-child { font-weight: 700; color: var(--accent); }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .points-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .point-item { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent2); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .point-num { font-size: 0.7rem; font-weight: 800; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .point-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .point-body { color: var(--muted); font-size: 0.875rem; }
+    .point-body ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+    .point-body li { margin-bottom: 0.25rem; }
+    .highlight { color: var(--text); font-weight: 600; }
+    .pieges-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .piege-item { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .piege-label { font-size: 0.72rem; font-weight: 800; color: #fca5a5; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .piege-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .piege-body { color: var(--muted); font-size: 0.875rem; }
+    .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .grid2 { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .gcell { background: var(--surface); padding: 0.9rem 1rem; font-size: 0.82rem; }
+    .gcell.hdr { background: var(--surface2); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; }
+    .gcell.lbl { background: var(--surface2); font-size: 0.78rem; color: var(--muted); font-weight: 600; }
+    .gcell-title { font-weight: 800; font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .c-blue { color: #60a5fa; } .c-purple { color: #a78bfa; } .c-green { color: #34d399; } .c-orange { color: #fb923c; } .c-yellow { color: #facc15; }
+    .gcell-desc { color: var(--muted); line-height: 1.5; font-size: 0.8rem; }
+    .qcm-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .qcm-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .qcm-header { background: var(--surface2); padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .qcm-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+    .cat-c { color: var(--accent); } .cat-a { color: var(--accent2); }
+    .qcm-body { padding: 1.2rem; }
+    .qcm-question { font-weight: 600; color: var(--text); margin-bottom: 1rem; font-size: 0.92rem; line-height: 1.6; }
+    .qcm-choices { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .choice { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.6rem 0.9rem; border-radius: 7px; border: 1px solid var(--border); font-size: 0.875rem; background: var(--bg); }
+    .choice.correct { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .choice-letter { font-weight: 800; min-width: 18px; }
+    .correct .choice-letter { color: var(--green); }
+    .qcm-explication { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 7px; padding: 0.8rem 1rem; font-size: 0.82rem; color: #86efac; }
+    .qcm-explication strong { color: #4ade80; }
+    .alerte-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25); border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; padding: 1.2rem 1.4rem; }
+    .alerte-item { margin-bottom: 1rem; }
+    .alerte-item:last-child { margin-bottom: 0; }
+    .alerte-tag { display: inline-block; padding: 0.15rem 0.6rem; background: rgba(245,158,11,0.2); color: #fcd34d; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .alerte-title { font-weight: 700; color: var(--text); font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .alerte-body { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+    .fiche-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .next-btn { display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.88rem; }
+    .footer-info { color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="fiche-03-instruments-financiers-1.html">← Fiche 3</a>
+    <span class="nav-center">Fiche 4 / 12</span>
+    <a href="fiche-05-esg-1.html">Fiche suivante →</a>
+  </div>
+
+  <div class="fiche-header">
+    <div class="fiche-num">Thème 4 · J4 — 18 avril 2026</div>
+    <h1>Instruments financiers<br>et marchés <span style="color:var(--accent2); font-size:1.2rem;">(2/2)</span></h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-questions">~10 questions à l'examen</span>
+      <span class="meta-pill pill-cat">Catégories A & C — mixte</span>
+      <span class="meta-pill pill-jour">J4 · 18 avril</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">🔑 Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>Option (Call/Put)</td><td>Droit (pas obligation) d'acheter (call) ou vendre (put) un actif sous-jacent à un prix et date fixés</td></tr>
+        <tr><td>Future / Contrat à terme</td><td>Engagement ferme d'acheter ou vendre un actif à prix et date fixés — obligation bilatérale</td></tr>
+        <tr><td>Swap</td><td>Échange de flux financiers entre deux contreparties sur une durée définie (ex : taux fixe contre taux variable)</td></tr>
+        <tr><td>Sous-jacent</td><td>Actif sur lequel porte un produit dérivé (action, indice, taux, matière première, devise…)</td></tr>
+        <tr><td>Effet de levier</td><td>Exposition à un montant supérieur au capital investi — amplifie gains ET pertes</td></tr>
+        <tr><td>OPCVM</td><td>Organisme de Placement Collectif en Valeurs Mobilières — fonds harmonisé accessible au grand public</td></tr>
+        <tr><td>FIA</td><td>Fonds d'Investissement Alternatif — tout fonds non-OPCVM (hedge fund, SCPI, FCPR…)</td></tr>
+        <tr><td>SICAV</td><td>Société d'Investissement à Capital Variable — OPCVM avec personnalité morale, l'investisseur est actionnaire</td></tr>
+        <tr><td>FCP</td><td>Fonds Commun de Placement — OPCVM sans personnalité morale, l'investisseur est porteur de parts</td></tr>
+        <tr><td>Produit structuré</td><td>Combinaison d'un placement à capital garanti et d'un dérivé offrant une participation conditionnelle à la hausse</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-title">⭐ L'essentiel en 5 points</div>
+    <div class="points-list">
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">Call vs Put — le droit, pas l'obligation</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Call</span> : droit d'<strong style="color:var(--text)">acheter</strong> le sous-jacent au prix d'exercice (strike) → profite si le cours monte</li>
+            <li><span class="highlight">Put</span> : droit de <strong style="color:var(--text)">vendre</strong> le sous-jacent au strike → profite si le cours baisse</li>
+            <li>L'acheteur paie une <span class="highlight">prime</span> pour ce droit. Son risque est limité à cette prime.</li>
+            <li>Le vendeur d'option encaisse la prime mais supporte un risque potentiellement illimité.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">Future vs Option — engagement ferme vs droit</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Future</span> : engagement <strong style="color:var(--text)">ferme et irrévocable</strong> des deux parties — pas de prime à payer</li>
+            <li><span class="highlight">Option</span> : droit unilatéral de l'acheteur — il peut ne pas exercer si le marché lui est défavorable</li>
+            <li>Les futures sont négociés sur marchés organisés (standardisés) ; les swaps sont OTC (de gré à gré)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">OPCVM vs FIA — la distinction clé</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">OPCVM</span> (directive UCITS) : fonds harmonisés, accessibles à tous les investisseurs, passeport européen, forte réglementation</li>
+            <li><span class="highlight">FIA</span> (directive AIFM) : tout le reste — hedge funds, FCPR, FPCI, SCPI, OPCI — souvent réservés aux professionnels ou investisseurs avertis</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">SICAV vs FCP — même famille, statut différent</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">SICAV</span> : société anonyme → l'investisseur est <strong style="color:var(--text)">actionnaire</strong>, vote en AG, capital variable automatiquement</li>
+            <li><span class="highlight">FCP</span> : copropriété de valeurs mobilières → l'investisseur est <strong style="color:var(--text)">porteur de parts</strong>, pas de droit de vote, géré par une SGP</li>
+            <li>Les deux sont des OPCVM — mêmes règles de placement et de protection</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Produits structurés — mécanisme à comprendre</div>
+        <div class="point-body">
+          Structure typique : <span class="highlight">obligation zéro coupon</span> (garantit le capital à terme) + <span class="highlight">option</span> (offre participation à la hausse d'un indice). Le capital est garanti à 100% à échéance mais la performance est conditionnelle et limitée. Risque si revente avant échéance.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">⚠️ Ce qui piège les candidats</div>
+    <div class="pieges-list">
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">L'acheteur d'option ne peut pas perdre plus que sa prime</div>
+        <div class="piege-body">C'est le vendeur d'option qui supporte le risque illimité (surtout le vendeur de call à découvert). L'acheteur, lui, ne risque que la prime payée — son droit, il peut choisir de ne pas l'exercer.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">Un ETF est un OPCVM — pas un FIA</div>
+        <div class="piege-body">Les ETF (trackers) sont des OPCVM à gestion passive qui répliquent un indice. Ils sont soumis à la directive UCITS et accessibles au grand public. Ne pas les confondre avec les hedge funds ou fonds alternatifs.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">Capital garanti ≠ sans risque</div>
+        <div class="piege-body">Un produit structuré à capital garanti ne garantit le capital qu'à l'échéance contractuelle. En cas de revente anticipée, le prix de marché peut être inférieur au capital investi. De plus, la garantie dépend de la solvabilité de l'émetteur.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🗺️ Mémo visuel</div>
+    <div class="grid3">
+      <div class="gcell hdr">Dérivé</div>
+      <div class="gcell hdr">Mécanisme</div>
+      <div class="gcell hdr">Usage principal</div>
+      <div class="gcell"><div class="gcell-title c-blue">Call</div></div>
+      <div class="gcell gcell-desc">Droit d'acheter à un prix fixé (strike). Prime payée par l'acheteur.</div>
+      <div class="gcell gcell-desc">Spéculation à la hausse ou couverture d'une vente à découvert</div>
+      <div class="gcell"><div class="gcell-title c-purple">Put</div></div>
+      <div class="gcell gcell-desc">Droit de vendre à un prix fixé. Prime payée par l'acheteur.</div>
+      <div class="gcell gcell-desc">Couverture d'un portefeuille actions contre la baisse</div>
+      <div class="gcell"><div class="gcell-title c-green">Future</div></div>
+      <div class="gcell gcell-desc">Engagement ferme achat/vente à terme. Standardisé, coté en Bourse.</div>
+      <div class="gcell gcell-desc">Couverture de change, de taux ou de matières premières</div>
+      <div class="gcell"><div class="gcell-title c-orange">Swap</div></div>
+      <div class="gcell gcell-desc">Échange de flux (ex : fixe contre variable). OTC, sur mesure.</div>
+      <div class="gcell gcell-desc">Gestion du risque de taux pour les emprunteurs</div>
+    </div>
+
+    <div style="margin-top:1.2rem;">
+      <div class="grid2">
+        <div class="gcell hdr">OPCVM (UCITS)</div>
+        <div class="gcell hdr">FIA (AIFM)</div>
+        <div class="gcell"><div class="gcell-title c-blue" style="margin-bottom:0.4rem;">SICAV / FCP / ETF</div><div class="gcell-desc">Grand public · Passeport EU · Forte protection · VL quotidienne · Ratio d'emprise limité</div></div>
+        <div class="gcell"><div class="gcell-title c-purple" style="margin-bottom:0.4rem;">Hedge funds · SCPI · FCPR · OPCI · FPCI</div><div class="gcell-desc">Investisseurs avertis/pro · Moins de contraintes · Actifs illiquides possibles · Effet de levier élevé</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">📝 Questions-type d'entraînement</div>
+    <div class="qcm-list">
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Quelle est la différence fondamentale entre une SICAV et un FCP ?</div>
+          <div class="qcm-choices">
+            <div class="choice correct"><span class="choice-letter">A ✓</span><span>La SICAV a la personnalité morale et l'investisseur est actionnaire, tandis que le FCP est une copropriété et l'investisseur est porteur de parts</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>La SICAV est réservée aux investisseurs professionnels, le FCP est accessible au grand public</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>La SICAV investit uniquement en actions, le FCP peut investir dans toutes les classes d'actifs</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> SICAV = société anonyme → actionnaire avec droit de vote. FCP = copropriété sans personnalité morale → porteur de parts sans droit de vote. Les deux sont des OPCVM soumis aux mêmes règles de placement et de protection.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un investisseur achète un call sur l'action XYZ avec un strike à 100 € et une prime de 5 €. À l'échéance, l'action cote 95 €. Quelle est la perte maximale de l'investisseur ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>5 € de perte (la prime) plus 5 € d'écart de cours, soit 10 € au total</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>5 € — uniquement la prime payée, l'investisseur n'exerce pas son droit</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>100 € — le prix d'exercice du call</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Le cours (95 €) est inférieur au strike (100 €) → l'investisseur n'a aucun intérêt à exercer son call. Il abandonne l'option. Sa perte est limitée à la prime de 5 €. C'est l'avantage de l'acheteur d'option : risque maximal = prime payée.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🚨 Alerte 2025-2026</div>
+    <div class="alerte-box">
+      <div class="alerte-item">
+        <div class="alerte-tag">ELTIF 2.0 · 2024</div>
+        <div class="alerte-title">Nouveau fonds européen accessible aux particuliers</div>
+        <div class="alerte-body">Le règlement <strong style="color:var(--text)">ELTIF 2.0</strong> (European Long-Term Investment Fund), entré en vigueur en 2024, ouvre les fonds d'investissement à long terme (infrastructure, PME non cotées) aux investisseurs particuliers avec un ticket d'entrée abaissé. C'est un FIA mais avec des garde-fous renforcés pour la distribution au détail.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fiche-footer">
+    <div class="footer-info">Fiche 4 / 12 · Instruments financiers et marchés (2/2)<br>Examen AMF · 4 mai 2026</div>
+    <a href="fiche-05-esg-1.html" class="next-btn">Fiche 5 — Finance durable / ESG (1/2) →</a>
+  </div>
+</div>
+</body>
+</html>

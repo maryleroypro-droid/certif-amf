@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fiche 10 — Analyse financière</title>
+  <style>
+    :root { --bg:#0f1117;--surface:#1a1d27;--surface2:#22263a;--accent:#4f8ef7;--accent2:#7c5cfc;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--text:#e2e8f0;--muted:#94a3b8;--border:#2d3348; }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7;padding:2rem 1rem;}
+    .container{max-width:860px;margin:0 auto;}
+    .nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;font-size:0.82rem;}
+    .nav a{color:var(--accent);text-decoration:none;padding:0.3rem 0.8rem;border:1px solid var(--accent);border-radius:6px;}
+    .nav a:hover{background:rgba(79,142,247,0.1);}
+    .nav-center{color:var(--muted);}
+    .fiche-header{background:linear-gradient(135deg,#1a1d27,#22263a);border:1px solid var(--border);border-top:3px solid var(--accent2);border-radius:12px;padding:2rem;margin-bottom:2rem;}
+    .fiche-num{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent2);font-weight:700;margin-bottom:0.4rem;}
+    .fiche-header h1{font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:1rem;}
+    .fiche-meta{display:flex;gap:1rem;flex-wrap:wrap;}
+    .meta-pill{padding:0.3rem 0.9rem;border-radius:999px;font-size:0.78rem;font-weight:600;}
+    .pill-questions{background:rgba(79,142,247,0.15);color:#93c5fd;border:1px solid rgba(79,142,247,0.3);}
+    .pill-cat{background:rgba(124,92,252,0.15);color:#c4b5fd;border:1px solid rgba(124,92,252,0.3);}
+    .pill-jour{background:rgba(34,197,94,0.15);color:#86efac;border:1px solid rgba(34,197,94,0.3);}
+    section{margin-bottom:2rem;}
+    .section-title{display:flex;align-items:center;gap:0.7rem;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+    table{width:100%;border-collapse:collapse;font-size:0.85rem;background:var(--surface);border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+    th{background:var(--surface2);padding:0.7rem 1rem;text-align:left;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);font-weight:600;}
+    td{padding:0.7rem 1rem;border-top:1px solid var(--border);vertical-align:top;font-size:0.85rem;}
+    td:first-child{font-weight:700;color:var(--accent);}
+    tr:hover td{background:rgba(255,255,255,0.02);}
+    .points-list{display:flex;flex-direction:column;gap:0.8rem;}
+    .point-item{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 8px 8px 0;padding:1rem 1.2rem;}
+    .point-num{font-size:0.7rem;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;}
+    .point-title{font-weight:700;color:var(--text);margin-bottom:0.4rem;font-size:0.95rem;}
+    .point-body{color:var(--muted);font-size:0.875rem;}
+    .point-body ul{padding-left:1.2rem;margin-top:0.3rem;}
+    .point-body li{margin-bottom:0.25rem;}
+    .highlight{color:var(--text);font-weight:600;}
+    .pieges-list{display:flex;flex-direction:column;gap:0.8rem;}
+    .piege-item{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:1rem 1.2rem;}
+    .piege-label{font-size:0.72rem;font-weight:800;color:#fca5a5;text-transform:uppercase;margin-bottom:0.3rem;}
+    .piege-title{font-weight:700;color:var(--text);margin-bottom:0.4rem;font-size:0.92rem;}
+    .piege-body{color:var(--muted);font-size:0.875rem;}
+    .ratios-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .rc{background:var(--surface);padding:0.9rem 1rem;font-size:0.82rem;}
+    .rc.hdr{background:var(--surface2);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);font-weight:700;}
+    .rc-name{font-weight:800;color:#60a5fa;margin-bottom:0.3rem;font-size:0.88rem;}
+    .rc-formula{font-family:'Courier New',monospace;font-size:0.8rem;color:#fcd34d;background:rgba(252,211,77,0.08);border-radius:4px;padding:0.2rem 0.4rem;display:inline-block;margin-bottom:0.3rem;}
+    .rc-interp{font-size:0.78rem;color:var(--muted);line-height:1.5;}
+    .qcm-list{display:flex;flex-direction:column;gap:1.5rem;}
+    .qcm-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .qcm-header{background:var(--surface2);padding:0.6rem 1rem;display:flex;justify-content:space-between;align-items:center;}
+    .qcm-cat{font-size:0.72rem;font-weight:700;text-transform:uppercase;}
+    .cat-c{color:var(--accent);}.cat-a{color:var(--accent2);}
+    .qcm-body{padding:1.2rem;}
+    .qcm-question{font-weight:600;color:var(--text);margin-bottom:1rem;font-size:0.92rem;line-height:1.6;}
+    .qcm-choices{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.2rem;}
+    .choice{display:flex;align-items:flex-start;gap:0.7rem;padding:0.6rem 0.9rem;border-radius:7px;border:1px solid var(--border);font-size:0.875rem;background:var(--bg);}
+    .choice.correct{background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.4);color:#86efac;}
+    .choice-letter{font-weight:800;min-width:18px;}
+    .correct .choice-letter{color:var(--green);}
+    .qcm-explication{background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:7px;padding:0.8rem 1rem;font-size:0.82rem;color:#86efac;}
+    .qcm-explication strong{color:#4ade80;}
+    .alerte-box{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.25);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;padding:1.2rem 1.4rem;}
+    .alerte-tag{display:inline-block;padding:0.15rem 0.6rem;background:rgba(245,158,11,0.2);color:#fcd34d;border-radius:4px;font-size:0.72rem;font-weight:700;text-transform:uppercase;margin-bottom:0.4rem;}
+    .alerte-title{font-weight:700;color:var(--text);font-size:0.92rem;margin-bottom:0.3rem;}
+    .alerte-body{color:var(--muted);font-size:0.86rem;line-height:1.6;}
+    .fiche-footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .next-btn{display:inline-block;padding:0.7rem 1.5rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;text-decoration:none;border-radius:8px;font-weight:700;font-size:0.88rem;}
+    .footer-info{color:var(--muted);font-size:0.8rem;}
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="fiche-09-fiscalite.html">← Fiche 9</a>
+    <span class="nav-center">Fiche 10 / 12</span>
+    <a href="fiche-11-marches-infrastructures.html">Fiche suivante →</a>
+  </div>
+
+  <div class="fiche-header">
+    <div class="fiche-num">Thème 10 · J12 — 26 avril 2026</div>
+    <h1>Analyse financière</h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-questions">~7 questions à l'examen</span>
+      <span class="meta-pill pill-cat">Catégories A & C — mixte</span>
+      <span class="meta-pill pill-jour">J12 · 26 avril</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">🔑 Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>PER</td><td>Price Earnings Ratio — ratio cours/bénéfice par action, mesure la cherté relative d'une action</td></tr>
+        <tr><td>P/B (Price-to-Book)</td><td>Cours divisé par la valeur comptable par action — compare valeur de marché à valeur d'actif net</td></tr>
+        <tr><td>EV/EBITDA</td><td>Valeur d'entreprise / EBITDA — ratio d'évaluation indépendant de la structure financière</td></tr>
+        <tr><td>EBITDA</td><td>Résultat avant intérêts, impôts, dépréciations et amortissements — indicateur de performance opérationnelle brute</td></tr>
+        <tr><td>EV (Valeur d'entreprise)</td><td>Capitalisation boursière + dette nette — valeur totale de l'entreprise pour tous ses financeurs</td></tr>
+        <tr><td>Analyse fondamentale</td><td>Évaluation d'un titre basée sur les fondamentaux économiques et financiers (bilans, comptes de résultat, secteur)</td></tr>
+        <tr><td>Analyse technique</td><td>Prévision des cours à partir des graphiques de prix et volumes — sans référence aux fondamentaux</td></tr>
+        <tr><td>Notation crédit (rating)</td><td>Évaluation par une agence (S&P, Moody's, Fitch) de la capacité d'un émetteur à honorer ses dettes</td></tr>
+        <tr><td>Investment Grade</td><td>Notation ≥ BBB- (S&P) ou Baa3 (Moody's) — obligations de qualité, risque de défaut limité</td></tr>
+        <tr><td>High Yield (Haut rendement)</td><td>Notation < BBB- — obligations spéculatives, risque élevé mais rendement supérieur</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-title">⭐ L'essentiel en 5 points</div>
+    <div class="points-list">
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">Analyse fondamentale vs analyse technique</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Fondamentale</span> : "La valeur intrinsèque du titre est X€" — basée sur les comptes, les prévisions, le secteur</li>
+            <li><span class="highlight">Technique</span> : "Le cours va monter car il a cassé une résistance" — basée uniquement sur les graphiques de prix</li>
+            <li>Les deux approches coexistent mais sont conceptuellement opposées : l'une cherche la valeur, l'autre suit la tendance</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">PER — interpréter le ratio</div>
+        <div class="point-body">
+          <span class="highlight">PER = Cours / BPA</span> (Bénéfice Par Action)<br>
+          Un PER de 15 signifie que l'investisseur paie 15 ans de bénéfices. PER élevé = titre cher mais croissance attendue. PER faible = titre bon marché ou entreprise en difficulté. Comparer uniquement au sein du même secteur.
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">EV/EBITDA — l'avantage sur le PER</div>
+        <div class="point-body">
+          Contrairement au PER, EV/EBITDA est <span class="highlight">neutre vis-à-vis de la structure financière</span> (dette vs capitaux propres) et des règles comptables d'amortissement. Utile pour comparer des entreprises de pays différents ou de structures financières différentes.
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">La notation crédit — échelle à connaître</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">AAA → BBB- (S&P)</span> = Investment Grade — risque faible</li>
+            <li><span class="highlight">BB+ et en dessous</span> = High Yield / Spéculatif — risque élevé, rendement supérieur</li>
+            <li>La frontière BBB-/BB+ est critique : beaucoup de fonds institutionnels ne peuvent détenir que de l'Investment Grade</li>
+            <li>Agences reconnues par l'AMF : S&P, Moody's, Fitch</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Lecture simplifiée d'un bilan</div>
+        <div class="point-body">
+          Actif = Passif. <span class="highlight">Actif</span> : immobilisations (long terme) + actif circulant (court terme). <span class="highlight">Passif</span> : capitaux propres + dettes long terme + dettes court terme. Le ratio <span class="highlight">dette nette / EBITDA</span> mesure le levier financier : au-delà de 4x, considéré comme élevé.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">⚠️ Ce qui piège les candidats</div>
+    <div class="pieges-list">
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">Un PER élevé n'est pas forcément un mauvais signe</div>
+        <div class="piege-body">Un PER élevé peut refléter des anticipations de forte croissance future, pas nécessairement une surévaluation. Les entreprises de technologie ont souvent des PER très élevés car les investisseurs paient pour la croissance future. Toujours contextualiser par rapport au secteur et aux pairs.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">Investment Grade ≠ sans risque de défaut</div>
+        <div class="piege-body">L'Investment Grade réduit le risque de défaut mais ne l'élimine pas. Des entreprises notées BBB- ont fait défaut. La notation est une opinion, pas une garantie. Et elle peut changer (downgrade) du jour au lendemain si la situation de l'émetteur se dégrade.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">EBITDA ≠ cash-flow</div>
+        <div class="piege-body">L'EBITDA est un indicateur comptable, pas un flux de trésorerie réel. Il ne tient pas compte des variations du besoin en fonds de roulement, des investissements (capex) ni des remboursements de dette. Une entreprise peut avoir un EBITDA positif et manquer de liquidités.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🗺️ Mémo visuel — Les ratios clés</div>
+    <div class="ratios-grid">
+      <div class="rc hdr">Ratio</div>
+      <div class="rc hdr">Formule</div>
+      <div class="rc hdr">Interprétation</div>
+      <div class="rc"><div class="rc-name">PER</div></div>
+      <div class="rc"><div class="rc-formula">Cours / BPA</div></div>
+      <div class="rc rc-interp">Nombre d'années de bénéfices payé. Comparer au secteur. Élevé = croissance attendue.</div>
+      <div class="rc"><div class="rc-name">P/B</div></div>
+      <div class="rc"><div class="rc-formula">Cours / (CP / Nb actions)</div></div>
+      <div class="rc rc-interp">P/B < 1 = titre sous sa valeur comptable (opportunité ou difficulté). >1 = prime sur l'actif net.</div>
+      <div class="rc"><div class="rc-name">EV/EBITDA</div></div>
+      <div class="rc"><div class="rc-formula">(Capi + Dette nette) / EBITDA</div></div>
+      <div class="rc rc-interp">Indépendant de la structure financière. Comparaisons internationales fiables. <8x = raisonnable.</div>
+      <div class="rc"><div class="rc-name">Levier</div></div>
+      <div class="rc"><div class="rc-formula">Dette nette / EBITDA</div></div>
+      <div class="rc rc-interp">>4x = levier élevé, risque financier important. <2x = faible endettement.</div>
+    </div>
+
+    <div style="margin-top:1.2rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;">
+      <div style="font-weight:700;color:var(--text);margin-bottom:0.8rem;font-size:0.88rem;">Échelle de notation crédit (S&P)</div>
+      <div style="display:flex;gap:0;border-radius:8px;overflow:hidden;">
+        <div style="flex:3;background:rgba(34,197,94,0.1);border:1px solid rgba(34,197,94,0.3);padding:0.7rem 1rem;">
+          <div style="font-weight:800;color:#4ade80;font-size:0.85rem;">AAA → BBB-</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem;">Investment Grade · Risque faible</div>
+          <div style="font-size:0.72rem;color:#64748b;margin-top:0.2rem;">AAA · AA · A · BBB</div>
+        </div>
+        <div style="flex:2;background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);padding:0.7rem 1rem;">
+          <div style="font-weight:800;color:#f87171;font-size:0.85rem;">BB+ → D</div>
+          <div style="font-size:0.75rem;color:var(--muted);margin-top:0.2rem;">High Yield · Spéculatif</div>
+          <div style="font-size:0.72rem;color:#64748b;margin-top:0.2rem;">BB · B · CCC · CC · C · D</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">📝 Questions-type d'entraînement</div>
+    <div class="qcm-list">
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Une obligation notée BB+ par S&P est classée dans quelle catégorie ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Investment Grade — elle est juste en dessous de la catégorie AAA</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>High Yield (spéculatif) — BB+ est en dessous du seuil BBB-</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Non notée — BB+ n'est pas une notation officielle S&P</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> La frontière Investment Grade / High Yield se situe entre BBB- et BB+. Une obligation BB+ est donc en catégorie spéculative (High Yield). Cette frontière est cruciale : de nombreux fonds institutionnels ont l'interdiction de détenir des titres en dessous de BBB-.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Calcul / Application</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Une société affiche un cours de bourse de 45 €, un bénéfice net de 150 M€, 50 M d'actions en circulation, et une valeur comptable des capitaux propres de 900 M€. Quel est son PER ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>2,5 — cours divisé par la valeur comptable par action</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>15 — cours (45 €) divisé par le BPA (150M / 50M = 3 €)</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>30 — bénéfice net divisé par le cours</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> BPA = 150M / 50M = 3 €. PER = cours / BPA = 45 / 3 = 15. Le ratio P/B serait : cours / (CP/actions) = 45 / (900M/50M) = 45 / 18 = 2,5. Ce sont deux ratios différents — ne pas les confondre.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🚨 Alerte 2025-2026</div>
+    <div class="alerte-box">
+      <div class="alerte-tag">ESRS · 2024-2025</div>
+      <div class="alerte-title">Intégration des critères ESG dans l'analyse financière</div>
+      <div class="alerte-body">Les standards ESRS (European Sustainability Reporting Standards) imposent aux grandes entreprises de publier des données extra-financières standardisées. Ces données alimentent désormais l'analyse financière : risques climatiques, stranded assets, transition costs. Les analystes financiers intègrent de plus en plus ces éléments dans leurs modèles de valorisation.</div>
+    </div>
+  </section>
+
+  <div class="fiche-footer">
+    <div class="footer-info">Fiche 10 / 12 · Analyse financière<br>Examen AMF · 4 mai 2026</div>
+    <a href="fiche-11-marches-infrastructures.html" class="next-btn">Fiche 11 — Marchés et infrastructures →</a>
+  </div>
+</div>
+</body>
+</html>

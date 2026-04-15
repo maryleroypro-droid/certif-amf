@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fiche 11 — Marchés et infrastructures</title>
+  <style>
+    :root{--bg:#0f1117;--surface:#1a1d27;--surface2:#22263a;--accent:#4f8ef7;--accent2:#7c5cfc;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--text:#e2e8f0;--muted:#94a3b8;--border:#2d3348;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7;padding:2rem 1rem;}
+    .container{max-width:860px;margin:0 auto;}
+    .nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;font-size:0.82rem;}
+    .nav a{color:var(--accent);text-decoration:none;padding:0.3rem 0.8rem;border:1px solid var(--accent);border-radius:6px;}
+    .nav a:hover{background:rgba(79,142,247,0.1);}
+    .nav-center{color:var(--muted);}
+    .fiche-header{background:linear-gradient(135deg,#1a1d27,#22263a);border:1px solid var(--border);border-top:3px solid var(--accent2);border-radius:12px;padding:2rem;margin-bottom:2rem;}
+    .fiche-num{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:var(--accent2);font-weight:700;margin-bottom:0.4rem;}
+    .fiche-header h1{font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:1rem;}
+    .fiche-meta{display:flex;gap:1rem;flex-wrap:wrap;}
+    .meta-pill{padding:0.3rem 0.9rem;border-radius:999px;font-size:0.78rem;font-weight:600;}
+    .pill-questions{background:rgba(79,142,247,0.15);color:#93c5fd;border:1px solid rgba(79,142,247,0.3);}
+    .pill-cat{background:rgba(124,92,252,0.15);color:#c4b5fd;border:1px solid rgba(124,92,252,0.3);}
+    .pill-jour{background:rgba(34,197,94,0.15);color:#86efac;border:1px solid rgba(34,197,94,0.3);}
+    section{margin-bottom:2rem;}
+    .section-title{display:flex;align-items:center;gap:0.7rem;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+    table{width:100%;border-collapse:collapse;font-size:0.85rem;background:var(--surface);border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+    th{background:var(--surface2);padding:0.7rem 1rem;text-align:left;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);font-weight:600;}
+    td{padding:0.7rem 1rem;border-top:1px solid var(--border);vertical-align:top;font-size:0.85rem;}
+    td:first-child{font-weight:700;color:var(--accent);}
+    tr:hover td{background:rgba(255,255,255,0.02);}
+    .points-list{display:flex;flex-direction:column;gap:0.8rem;}
+    .point-item{background:var(--surface);border:1px solid var(--border);border-left:3px solid var(--accent2);border-radius:0 8px 8px 0;padding:1rem 1.2rem;}
+    .point-num{font-size:0.7rem;font-weight:800;color:var(--accent2);text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;}
+    .point-title{font-weight:700;color:var(--text);margin-bottom:0.4rem;font-size:0.95rem;}
+    .point-body{color:var(--muted);font-size:0.875rem;}
+    .point-body ul{padding-left:1.2rem;margin-top:0.3rem;}
+    .point-body li{margin-bottom:0.25rem;}
+    .highlight{color:var(--text);font-weight:600;}
+    .pieges-list{display:flex;flex-direction:column;gap:0.8rem;}
+    .piege-item{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:1rem 1.2rem;}
+    .piege-label{font-size:0.72rem;font-weight:800;color:#fca5a5;text-transform:uppercase;margin-bottom:0.3rem;}
+    .piege-title{font-weight:700;color:var(--text);margin-bottom:0.4rem;font-size:0.92rem;}
+    .piege-body{color:var(--muted);font-size:0.875rem;}
+    .flow-steps{display:flex;flex-direction:column;gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .flow-step{display:grid;grid-template-columns:36px 1fr;background:var(--surface);}
+    .flow-num{background:var(--surface2);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:0.85rem;color:var(--accent2);}
+    .flow-content{padding:0.8rem 1rem;}
+    .flow-title{font-weight:700;font-size:0.88rem;color:var(--text);margin-bottom:0.2rem;}
+    .flow-desc{font-size:0.8rem;color:var(--muted);}
+    .marche-types{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .mt-cell{background:var(--surface);padding:1rem;}
+    .mt-cell.hdr{background:var(--surface2);font-size:0.72rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);font-weight:700;padding:0.6rem 1rem;}
+    .mt-name{font-weight:800;font-size:0.9rem;margin-bottom:0.4rem;}
+    .c1{color:#60a5fa;}.c2{color:#a78bfa;}.c3{color:#34d399;}
+    .mt-desc{font-size:0.78rem;color:var(--muted);line-height:1.5;}
+    .qcm-list{display:flex;flex-direction:column;gap:1.5rem;}
+    .qcm-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .qcm-header{background:var(--surface2);padding:0.6rem 1rem;display:flex;justify-content:space-between;align-items:center;}
+    .qcm-cat{font-size:0.72rem;font-weight:700;text-transform:uppercase;}
+    .cat-c{color:var(--accent);}.cat-a{color:var(--accent2);}
+    .qcm-body{padding:1.2rem;}
+    .qcm-question{font-weight:600;color:var(--text);margin-bottom:1rem;font-size:0.92rem;line-height:1.6;}
+    .qcm-choices{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.2rem;}
+    .choice{display:flex;align-items:flex-start;gap:0.7rem;padding:0.6rem 0.9rem;border-radius:7px;border:1px solid var(--border);font-size:0.875rem;background:var(--bg);}
+    .choice.correct{background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.4);color:#86efac;}
+    .choice-letter{font-weight:800;min-width:18px;}
+    .correct .choice-letter{color:var(--green);}
+    .qcm-explication{background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:7px;padding:0.8rem 1rem;font-size:0.82rem;color:#86efac;}
+    .qcm-explication strong{color:#4ade80;}
+    .alerte-box{background:rgba(245,158,11,0.06);border:1px solid rgba(245,158,11,0.25);border-left:3px solid var(--orange);border-radius:0 10px 10px 0;padding:1.2rem 1.4rem;}
+    .alerte-tag{display:inline-block;padding:0.15rem 0.6rem;background:rgba(245,158,11,0.2);color:#fcd34d;border-radius:4px;font-size:0.72rem;font-weight:700;text-transform:uppercase;margin-bottom:0.4rem;}
+    .alerte-title{font-weight:700;color:var(--text);font-size:0.92rem;margin-bottom:0.3rem;}
+    .alerte-body{color:var(--muted);font-size:0.86rem;line-height:1.6;}
+    .fiche-footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .next-btn{display:inline-block;padding:0.7rem 1.5rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;text-decoration:none;border-radius:8px;font-weight:700;font-size:0.88rem;}
+    .footer-info{color:var(--muted);font-size:0.8rem;}
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="fiche-10-analyse-financiere.html">← Fiche 10</a>
+    <span class="nav-center">Fiche 11 / 12</span>
+    <a href="fiche-12-crypto-mica.html">Fiche suivante →</a>
+  </div>
+
+  <div class="fiche-header">
+    <div class="fiche-num">Thème 11 · J13 — 27 avril 2026</div>
+    <h1>Fonctionnement des marchés<br>et infrastructures</h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-questions">~7 questions à l'examen</span>
+      <span class="meta-pill pill-cat">Catégories A & C — mixte</span>
+      <span class="meta-pill pill-jour">J13 · 27 avril</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">🔑 Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>Marché réglementé</td><td>Marché officiel soumis à autorisation et surveillance stricte (ex : Euronext Paris) — liquidité maximale</td></tr>
+        <tr><td>MTF</td><td>Multilateral Trading Facility — système multilatéral de négociation, alternatif aux marchés réglementés</td></tr>
+        <tr><td>OTF</td><td>Organised Trading Facility — plateforme pour instruments non-actions (obligations, dérivés) — introduit par MIF2</td></tr>
+        <tr><td>Chambre de compensation (CCP)</td><td>Contrepartie centrale qui s'interpose entre acheteur et vendeur pour garantir l'exécution des transactions</td></tr>
+        <tr><td>LCH SA</td><td>Principale chambre de compensation en France/Europe — filiale du groupe LSEG</td></tr>
+        <tr><td>Euroclear France</td><td>Dépositaire central français — conserve les titres et gère le règlement-livraison</td></tr>
+        <tr><td>Règlement-livraison</td><td>Processus final d'une transaction : transfert des espèces (règlement) et des titres (livraison)</td></tr>
+        <tr><td>J+2</td><td>Délai standard de règlement-livraison en Europe — 2 jours ouvrés après la date d'exécution</td></tr>
+        <tr><td>Ordre au marché</td><td>Ordre exécuté immédiatement au meilleur prix disponible — priorité à la rapidité sur le prix</td></tr>
+        <tr><td>Ordre à cours limité</td><td>Ordre exécuté uniquement si le prix est ≤ au seuil fixé (achat) ou ≥ (vente) — priorité au prix</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-title">⭐ L'essentiel en 5 points</div>
+    <div class="points-list">
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">Les 3 types de plateformes de négociation (MIF2)</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Marché réglementé</span> : autorisation stricte, transparence maximale, liquidité élevée (ex : Euronext)</li>
+            <li><span class="highlight">MTF</span> : plateforme alternative moins réglementée, pour actions et autres instruments</li>
+            <li><span class="highlight">OTF</span> : pour les instruments non-actions (obligations, dérivés OTC) — créé par MIF2 en 2018</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">Le rôle de la chambre de compensation</div>
+        <div class="point-body">
+          La CCP (Central Counterparty) s'interpose entre acheteur et vendeur dès la confirmation de la transaction. Elle devient <span class="highlight">acheteur face au vendeur</span> et <span class="highlight">vendeur face à l'acheteur</span>. Elle élimine le risque de contrepartie et exige des marges de garantie (appels de marge).
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">Le cycle complet d'un ordre en Bourse</div>
+        <div class="point-body">
+          Passage de l'ordre → Exécution sur le marché → Confirmation → Compensation (CCP) → Règlement-livraison J+2 (Euroclear). Voir mémo visuel.
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">Les types d'ordres à connaître</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Au marché</span> : exécution immédiate, prix du marché — risque de slippage</li>
+            <li><span class="highlight">Cours limité</span> : prix garanti, exécution non garantie — peut rester en carnet</li>
+            <li><span class="highlight">À la meilleure limite</span> : exécuté au meilleur cours disponible au moment du passage</li>
+            <li><span class="highlight">Stop (déclenchement)</span> : déclenché quand le cours atteint un seuil, puis exécuté au marché</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Règlement-livraison J+2 — délai standard européen</div>
+        <div class="point-body">
+          En Europe, les transactions actions se règlent en J+2 (deux jours ouvrés après l'exécution). Pendant ce délai, l'acheteur doit avoir les fonds et le vendeur les titres. Euroclear France gère ce processus pour les titres français. Le passage à J+1 est en discussion au niveau européen.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">⚠️ Ce qui piège les candidats</div>
+    <div class="pieges-list">
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">MTF ≠ marché réglementé, mais soumis à MIF2</div>
+        <div class="piege-body">Un MTF n'est pas un marché réglementé au sens strict, mais il est quand même soumis aux règles MIF2 (transparence pré/post-négociation, reporting). Ne pas confondre "non réglementé" (OTC de gré à gré) et "MTF" (plateforme organisée mais alternative).</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">La chambre de compensation ne conserve pas les titres</div>
+        <div class="piege-body">La CCP gère le risque de contrepartie et les appels de marge. C'est le dépositaire central (Euroclear) qui conserve les titres et assure la tenue de compte. Deux fonctions distinctes, deux entités distinctes.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">Un ordre au marché peut être exécuté à un prix très différent du cours affiché</div>
+        <div class="piege-body">Sur un marché peu liquide, un ordre au marché de grande taille peut "consommer" plusieurs niveaux du carnet d'ordres — phénomène de slippage. L'ordre à cours limité évite ce risque mais peut rester inexécuté si le marché ne touche pas le seuil fixé.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🗺️ Mémo visuel — Cycle d'un ordre en Bourse</div>
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div class="flow-content">
+          <div class="flow-title">Passage de l'ordre</div>
+          <div class="flow-desc">Le client passe son ordre (achat/vente) via son PSI — ordre au marché ou à cours limité</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div class="flow-content">
+          <div class="flow-title">Transmission à la plateforme</div>
+          <div class="flow-desc">Le PSI transmet l'ordre à la plateforme de négociation (marché réglementé, MTF ou OTF)</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">3</div>
+        <div class="flow-content">
+          <div class="flow-title">Exécution (matching)</div>
+          <div class="flow-desc">L'ordre est apparié avec un ordre contraire dans le carnet d'ordres — transaction confirmée</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div class="flow-content">
+          <div class="flow-title">Compensation (CCP — LCH SA)</div>
+          <div class="flow-desc">La CCP s'interpose, garantit la transaction, calcule les positions nettes et les appels de marge</div>
+        </div>
+      </div>
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div class="flow-content">
+          <div class="flow-title" style="color:#fcd34d;">Règlement-livraison J+2 (Euroclear France)</div>
+          <div class="flow-desc">Transfert des espèces (règlement) et des titres (livraison) — 2 jours ouvrés après l'exécution</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.2rem;">
+      <div class="marche-types">
+        <div class="mt-cell hdr">Type</div>
+        <div class="mt-cell hdr">Caractéristiques</div>
+        <div class="mt-cell hdr">Exemple</div>
+        <div class="mt-cell"><div class="mt-name c1">Marché réglementé</div></div>
+        <div class="mt-cell mt-desc">Agrément strict · Transparence maximale · Compensation obligatoire · Forte liquidité</div>
+        <div class="mt-cell mt-desc">Euronext Paris, Xetra (Allemagne)</div>
+        <div class="mt-cell"><div class="mt-name c2">MTF</div></div>
+        <div class="mt-cell mt-desc">Plateforme alternative · Soumis MIF2 · Actions et autres instruments</div>
+        <div class="mt-cell mt-desc">Euronext Growth, Turquoise</div>
+        <div class="mt-cell"><div class="mt-name c3">OTF</div></div>
+        <div class="mt-cell mt-desc">Créé par MIF2 · Instruments non-actions uniquement (oblig, dérivés OTC) · Discrétionnaire</div>
+        <div class="mt-cell mt-desc">Plateformes obligataires et dérivés de taux</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">📝 Questions-type d'entraînement</div>
+    <div class="qcm-list">
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Quel est le rôle principal d'une chambre de compensation (CCP) sur les marchés financiers ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Conserver les titres pour le compte des investisseurs et gérer les droits attachés</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>S'interposer entre acheteur et vendeur pour garantir l'exécution des transactions et éliminer le risque de contrepartie</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Fixer les cours des instruments financiers selon l'offre et la demande</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> La CCP élimine le risque de contrepartie en devenant acheteur face au vendeur et vendeur face à l'acheteur. La conservation des titres est assurée par le dépositaire central (Euroclear). La fixation des cours résulte du mécanisme de marché (carnet d'ordres).</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un investisseur exécute un achat d'actions un lundi. À quelle date les titres seront-ils inscrits dans son portefeuille selon le délai standard européen ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Le lundi même — l'inscription est instantanée dès l'exécution</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>Le mardi — J+1 ouvré</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>Le mercredi — J+2 ouvrés (deux jours ouvrés après l'exécution)</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Le délai standard de règlement-livraison en Europe est J+2 (deux jours ouvrés). Un achat exécuté le lundi sera réglé et livré le mercredi (si pas de jours fériés). L'investisseur doit disposer des fonds dès J+2 et le vendeur des titres.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🚨 Alerte 2025-2026</div>
+    <div class="alerte-box">
+      <div class="alerte-tag">Projet · 2025-2026</div>
+      <div class="alerte-title">Passage à J+1 en Europe — en discussion</div>
+      <div class="alerte-body">Les États-Unis sont passés à J+1 en mai 2024. L'Europe étudie un passage similaire, mais les spécificités du marché européen (fragmentation, diversité des devises) rendent la transition plus complexe. Un rapport de l'ESMA est attendu courant 2025. Pour l'examen : le délai actuel reste J+2 en Europe.</div>
+    </div>
+  </section>
+
+  <div class="fiche-footer">
+    <div class="footer-info">Fiche 11 / 12 · Marchés et infrastructures<br>Examen AMF · 4 mai 2026</div>
+    <a href="fiche-12-crypto-mica.html" class="next-btn">Fiche 12 — Cryptoactifs et MiCA →</a>
+  </div>
+</div>
+</body>
+</html>

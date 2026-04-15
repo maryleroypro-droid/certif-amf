@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Fiche 12 — Cryptoactifs et MiCA</title>
+  <style>
+    :root{--bg:#0f1117;--surface:#1a1d27;--surface2:#22263a;--accent:#4f8ef7;--accent2:#7c5cfc;--green:#22c55e;--orange:#f59e0b;--red:#ef4444;--text:#e2e8f0;--muted:#94a3b8;--border:#2d3348;}
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{background:var(--bg);color:var(--text);font-family:'Segoe UI',system-ui,sans-serif;line-height:1.7;padding:2rem 1rem;}
+    .container{max-width:860px;margin:0 auto;}
+    .nav{display:flex;justify-content:space-between;align-items:center;margin-bottom:2rem;font-size:0.82rem;}
+    .nav a{color:var(--accent);text-decoration:none;padding:0.3rem 0.8rem;border:1px solid var(--accent);border-radius:6px;}
+    .nav a:hover{background:rgba(79,142,247,0.1);}
+    .nav-center{color:var(--muted);}
+    .fiche-header{background:linear-gradient(135deg,#1a1827,#1e1535);border:1px solid #2d2448;border-top:3px solid #a78bfa;border-radius:12px;padding:2rem;margin-bottom:2rem;}
+    .fiche-num{font-size:0.75rem;text-transform:uppercase;letter-spacing:0.1em;color:#a78bfa;font-weight:700;margin-bottom:0.4rem;}
+    .fiche-header h1{font-size:1.8rem;font-weight:800;color:var(--text);margin-bottom:1rem;}
+    .fiche-meta{display:flex;gap:1rem;flex-wrap:wrap;}
+    .meta-pill{padding:0.3rem 0.9rem;border-radius:999px;font-size:0.78rem;font-weight:600;}
+    .pill-questions{background:rgba(167,139,250,0.15);color:#c4b5fd;border:1px solid rgba(167,139,250,0.3);}
+    .pill-cat{background:rgba(79,142,247,0.15);color:#93c5fd;border:1px solid rgba(79,142,247,0.3);}
+    .pill-jour{background:rgba(34,197,94,0.15);color:#86efac;border:1px solid rgba(34,197,94,0.3);}
+    section{margin-bottom:2rem;}
+    .section-title{display:flex;align-items:center;gap:0.7rem;font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:var(--muted);margin-bottom:1rem;padding-bottom:0.5rem;border-bottom:1px solid var(--border);}
+    table{width:100%;border-collapse:collapse;font-size:0.85rem;background:var(--surface);border-radius:10px;overflow:hidden;border:1px solid var(--border);}
+    th{background:var(--surface2);padding:0.7rem 1rem;text-align:left;font-size:0.75rem;text-transform:uppercase;letter-spacing:0.05em;color:var(--muted);font-weight:600;}
+    td{padding:0.7rem 1rem;border-top:1px solid var(--border);vertical-align:top;font-size:0.85rem;}
+    td:first-child{font-weight:700;color:#a78bfa;}
+    tr:hover td{background:rgba(255,255,255,0.02);}
+    .points-list{display:flex;flex-direction:column;gap:0.8rem;}
+    .point-item{background:var(--surface);border:1px solid var(--border);border-left:3px solid #a78bfa;border-radius:0 8px 8px 0;padding:1rem 1.2rem;}
+    .point-num{font-size:0.7rem;font-weight:800;color:#a78bfa;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;}
+    .point-title{font-weight:700;color:var(--text);margin-bottom:0.4rem;font-size:0.95rem;}
+    .point-body{color:var(--muted);font-size:0.875rem;}
+    .point-body ul{padding-left:1.2rem;margin-top:0.3rem;}
+    .point-body li{margin-bottom:0.25rem;}
+    .highlight{color:var(--text);font-weight:600;}
+    .pieges-list{display:flex;flex-direction:column;gap:0.8rem;}
+    .piege-item{background:rgba(239,68,68,0.06);border:1px solid rgba(239,68,68,0.2);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:1rem 1.2rem;}
+    .piege-label{font-size:0.72rem;font-weight:800;color:#fca5a5;text-transform:uppercase;margin-bottom:0.3rem;}
+    .piege-title{font-weight:700;color:var(--text);margin-bottom:0.4rem;font-size:0.92rem;}
+    .piege-body{color:var(--muted);font-size:0.875rem;}
+    .mica-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;}
+    .mica-card{border-radius:10px;padding:1.2rem;border:1px solid;}
+    .mica-ut{background:rgba(96,165,250,0.08);border-color:rgba(96,165,250,0.3);}
+    .mica-emt{background:rgba(52,211,153,0.08);border-color:rgba(52,211,153,0.3);}
+    .mica-art{background:rgba(167,139,250,0.08);border-color:rgba(167,139,250,0.3);}
+    .mica-type{font-size:0.65rem;font-weight:800;text-transform:uppercase;letter-spacing:0.08em;margin-bottom:0.3rem;}
+    .mica-ut .mica-type{color:#60a5fa;}
+    .mica-emt .mica-type{color:#34d399;}
+    .mica-art .mica-type{color:#a78bfa;}
+    .mica-name{font-weight:800;font-size:0.92rem;margin-bottom:0.5rem;}
+    .mica-ut .mica-name{color:#93c5fd;}
+    .mica-emt .mica-name{color:#6ee7b7;}
+    .mica-art .mica-name{color:#c4b5fd;}
+    .mica-desc{font-size:0.78rem;color:var(--muted);line-height:1.5;}
+    .mica-ex{font-size:0.72rem;margin-top:0.5rem;font-style:italic;}
+    .mica-ut .mica-ex{color:#3b82f6;}
+    .mica-emt .mica-ex{color:#10b981;}
+    .mica-art .mica-ex{color:#8b5cf6;}
+    .qcm-list{display:flex;flex-direction:column;gap:1.5rem;}
+    .qcm-item{background:var(--surface);border:1px solid var(--border);border-radius:10px;overflow:hidden;}
+    .qcm-header{background:var(--surface2);padding:0.6rem 1rem;display:flex;justify-content:space-between;align-items:center;}
+    .qcm-cat{font-size:0.72rem;font-weight:700;text-transform:uppercase;}
+    .cat-c{color:var(--accent);}.cat-a{color:var(--accent2);}
+    .qcm-body{padding:1.2rem;}
+    .qcm-question{font-weight:600;color:var(--text);margin-bottom:1rem;font-size:0.92rem;line-height:1.6;}
+    .qcm-choices{display:flex;flex-direction:column;gap:0.5rem;margin-bottom:1.2rem;}
+    .choice{display:flex;align-items:flex-start;gap:0.7rem;padding:0.6rem 0.9rem;border-radius:7px;border:1px solid var(--border);font-size:0.875rem;background:var(--bg);}
+    .choice.correct{background:rgba(34,197,94,0.08);border-color:rgba(34,197,94,0.4);color:#86efac;}
+    .choice-letter{font-weight:800;min-width:18px;}
+    .correct .choice-letter{color:var(--green);}
+    .qcm-explication{background:rgba(34,197,94,0.06);border:1px solid rgba(34,197,94,0.2);border-radius:7px;padding:0.8rem 1rem;font-size:0.82rem;color:#86efac;}
+    .qcm-explication strong{color:#4ade80;}
+    .alerte-box{background:rgba(167,139,250,0.06);border:1px solid rgba(167,139,250,0.25);border-left:3px solid #a78bfa;border-radius:0 10px 10px 0;padding:1.2rem 1.4rem;}
+    .alerte-item{margin-bottom:1rem;}
+    .alerte-item:last-child{margin-bottom:0;}
+    .alerte-tag{display:inline-block;padding:0.15rem 0.6rem;background:rgba(167,139,250,0.2);color:#c4b5fd;border-radius:4px;font-size:0.72rem;font-weight:700;text-transform:uppercase;margin-bottom:0.4rem;}
+    .alerte-title{font-weight:700;color:var(--text);font-size:0.92rem;margin-bottom:0.3rem;}
+    .alerte-body{color:var(--muted);font-size:0.86rem;line-height:1.6;}
+    /* FINAL BANNER */
+    .final-banner{background:linear-gradient(135deg,rgba(79,142,247,0.1),rgba(124,92,252,0.1));border:1px solid rgba(124,92,252,0.3);border-radius:12px;padding:2rem;margin-top:2rem;text-align:center;}
+    .final-banner h2{font-size:1.4rem;font-weight:800;color:var(--text);margin-bottom:0.8rem;}
+    .final-banner p{color:var(--muted);font-size:0.9rem;margin-bottom:1.2rem;}
+    .seuil-recap{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1rem;}
+    .seuil-box{background:var(--surface2);border-radius:8px;padding:1rem;text-align:center;}
+    .seuil-val{font-size:1.5rem;font-weight:900;margin-bottom:0.2rem;}
+    .seuil-c .seuil-val{color:#60a5fa;}
+    .seuil-a .seuil-val{color:#a78bfa;}
+    .seuil-label{font-size:0.75rem;color:var(--muted);}
+    .fiche-footer{margin-top:3rem;padding-top:1.5rem;border-top:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+    .plan-btn{display:inline-block;padding:0.7rem 1.5rem;background:linear-gradient(135deg,var(--accent),var(--accent2));color:white;text-decoration:none;border-radius:8px;font-weight:700;font-size:0.88rem;}
+    .footer-info{color:var(--muted);font-size:0.8rem;}
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="fiche-11-marches-infrastructures.html">← Fiche 11</a>
+    <span class="nav-center">Fiche 12 / 12 — DERNIÈRE FICHE</span>
+    <a href="plan-revision.html">← Plan de révision</a>
+  </div>
+
+  <div class="fiche-header">
+    <div class="fiche-num">Thème 12 · J14 — 28 avril 2026</div>
+    <h1>Cryptoactifs et MiCA</h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-questions">~5 questions à l'examen</span>
+      <span class="meta-pill pill-cat">Catégories A & C — mixte</span>
+      <span class="meta-pill pill-jour">J14 · 28 avril</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">🔑 Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>MiCA</td><td>Markets in Crypto-Assets — règlement européen encadrant les cryptoactifs (applicable depuis 2024)</td></tr>
+        <tr><td>Utility token</td><td>Jeton donnant accès à un service ou produit — catégorie MiCA "jetons se référant à d'autres actifs"</td></tr>
+        <tr><td>Asset-Referenced Token (ART)</td><td>Stablecoin adossé à un panier d'actifs (devises, matières premières) — ex : Libra/Diem</td></tr>
+        <tr><td>E-money Token (EMT)</td><td>Stablecoin adossé à une seule devise officielle — ex : EURC, USDC en EUR — le plus encadré</td></tr>
+        <tr><td>CASP</td><td>Crypto-Asset Service Provider — prestataire de services sur cryptoactifs, soumis à agrément MiCA</td></tr>
+        <tr><td>PSAN</td><td>Prestataire de Services sur Actifs Numériques — ancien régime français (remplacé progressivement par MiCA/CASP)</td></tr>
+        <tr><td>Livre blanc (White Paper)</td><td>Document obligatoire sous MiCA décrivant le projet, les risques et les droits des détenteurs</td></tr>
+        <tr><td>Bitcoin / Ethereum</td><td>Cryptomonnaies hors du périmètre MiCA (ni ART ni EMT ni utility token au sens strict)</td></tr>
+        <tr><td>NFT</td><td>Non-Fungible Token — jeton unique et non fongible, globalement hors MiCA sauf si émis en grande série</td></tr>
+        <tr><td>DeFi</td><td>Finance décentralisée — protocoles sans intermédiaire, hors périmètre MiCA actuel mais sous surveillance</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-title">⭐ L'essentiel en 5 points</div>
+    <div class="points-list">
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">MiCA — le premier règlement européen sur les cryptoactifs</div>
+        <div class="point-body">
+          MiCA est un <span class="highlight">règlement</span> (application directe dans toute l'UE, sans transposition). Il est entré en vigueur progressivement en 2024. Il crée un cadre unifié pour les émetteurs de cryptoactifs et les prestataires de services, avec passeport européen.
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">Les 3 catégories de cryptoactifs sous MiCA</div>
+        <div class="point-body">
+          Voir mémo visuel. Retenir : EMT = stablecoin en monnaie unique (plus encadré), ART = stablecoin multi-actifs, Utility token = accès à un service. Bitcoin et Ethereum ne rentrent dans aucune de ces cases (cryptomonnaies non adossées).
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">Obligations des CASP (prestataires de services)</div>
+        <div class="point-body">
+          <ul>
+            <li>Agrément obligatoire auprès du régulateur national (AMF en France)</li>
+            <li>Respect des règles LCB-FT — voyageur (travel rule) sur les transactions crypto</li>
+            <li>Ségrégation des actifs clients</li>
+            <li>Passeport européen permettant d'opérer dans toute l'UE après agrément</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">Risques spécifiques des cryptoactifs</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Volatilité extrême</span> : variations de cours de -80% ou +500% en quelques mois</li>
+            <li><span class="highlight">Risque technologique</span> : failles de smart contracts, hacks de plateformes</li>
+            <li><span class="highlight">Risque de liquidité</span> : certains tokens très peu liquides</li>
+            <li><span class="highlight">Absence de recours</span> : pas de garantie des dépôts (pas de FGDR)</li>
+            <li><span class="highlight">Risque réglementaire</span> : évolution rapide du cadre légal</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Security tokens — hors MiCA, sous MIF2</div>
+        <div class="point-body">
+          Les <span class="highlight">security tokens</span> (jetons représentant des instruments financiers — actions, obligations tokenisées) ne sont <strong style="color:var(--text)">pas</strong> couverts par MiCA. Ils restent sous le régime MIF2 comme tout instrument financier. C'est une distinction fondamentale à l'examen.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">⚠️ Ce qui piège les candidats</div>
+    <div class="pieges-list">
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">Bitcoin n'est pas couvert par MiCA</div>
+        <div class="piege-body">Bitcoin (et la plupart des cryptomonnaies classiques) ne sont ni ART, ni EMT, ni utility token au sens de MiCA. Ils sont dans une catégorie résiduelle couverte par MiCA uniquement pour certaines obligations des CASP. Ne pas confondre "la plateforme qui vend du Bitcoin est sous MiCA" et "Bitcoin est un actif MiCA".</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">PSAN ≠ CASP — transition en cours</div>
+        <div class="piege-body">Le régime PSAN français est progressivement remplacé par le régime CASP de MiCA. Les anciens PSAN enregistrés ont jusqu'à fin 2025 pour obtenir leur agrément CASP. L'examen 2026 peut tester la distinction entre les deux régimes.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">Un stablecoin n'est pas "sans risque"</div>
+        <div class="piege-body">Un stablecoin (ART ou EMT) maintient sa parité via des réserves, mais ces réserves peuvent être insuffisantes, mal gérées ou non vérifiées (risque de désancrage, cf. effondrement de TerraUST). MiCA impose des réserves obligatoires et ségrégées pour les ART et EMT — mais le risque n'est pas nul.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🗺️ Mémo visuel — Taxonomie MiCA des cryptoactifs</div>
+    <div class="mica-grid">
+      <div class="mica-card mica-ut">
+        <div class="mica-type">Catégorie 1</div>
+        <div class="mica-name">Utility Token</div>
+        <div class="mica-desc">Jeton donnant un droit d'accès à un bien ou service sur une blockchain. Pas adossé à un actif réel.</div>
+        <div class="mica-ex">Tokens d'accès à des plateformes, tokens de jeux, tokens de gouvernance</div>
+      </div>
+      <div class="mica-card mica-art">
+        <div class="mica-type">Catégorie 2</div>
+        <div class="mica-name">Asset-Referenced Token (ART)</div>
+        <div class="mica-desc">Stablecoin adossé à un panier d'actifs (plusieurs devises, matières premières, cryptos). Réserves obligatoires.</div>
+        <div class="mica-ex">Projet Libra/Diem (Meta), stablecoins multi-devises</div>
+      </div>
+      <div class="mica-card mica-emt">
+        <div class="mica-type">Catégorie 3 — Le plus encadré</div>
+        <div class="mica-name">E-Money Token (EMT)</div>
+        <div class="mica-desc">Stablecoin adossé à une seule devise officielle (€, $…). Réserves 1:1 obligatoires. Agrément d'établissement de monnaie électronique requis.</div>
+        <div class="mica-ex">EURC (Circle), stablecoins en EUR/USD adossés 1:1</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:1rem 1.2rem;font-size:0.82rem;">
+      <div style="font-weight:700;color:var(--text);margin-bottom:0.6rem;">Hors périmètre MiCA :</div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:0.6rem;">
+        <div style="background:var(--surface2);border-radius:6px;padding:0.6rem;text-align:center;font-size:0.78rem;">
+          <div style="font-weight:700;color:#f87171;">Security tokens</div>
+          <div style="color:var(--muted);">→ sous MIF2</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:6px;padding:0.6rem;text-align:center;font-size:0.78rem;">
+          <div style="font-weight:700;color:#fb923c;">NFT uniques</div>
+          <div style="color:var(--muted);">→ hors MiCA</div>
+        </div>
+        <div style="background:var(--surface2);border-radius:6px;padding:0.6rem;text-align:center;font-size:0.78rem;">
+          <div style="font-weight:700;color:#facc15;">DeFi</div>
+          <div style="color:var(--muted);">→ hors MiCA (surveillance)</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">📝 Questions-type d'entraînement</div>
+    <div class="qcm-list">
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un stablecoin adossé uniquement à l'euro avec des réserves 1:1 est classé dans quelle catégorie selon le règlement MiCA ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Asset-Referenced Token (ART) — car adossé à un actif réel</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>E-Money Token (EMT) — car adossé à une seule devise officielle</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Utility Token — car il sert d'instrument de paiement</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> L'EMT est défini par son adossement à une seule devise officielle (€, $, £…) avec des réserves 1:1. L'ART est adossé à un panier d'actifs multiples. L'utility token donne accès à un service mais n'est pas un stablecoin. Les EMT sont soumis aux règles les plus strictes de MiCA.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Une startup souhaite émettre des tokens donnant accès à sa plateforme de streaming musical. Ces tokens sont-ils soumis au règlement MiCA ?</div>
+          <div class="qcm-choices">
+            <div class="choice correct"><span class="choice-letter">A ✓</span><span>Oui, en tant qu'utility tokens — MiCA s'applique avec des obligations allégées (livre blanc)</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>Non, les tokens d'accès à des services sont totalement hors périmètre de MiCA</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Oui, mais uniquement s'ils sont négociés sur une plateforme régulée</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Les utility tokens entrent dans le périmètre de MiCA. L'émetteur doit publier un livre blanc (white paper) décrivant le projet. Les obligations sont cependant moins lourdes que pour les ART ou EMT. L'exemption pour petites émissions (<1M€ sur 12 mois) existe mais reste limitée.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🚨 Alerte 2025-2026 — Thème en pleine évolution</div>
+    <div class="alerte-box">
+      <div class="alerte-item">
+        <div class="alerte-tag">MiCA · Pleinement applicable depuis déc. 2024</div>
+        <div class="alerte-title">Déploiement complet de MiCA — transition PSAN → CASP</div>
+        <div class="alerte-body">MiCA est entré en vigueur pour les stablecoins (ART/EMT) en juin 2024 et pour l'ensemble des CASP en décembre 2024. Les PSAN français ont jusqu'à fin 2025 pour obtenir leur agrément CASP. L'AMF est l'autorité compétente en France pour délivrer les agréments CASP.</div>
+      </div>
+      <div class="alerte-item">
+        <div class="alerte-tag">Travel Rule · 2024</div>
+        <div class="alerte-title">Obligation de traçabilité des transactions crypto</div>
+        <div class="alerte-body">La "travel rule" impose aux CASP de collecter et transmettre les informations sur l'émetteur et le bénéficiaire pour toute transaction crypto supérieure à <strong style="color:var(--text)">1 000 €</strong>. Cette règle, issue du GAFI et transposée en Europe via le règlement TFR, renforce la LCB-FT dans l'écosystème crypto.</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FINAL BANNER -->
+  <div class="final-banner">
+    <h2>Toutes les fiches sont complètes !</h2>
+    <p>Tu as couvert les 12 thèmes de l'examen AMF. Place aux simulations (J17-J19).</p>
+    <div class="seuil-recap">
+      <div class="seuil-box seuil-c">
+        <div class="seuil-val">70/87</div>
+        <div class="seuil-label">Catégorie C — seuil 80,5%</div>
+      </div>
+      <div class="seuil-box seuil-a">
+        <div class="seuil-val">27/33</div>
+        <div class="seuil-label">Catégorie A — seuil 81,8%</div>
+      </div>
+    </div>
+    <p style="margin-top:1rem;font-size:0.85rem;color:#64748b;">Ne jamais laisser une réponse vide · ESG = 15 questions = priorité absolue</p>
+  </div>
+
+  <div class="fiche-footer">
+    <div class="footer-info">Fiche 12 / 12 · Cryptoactifs et MiCA<br>Examen AMF · 4 mai 2026</div>
+    <a href="plan-revision.html" class="plan-btn">← Retour au plan de révision</a>
+  </div>
+</div>
+</body>
+</html>

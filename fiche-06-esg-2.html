@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiche 6 — Finance durable / ESG (2/2)</title>
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+      --accent: #4f8ef7; --accent2: #7c5cfc; --green: #22c55e;
+      --orange: #f59e0b; --red: #ef4444; --text: #e2e8f0;
+      --muted: #94a3b8; --border: #2d3348;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.7; padding: 2rem 1rem; }
+    .container { max-width: 860px; margin: 0 auto; }
+    .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; font-size: 0.82rem; }
+    .nav a { color: var(--accent); text-decoration: none; padding: 0.3rem 0.8rem; border: 1px solid var(--accent); border-radius: 6px; }
+    .nav a:hover { background: rgba(79,142,247,0.1); }
+    .nav-center { color: var(--muted); }
+    .fiche-header { background: linear-gradient(135deg, #0d1f12, #152a1a); border: 1px solid #1e3a24; border-top: 3px solid var(--green); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    .fiche-num { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4ade80; font-weight: 700; margin-bottom: 0.4rem; }
+    .fiche-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
+    .fiche-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .meta-pill { padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .pill-priority { background: rgba(34,197,94,0.2); color: #86efac; border: 1px solid rgba(34,197,94,0.4); }
+    .pill-cat { background: rgba(124,92,252,0.15); color: #c4b5fd; border: 1px solid rgba(124,92,252,0.3); }
+    .pill-jour { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+    section { margin-bottom: 2rem; }
+    .section-title { display: flex; align-items: center; gap: 0.7rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    th { background: var(--surface2); padding: 0.7rem 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+    td { padding: 0.7rem 1rem; border-top: 1px solid var(--border); vertical-align: top; font-size: 0.85rem; }
+    td:first-child { font-weight: 700; color: #4ade80; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .points-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .point-item { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .point-num { font-size: 0.7rem; font-weight: 800; color: #4ade80; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .point-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .point-body { color: var(--muted); font-size: 0.875rem; }
+    .point-body ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+    .point-body li { margin-bottom: 0.25rem; }
+    .highlight { color: var(--text); font-weight: 600; }
+    .pieges-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .piege-item { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .piege-label { font-size: 0.72rem; font-weight: 800; color: #fca5a5; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .piege-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .piege-body { color: var(--muted); font-size: 0.875rem; }
+    /* STRATEGIES GRID */
+    .strat-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 0.8rem; }
+    .strat-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 1rem; }
+    .strat-num { font-size: 0.7rem; font-weight: 800; color: var(--muted); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.2rem; }
+    .strat-name { font-weight: 800; font-size: 0.9rem; color: #4ade80; margin-bottom: 0.4rem; }
+    .strat-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    /* LABELS */
+    .labels-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .label-cell { background: var(--surface); padding: 1rem; }
+    .label-cell.hdr { background: var(--surface2); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; padding: 0.6rem 1rem; }
+    .label-name { font-weight: 800; font-size: 0.92rem; margin-bottom: 0.4rem; }
+    .isr-color { color: #60a5fa; }
+    .greenfin-color { color: #4ade80; }
+    .eurosif-color { color: #a78bfa; }
+    .label-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .qcm-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .qcm-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .qcm-header { background: var(--surface2); padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .qcm-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+    .cat-c { color: var(--accent); } .cat-a { color: var(--accent2); }
+    .qcm-body { padding: 1.2rem; }
+    .qcm-question { font-weight: 600; color: var(--text); margin-bottom: 1rem; font-size: 0.92rem; line-height: 1.6; }
+    .qcm-choices { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .choice { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.6rem 0.9rem; border-radius: 7px; border: 1px solid var(--border); font-size: 0.875rem; background: var(--bg); }
+    .choice.correct { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .choice-letter { font-weight: 800; min-width: 18px; }
+    .correct .choice-letter { color: var(--green); }
+    .qcm-explication { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 7px; padding: 0.8rem 1rem; font-size: 0.82rem; color: #86efac; }
+    .qcm-explication strong { color: #4ade80; }
+    .alerte-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25); border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; padding: 1.2rem 1.4rem; }
+    .alerte-item { margin-bottom: 1rem; }
+    .alerte-item:last-child { margin-bottom: 0; }
+    .alerte-tag { display: inline-block; padding: 0.15rem 0.6rem; background: rgba(245,158,11,0.2); color: #fcd34d; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .alerte-title { font-weight: 700; color: var(--text); font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .alerte-body { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+    .fiche-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .next-btn { display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.88rem; }
+    .footer-info { color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="fiche-05-esg-1.html">← Fiche 5</a>
+    <span class="nav-center">Fiche 6 / 12</span>
+    <a href="fiche-07-mif2.html">Fiche suivante →</a>
+  </div>
+
+  <div class="fiche-header">
+    <div class="fiche-num">⭐ PRIORITÉ ABSOLUE · Thème 6 · J6 — 20 avril 2026</div>
+    <h1>Finance durable / ESG<br><span style="color:#4ade80; font-size:1.2rem;">(2/2) — Labels, stratégies & greenwashing</span></h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-priority">Suite des ~15 questions ESG</span>
+      <span class="meta-pill pill-cat">Catégories A & C — mixte</span>
+      <span class="meta-pill pill-jour">J6 · 20 avril</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">🔑 Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>Label ISR</td><td>Label français d'État attribué aux fonds intégrant des critères ESG dans leur gestion (révisé en 2024)</td></tr>
+        <tr><td>Label Greenfin</td><td>Label français pour les fonds finançant la transition écologique — exclut nucléaire et fossiles</td></tr>
+        <tr><td>Exclusion</td><td>Stratégie ESG consistant à exclure du portefeuille des secteurs ou entreprises (tabac, armes, charbon…)</td></tr>
+        <tr><td>Best-in-class</td><td>Sélectionner les meilleures entreprises ESG de chaque secteur, sans exclusion sectorielle</td></tr>
+        <tr><td>Best-in-universe</td><td>Sélectionner les meilleures entreprises ESG tous secteurs confondus — conduit à sous-pondérer les secteurs polluants</td></tr>
+        <tr><td>Engagement actionnarial</td><td>Dialoguer avec les entreprises pour améliorer leurs pratiques ESG en tant qu'actionnaire</td></tr>
+        <tr><td>Impact investing</td><td>Investir avec l'intention de générer un impact social/environnemental mesurable en plus du rendement</td></tr>
+        <tr><td>Intégration ESG</td><td>Intégrer systématiquement les critères ESG dans l'analyse financière classique sans exclusion</td></tr>
+        <tr><td>Greenwashing</td><td>Allégations ESG trompeuses ou non fondées sur un produit ou une entreprise — sanctionné par l'AMF</td></tr>
+        <tr><td>Norme ISR révisée 2024</td><td>Nouvelle version du label ISR excluant désormais les entreprises liées au charbon et au pétrole non conventionnel</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-title">⭐ L'essentiel en 5 points</div>
+    <div class="points-list">
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">Les 6 stratégies ESG — les connaître toutes</div>
+        <div class="point-body">Voir mémo visuel ci-dessous. Les plus testées à l'examen : exclusion, best-in-class, engagement actionnarial et impact investing.</div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">Label ISR vs Label Greenfin — deux logiques différentes</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">ISR</span> : intégration de critères ESG — large spectre sectoriel, y compris nucléaire (avant révision 2024)</li>
+            <li><span class="highlight">Greenfin</span> : financement de la transition écologique uniquement — exclut explicitement le nucléaire ET les énergies fossiles</li>
+            <li>Greenfin est donc plus restrictif et plus ciblé sur l'environnement</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">Best-in-class vs Best-in-universe — la nuance clé</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Best-in-class</span> : meilleure entreprise pétrolière, meilleure entreprise minière… → le secteur reste représenté</li>
+            <li><span class="highlight">Best-in-universe</span> : seules les meilleures toutes catégories — les secteurs les plus polluants disparaissent naturellement</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">Engagement actionnarial — agir de l'intérieur</div>
+        <div class="point-body">Contrairement à l'exclusion (qui vend les titres), l'engagement consiste à <span class="highlight">rester actionnaire</span> pour influencer les pratiques de l'entreprise : vote en AG, dialogue avec la direction, résolutions ESG. Stratégie privilégiée par les grands fonds institutionnels.</div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Greenwashing — définition et sanctions AMF</div>
+        <div class="point-body">L'AMF surveille activement les allégations ESG trompeuses dans les communications des fonds. Sont sanctionnés : les termes "vert", "durable", "responsable" sans preuve, les fonds article 8/9 dont la composition ne correspond pas aux allégations. L'AMF peut exiger le retrait de mentions et sanctionner financièrement.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">⚠️ Ce qui piège les candidats</div>
+    <div class="pieges-list">
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">L'exclusion n'est pas la stratégie ESG la plus sophistiquée</div>
+        <div class="piege-body">Exclure des secteurs entiers est la stratégie la plus simple. L'intégration ESG, le best-in-class et l'impact investing sont plus complexes et plus valorisés par les régulateurs. L'examen peut demander de classer les stratégies par niveau d'intégration ESG.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">Label ISR révisé en 2024 — nouvelles exclusions</div>
+        <div class="piege-body">Depuis janvier 2024, le label ISR exclut les entreprises qui développent de nouvelles capacités dans le charbon et les hydrocarbures non conventionnels. Un fonds labellisé ISR avant 2024 a dû s'adapter. Ne pas confondre l'ancienne et la nouvelle version du référentiel.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">Impact investing ≠ philanthropie</div>
+        <div class="piege-body">L'impact investing vise un rendement financier en plus de l'impact. Ce n'est pas du mécénat ni de la philanthropie. L'impact doit être <strong style="color:var(--text)">intentionnel, mesurable et additionnel</strong> — trois critères à retenir. Sans mesure de l'impact, ce n'est pas de l'impact investing.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🗺️ Mémo visuel — Les 6 stratégies ESG</div>
+    <div class="strat-grid">
+      <div class="strat-card">
+        <div class="strat-num">Stratégie 1</div>
+        <div class="strat-name">Exclusion normative / sectorielle</div>
+        <div class="strat-desc">Exclure des entreprises violant des normes (ONU, OIT) ou des secteurs entiers (tabac, armes, charbon). La plus simple.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-num">Stratégie 2</div>
+        <div class="strat-name">Best-in-class</div>
+        <div class="strat-desc">Sélectionner les leaders ESG de chaque secteur. Tous les secteurs restent représentés dans le portefeuille.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-num">Stratégie 3</div>
+        <div class="strat-name">Best-in-universe</div>
+        <div class="strat-desc">Sélectionner les meilleurs toutes industries confondues. Sous-pondère naturellement les secteurs polluants.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-num">Stratégie 4</div>
+        <div class="strat-name">Intégration ESG</div>
+        <div class="strat-desc">Intégrer les critères ESG dans l'analyse financière classique sans exclure de secteur. Approche systématique.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-num">Stratégie 5</div>
+        <div class="strat-name">Engagement actionnarial</div>
+        <div class="strat-desc">Rester actionnaire et peser sur les pratiques ESG via le vote en AG et le dialogue avec la direction.</div>
+      </div>
+      <div class="strat-card">
+        <div class="strat-num">Stratégie 6</div>
+        <div class="strat-name">Impact investing</div>
+        <div class="strat-desc">Investir avec un objectif d'impact mesurable (social/environnemental) en plus du rendement financier.</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.2rem;">
+      <div class="labels-grid">
+        <div class="label-cell hdr">Label</div>
+        <div class="label-cell hdr">Périmètre</div>
+        <div class="label-cell hdr">Exclusions clés</div>
+        <div class="label-cell"><div class="label-name isr-color">Label ISR</div></div>
+        <div class="label-cell label-desc">Fonds actions, obligataires, diversifiés. Label d'État français révisé 2024.</div>
+        <div class="label-cell label-desc">Charbon et hydrocarbures non conventionnels (depuis 2024). Armes controversées.</div>
+        <div class="label-cell"><div class="label-name greenfin-color">Label Greenfin</div></div>
+        <div class="label-cell label-desc">Fonds finançant la transition écologique uniquement. Géré par le Ministère de la transition.</div>
+        <div class="label-cell label-desc">Nucléaire + toutes énergies fossiles. Plus restrictif que l'ISR.</div>
+        <div class="label-cell"><div class="label-name eurosif-color">Eurosif / SRI</div></div>
+        <div class="label-cell label-desc">Référentiel européen de transparence ISR — pas un label mais une classification par niveau d'ambition.</div>
+        <div class="label-cell label-desc">Variable selon le niveau (Transparency Code). Pas d'exclusion imposée.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">📝 Questions-type d'entraînement</div>
+    <div class="qcm-list">
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Quelle stratégie ESG consiste à sélectionner les entreprises les mieux notées d'un point de vue ESG au sein de chaque secteur d'activité, sans exclure aucun secteur ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>L'exclusion normative</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>Le best-in-class</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>L'impact investing</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Le best-in-class sélectionne les leaders ESG secteur par secteur — tous les secteurs restent représentés, même les plus polluants (on investit dans la "moins mauvaise" entreprise pétrolière, par exemple). À distinguer du best-in-universe qui peut éliminer des secteurs entiers.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un gérant souhaite obtenir le label Greenfin pour son fonds qui investit dans des centrales nucléaires de nouvelle génération à faibles émissions de CO2. Sa demande sera-t-elle acceptée ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Oui, car le nucléaire contribue à la réduction des émissions de CO2 et à la transition énergétique</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>Oui, à condition que le fonds exclue parallèlement les énergies fossiles</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>Non, car le label Greenfin exclut explicitement le secteur nucléaire quel que soit son impact carbone</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Le label Greenfin exclut explicitement le nucléaire ET les énergies fossiles, indépendamment des émissions de CO2. C'est une exclusion de principe, pas une exclusion basée sur la performance environnementale. Pour le nucléaire, le label ISR (dans certaines versions) est plus permissif.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🚨 Alerte 2025-2026</div>
+    <div class="alerte-box">
+      <div class="alerte-item">
+        <div class="alerte-tag">Label ISR · Réforme janvier 2024</div>
+        <div class="alerte-title">Nouvelles exclusions charbon et hydrocarbures non conventionnels</div>
+        <div class="alerte-body">Le référentiel ISR révisé exclut désormais les entreprises développant de nouveaux projets de charbon thermique ou d'hydrocarbures non conventionnels (pétrole de schiste, sables bitumineux). Les fonds labellisés ont eu jusqu'au 1er janvier 2025 pour se mettre en conformité. Point très susceptible d'être testé à l'examen 2026.</div>
+      </div>
+      <div class="alerte-item">
+        <div class="alerte-tag">Greenwashing · Surveillance renforcée 2025</div>
+        <div class="alerte-title">AMF et ESMA renforcent le contrôle des allégations ESG</div>
+        <div class="alerte-body">L'AMF a publié en 2024 des orientations strictes sur l'utilisation des termes "ESG", "durable", "vert" dans les noms et communications des fonds. ESMA a suivi avec des guidelines européennes. Un fonds ne peut utiliser ces termes que s'il respecte des seuils minimaux d'investissement durable ou d'exclusion.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fiche-footer">
+    <div class="footer-info">Fiche 6 / 12 · Finance durable / ESG (2/2)<br>Examen AMF · 4 mai 2026</div>
+    <a href="fiche-07-mif2.html" class="next-btn">Fiche 7 — Protection des investisseurs / MIF2 →</a>
+  </div>
+</div>
+</body>
+</html>

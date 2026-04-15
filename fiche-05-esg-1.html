@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiche 5 — Finance durable / ESG (1/2)</title>
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+      --accent: #4f8ef7; --accent2: #7c5cfc; --green: #22c55e;
+      --orange: #f59e0b; --red: #ef4444; --text: #e2e8f0;
+      --muted: #94a3b8; --border: #2d3348;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.7; padding: 2rem 1rem; }
+    .container { max-width: 860px; margin: 0 auto; }
+    .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; font-size: 0.82rem; }
+    .nav a { color: var(--accent); text-decoration: none; padding: 0.3rem 0.8rem; border: 1px solid var(--accent); border-radius: 6px; }
+    .nav a:hover { background: rgba(79,142,247,0.1); }
+    .nav-center { color: var(--muted); }
+    .fiche-header { background: linear-gradient(135deg, #0d1f12, #152a1a); border: 1px solid #1e3a24; border-top: 3px solid var(--green); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    .fiche-num { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: #4ade80; font-weight: 700; margin-bottom: 0.4rem; }
+    .fiche-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
+    .fiche-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .meta-pill { padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .pill-priority { background: rgba(34,197,94,0.2); color: #86efac; border: 1px solid rgba(34,197,94,0.4); }
+    .pill-cat { background: rgba(124,92,252,0.15); color: #c4b5fd; border: 1px solid rgba(124,92,252,0.3); }
+    .pill-jour { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+    section { margin-bottom: 2rem; }
+    .section-title { display: flex; align-items: center; gap: 0.7rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    th { background: var(--surface2); padding: 0.7rem 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+    td { padding: 0.7rem 1rem; border-top: 1px solid var(--border); vertical-align: top; font-size: 0.85rem; }
+    td:first-child { font-weight: 700; color: #4ade80; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .points-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .point-item { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--green); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .point-num { font-size: 0.7rem; font-weight: 800; color: #4ade80; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .point-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .point-body { color: var(--muted); font-size: 0.875rem; }
+    .point-body ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+    .point-body li { margin-bottom: 0.25rem; }
+    .highlight { color: var(--text); font-weight: 600; }
+    .pieges-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .piege-item { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .piege-label { font-size: 0.72rem; font-weight: 800; color: #fca5a5; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .piege-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .piege-body { color: var(--muted); font-size: 0.875rem; }
+    /* SFDR CARDS */
+    .sfdr-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1rem; margin-top: 0.5rem; }
+    .sfdr-card { border-radius: 10px; padding: 1.2rem; border: 1px solid; }
+    .sfdr-6 { background: rgba(100,116,139,0.1); border-color: #475569; }
+    .sfdr-8 { background: rgba(59,130,246,0.08); border-color: rgba(59,130,246,0.3); }
+    .sfdr-9 { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.3); }
+    .sfdr-num { font-size: 2rem; font-weight: 900; margin-bottom: 0.3rem; }
+    .sfdr-6 .sfdr-num { color: #94a3b8; }
+    .sfdr-8 .sfdr-num { color: #60a5fa; }
+    .sfdr-9 .sfdr-num { color: #4ade80; }
+    .sfdr-label { font-weight: 700; font-size: 0.85rem; margin-bottom: 0.5rem; }
+    .sfdr-6 .sfdr-label { color: #cbd5e1; }
+    .sfdr-8 .sfdr-label { color: #93c5fd; }
+    .sfdr-9 .sfdr-label { color: #86efac; }
+    .sfdr-desc { font-size: 0.78rem; color: var(--muted); line-height: 1.5; }
+    .sfdr-ex { font-size: 0.72rem; margin-top: 0.5rem; font-style: italic; }
+    .sfdr-6 .sfdr-ex { color: #64748b; }
+    .sfdr-8 .sfdr-ex { color: #3b82f6; }
+    .sfdr-9 .sfdr-ex { color: #22c55e; }
+    /* TAXONOMIE */
+    .taxo-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; margin-top: 0.5rem; }
+    .taxo-cell { background: var(--surface); padding: 0.7rem 1rem; font-size: 0.82rem; }
+    .taxo-cell.hdr { background: var(--surface2); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 700; }
+    .taxo-num { font-weight: 800; color: #4ade80; margin-right: 0.5rem; }
+    .taxo-label { color: var(--text); font-weight: 600; }
+    .taxo-desc { color: var(--muted); font-size: 0.78rem; display: block; margin-top: 0.1rem; }
+    .qcm-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .qcm-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .qcm-header { background: var(--surface2); padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .qcm-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+    .cat-c { color: var(--accent); } .cat-a { color: var(--accent2); }
+    .qcm-body { padding: 1.2rem; }
+    .qcm-question { font-weight: 600; color: var(--text); margin-bottom: 1rem; font-size: 0.92rem; line-height: 1.6; }
+    .qcm-choices { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .choice { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.6rem 0.9rem; border-radius: 7px; border: 1px solid var(--border); font-size: 0.875rem; background: var(--bg); }
+    .choice.correct { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .choice-letter { font-weight: 800; min-width: 18px; }
+    .correct .choice-letter { color: var(--green); }
+    .qcm-explication { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 7px; padding: 0.8rem 1rem; font-size: 0.82rem; color: #86efac; }
+    .qcm-explication strong { color: #4ade80; }
+    .alerte-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25); border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; padding: 1.2rem 1.4rem; }
+    .alerte-item { margin-bottom: 1rem; }
+    .alerte-item:last-child { margin-bottom: 0; }
+    .alerte-tag { display: inline-block; padding: 0.15rem 0.6rem; background: rgba(245,158,11,0.2); color: #fcd34d; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .alerte-title { font-weight: 700; color: var(--text); font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .alerte-body { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+    .fiche-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .next-btn { display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(135deg, #22c55e, #16a34a); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.88rem; }
+    .footer-info { color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="fiche-04-instruments-financiers-2.html">← Fiche 4</a>
+    <span class="nav-center">Fiche 5 / 12</span>
+    <a href="fiche-06-esg-2.html">Fiche suivante →</a>
+  </div>
+
+  <div class="fiche-header">
+    <div class="fiche-num">⭐ PRIORITÉ ABSOLUE · Thème 5 · J5 — 19 avril 2026</div>
+    <h1>Finance durable / ESG<br><span style="color:#4ade80; font-size:1.2rem;">(1/2) — SFDR & Taxonomie</span></h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-priority">~15 questions = 12,5% de l'examen</span>
+      <span class="meta-pill pill-cat">Catégories A & C — mixte</span>
+      <span class="meta-pill pill-jour">J5 · 19 avril</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">🔑 Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>ESG</td><td>Critères Environnementaux, Sociaux et de Gouvernance — dimensions extra-financières intégrées dans l'analyse</td></tr>
+        <tr><td>SFDR</td><td>Sustainable Finance Disclosure Regulation — règlement européen de transparence sur la durabilité des fonds</td></tr>
+        <tr><td>Article 6</td><td>Fonds sans caractéristique ESG — doit expliquer comment les risques de durabilité sont intégrés (ou pourquoi ils ne le sont pas)</td></tr>
+        <tr><td>Article 8</td><td>Fonds qui promeut des caractéristiques environnementales ou sociales — "fonds vert clair"</td></tr>
+        <tr><td>Article 9</td><td>Fonds ayant un objectif d'investissement durable explicite — "fonds vert foncé"</td></tr>
+        <tr><td>Taxonomie EU</td><td>Système de classification européen définissant les activités économiques considérées comme durables</td></tr>
+        <tr><td>PAI</td><td>Principal Adverse Impacts — indicateurs des impacts négatifs des investissements sur la durabilité</td></tr>
+        <tr><td>Double matérialité</td><td>Concept intégrant à la fois l'impact financier des risques ESG ET l'impact de l'entreprise sur l'environnement/société</td></tr>
+        <tr><td>CSRD</td><td>Corporate Sustainability Reporting Directive — obligation de reporting extra-financier pour les grandes entreprises</td></tr>
+        <tr><td>Greenwashing</td><td>Communication trompeuse sur les caractéristiques ESG d'un produit ou d'une entreprise</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-title">⭐ L'essentiel en 5 points</div>
+    <div class="points-list">
+      <div class="point-item">
+        <div class="point-num">Point 1 — Le plus important</div>
+        <div class="point-title">SFDR : les 3 articles à distinguer absolument</div>
+        <div class="point-body">SFDR est un <span class="highlight">règlement</span> (application directe) qui impose aux gérants de fonds de classer leurs produits. Cette classification est centrale à l'examen — voir mémo visuel ci-dessous.</div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">Les 3 piliers ESG — ce que chacun couvre</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">E (Environnemental)</span> : émissions CO2, consommation d'eau, biodiversité, énergie renouvelable, déchets</li>
+            <li><span class="highlight">S (Social)</span> : conditions de travail, égalité H/F, droits humains, santé/sécurité, relations fournisseurs</li>
+            <li><span class="highlight">G (Gouvernance)</span> : indépendance du conseil d'administration, rémunération des dirigeants, transparence, lutte anti-corruption</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">Taxonomie européenne — 6 objectifs environnementaux</div>
+        <div class="point-body">Une activité est "durable" selon la taxonomie si elle contribue à au moins 1 objectif sans nuire aux 5 autres (principe DNSH — Do No Significant Harm) — voir tableau ci-dessous.</div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">PAI — Principal Adverse Impacts</div>
+        <div class="point-body">Les PAI sont les <span class="highlight">effets négatifs</span> des décisions d'investissement sur les facteurs de durabilité. Les gérants d'actifs au-delà d'un certain seuil doivent obligatoirement les mesurer et les publier. Exemples : émissions GES, écart de rémunération H/F, violations des droits humains.</div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Double matérialité — concept clé CSRD</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Matérialité financière</span> : en quoi les risques ESG affectent la valeur de l'entreprise ?</li>
+            <li><span class="highlight">Matérialité d'impact</span> : en quoi l'entreprise affecte l'environnement et la société ?</li>
+            <li>La CSRD impose aux grandes entreprises de reporter sur les deux dimensions.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">⚠️ Ce qui piège les candidats</div>
+    <div class="pieges-list">
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">Article 8 ≠ objectif durable — seulement une promotion</div>
+        <div class="piege-body">Un fonds article 8 "promeut" des caractéristiques ESG mais son objectif principal peut rester la performance financière. Seul un fonds article 9 a un <strong style="color:var(--text)">objectif d'investissement durable</strong> explicite et mesurable. La distinction est systématiquement testée.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">SFDR classe les fonds, la taxonomie classe les activités</div>
+        <div class="piege-body">SFDR s'applique aux <strong style="color:var(--text)">produits financiers</strong> (fonds, mandats). La taxonomie s'applique aux <strong style="color:var(--text)">activités économiques</strong> des entreprises. Un fonds article 9 peut investir dans des entreprises dont une part des activités est alignée sur la taxonomie — ce sont deux référentiels complémentaires.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">Un fonds article 6 n'est pas forcément non-ESG</div>
+        <div class="piege-body">Un fonds article 6 peut tout à fait intégrer des considérations ESG dans son processus — il doit juste expliquer comment il gère les risques de durabilité. Il n'a simplement pas de caractéristiques ESG promus ni d'objectif durable. Ne pas confondre "pas de label" et "ignore l'ESG".</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🗺️ Mémo visuel — Les 3 articles SFDR</div>
+    <div class="sfdr-grid">
+      <div class="sfdr-card sfdr-6">
+        <div class="sfdr-num">Art. 6</div>
+        <div class="sfdr-label">Fonds standard</div>
+        <div class="sfdr-desc">Intègre les risques de durabilité dans la gestion (ou explique pourquoi pas). Pas de caractéristique ESG promue.</div>
+        <div class="sfdr-ex">Ex : fonds actions classique qui mentionne les risques climatiques dans son prospectus</div>
+      </div>
+      <div class="sfdr-card sfdr-8">
+        <div class="sfdr-num">Art. 8</div>
+        <div class="sfdr-label">"Vert clair"<br>Promeut l'ESG</div>
+        <div class="sfdr-desc">Promeut des caractéristiques environnementales ou sociales. Peut investir dans des actifs durables mais ce n'est pas l'objectif principal.</div>
+        <div class="sfdr-ex">Ex : fonds excluant les charbonniers, favorisant les entreprises bien notées ESG</div>
+      </div>
+      <div class="sfdr-card sfdr-9">
+        <div class="sfdr-num">Art. 9</div>
+        <div class="sfdr-label">"Vert foncé"<br>Objectif durable</div>
+        <div class="sfdr-desc">Objectif d'investissement durable explicite et mesurable. Doit démontrer la contribution positive. Niveau d'exigence maximal.</div>
+        <div class="sfdr-ex">Ex : fonds investissant uniquement dans des énergies renouvelables alignées sur la taxonomie</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.5rem;">
+      <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); font-weight:700; margin-bottom:0.8rem;">Taxonomie EU — 6 objectifs environnementaux</div>
+      <div class="taxo-grid">
+        <div class="taxo-cell hdr">N°</div>
+        <div class="taxo-cell hdr">Objectif</div>
+        <div class="taxo-cell"><span class="taxo-num">1</span><span class="taxo-label">Atténuation du changement climatique</span><span class="taxo-desc">Réduction des émissions de GES</span></div>
+        <div class="taxo-cell"><span class="taxo-num">2</span><span class="taxo-label">Adaptation au changement climatique</span><span class="taxo-desc">Résilience face aux impacts climatiques</span></div>
+        <div class="taxo-cell"><span class="taxo-num">3</span><span class="taxo-label">Utilisation durable de l'eau</span><span class="taxo-desc">Protection des ressources hydriques</span></div>
+        <div class="taxo-cell"><span class="taxo-num">4</span><span class="taxo-label">Économie circulaire</span><span class="taxo-desc">Réduction des déchets, réutilisation</span></div>
+        <div class="taxo-cell"><span class="taxo-num">5</span><span class="taxo-label">Prévention de la pollution</span><span class="taxo-desc">Air, eau, sols, substances chimiques</span></div>
+        <div class="taxo-cell"><span class="taxo-num">6</span><span class="taxo-label">Biodiversité et écosystèmes</span><span class="taxo-desc">Protection des espèces et habitats</span></div>
+      </div>
+      <div style="margin-top:0.6rem; font-size:0.78rem; color:var(--muted); background:var(--surface); border:1px solid var(--border); border-radius:8px; padding:0.7rem 1rem;">
+        <strong style="color:var(--text);">Règle DNSH</strong> : une activité doit contribuer à au moins 1 objectif <strong style="color:var(--text);">sans nuire significativement</strong> aux 5 autres (Do No Significant Harm).
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">📝 Questions-type d'entraînement</div>
+    <div class="qcm-list">
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un fonds qui a pour objectif explicite d'investir dans des entreprises contribuant à la transition énergétique est classé selon SFDR dans quelle catégorie ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Article 6 — il intègre les risques climatiques dans sa gestion</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>Article 8 — il promeut des caractéristiques environnementales</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>Article 9 — il a un objectif d'investissement durable explicite et mesurable</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> L'article 9 concerne les fonds avec un objectif d'investissement durable explicite (ici : contribuer à la transition énergétique). L'article 8 promeut des caractéristiques ESG sans que ce soit l'objectif principal. L'article 6 n'a pas de caractéristique ESG promue.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Une activité économique contribue à l'objectif de transition climatique selon la taxonomie européenne, mais génère une pollution significative des sols. Cette activité peut-elle être considérée comme durable selon la taxonomie ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Oui, car elle contribue à un objectif environnemental prioritaire</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>Non, car elle viole le principe DNSH en causant un dommage significatif à un autre objectif</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Oui, à condition que la contribution climatique soit supérieure à l'impact sur les sols</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Le principe DNSH (Do No Significant Harm) est une condition sine qua non de la taxonomie. Une activité doit contribuer à au moins 1 objectif SANS nuire significativement aux 5 autres. La pollution des sols constitue un dommage significatif à l'objectif n°5, ce qui exclut cette activité.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🚨 Alerte 2025-2026</div>
+    <div class="alerte-box">
+      <div class="alerte-item">
+        <div class="alerte-tag">CSRD · Entrée en vigueur 2024-2026</div>
+        <div class="alerte-title">Corporate Sustainability Reporting Directive — nouveau standard de reporting</div>
+        <div class="alerte-body">La CSRD remplace la NFRD et élargit considérablement le périmètre des entreprises soumises au reporting extra-financier. Elle impose le principe de <strong style="color:var(--text)">double matérialité</strong> et l'utilisation des standards ESRS (European Sustainability Reporting Standards). Déploiement progressif : grandes entreprises cotées en 2024, autres en 2025-2026.</div>
+      </div>
+      <div class="alerte-item">
+        <div class="alerte-tag">Révision SFDR · 2025</div>
+        <div class="alerte-title">Consultation en cours sur une refonte de la classification</div>
+        <div class="alerte-body">La Commission européenne consulte sur une éventuelle refonte de la classification Art. 6/8/9, jugée trop complexe et source de greenwashing. Des catégories simplifiées pourraient émerger. Pour l'examen mai 2026 : la classification actuelle reste en vigueur — connaître Art. 6/8/9.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fiche-footer">
+    <div class="footer-info">Fiche 5 / 12 · Finance durable / ESG (1/2)<br>Examen AMF · 4 mai 2026</div>
+    <a href="fiche-06-esg-2.html" class="next-btn">Fiche 6 — Finance durable / ESG (2/2) →</a>
+  </div>
+</div>
+</body>
+</html>

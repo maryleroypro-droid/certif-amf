@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiche 8 — Lutte contre le blanchiment (LCB-FT)</title>
+  <style>
+    :root {
+      --bg: #0f1117; --surface: #1a1d27; --surface2: #22263a;
+      --accent: #4f8ef7; --accent2: #7c5cfc; --green: #22c55e;
+      --orange: #f59e0b; --red: #ef4444; --text: #e2e8f0;
+      --muted: #94a3b8; --border: #2d3348;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; line-height: 1.7; padding: 2rem 1rem; }
+    .container { max-width: 860px; margin: 0 auto; }
+    .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; font-size: 0.82rem; }
+    .nav a { color: var(--accent); text-decoration: none; padding: 0.3rem 0.8rem; border: 1px solid var(--accent); border-radius: 6px; }
+    .nav a:hover { background: rgba(79,142,247,0.1); }
+    .nav-center { color: var(--muted); }
+    .fiche-header { background: linear-gradient(135deg, #1a1d27, #22263a); border: 1px solid var(--border); border-top: 3px solid var(--accent2); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; }
+    .fiche-num { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); font-weight: 700; margin-bottom: 0.4rem; }
+    .fiche-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
+    .fiche-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .meta-pill { padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .pill-questions { background: rgba(79,142,247,0.15); color: #93c5fd; border: 1px solid rgba(79,142,247,0.3); }
+    .pill-cat { background: rgba(124,92,252,0.15); color: #c4b5fd; border: 1px solid rgba(124,92,252,0.3); }
+    .pill-jour { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+    section { margin-bottom: 2rem; }
+    .section-title { display: flex; align-items: center; gap: 0.7rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    th { background: var(--surface2); padding: 0.7rem 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+    td { padding: 0.7rem 1rem; border-top: 1px solid var(--border); vertical-align: top; font-size: 0.85rem; }
+    td:first-child { font-weight: 700; color: var(--accent); }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+    .points-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .point-item { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent2); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .point-num { font-size: 0.7rem; font-weight: 800; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .point-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .point-body { color: var(--muted); font-size: 0.875rem; }
+    .point-body ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+    .point-body li { margin-bottom: 0.25rem; }
+    .highlight { color: var(--text); font-weight: 600; }
+    .pieges-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .piege-item { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .piege-label { font-size: 0.72rem; font-weight: 800; color: #fca5a5; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .piege-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .piege-body { color: var(--muted); font-size: 0.875rem; }
+    /* 3 STADES */
+    .stades { display: grid; grid-template-columns: repeat(3,1fr); gap: 0; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .stade-cell { background: var(--surface); padding: 1rem; position: relative; }
+    .stade-num { font-size: 0.65rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .stade-name { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .s1 .stade-name { color: #f87171; } .s1 .stade-num { color: #f87171; }
+    .s2 .stade-name { color: #fb923c; } .s2 .stade-num { color: #fb923c; }
+    .s3 .stade-name { color: #facc15; } .s3 .stade-num { color: #facc15; }
+    .stade-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .stade-ex { font-size: 0.75rem; color: #64748b; margin-top: 0.5rem; font-style: italic; }
+    /* CIRCUIT */
+    .circuit { display: flex; flex-direction: column; gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .circuit-step { display: grid; grid-template-columns: 36px 1fr; background: var(--surface); }
+    .circuit-num { background: var(--surface2); display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 0.85rem; color: var(--accent2); }
+    .circuit-content { padding: 0.8rem 1rem; }
+    .circuit-title { font-weight: 700; font-size: 0.88rem; color: var(--text); margin-bottom: 0.2rem; }
+    .circuit-desc { font-size: 0.8rem; color: var(--muted); }
+    .qcm-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .qcm-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .qcm-header { background: var(--surface2); padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .qcm-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; }
+    .cat-c { color: var(--accent); } .cat-a { color: var(--accent2); }
+    .qcm-body { padding: 1.2rem; }
+    .qcm-question { font-weight: 600; color: var(--text); margin-bottom: 1rem; font-size: 0.92rem; line-height: 1.6; }
+    .qcm-choices { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .choice { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.6rem 0.9rem; border-radius: 7px; border: 1px solid var(--border); font-size: 0.875rem; background: var(--bg); }
+    .choice.correct { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .choice-letter { font-weight: 800; min-width: 18px; }
+    .correct .choice-letter { color: var(--green); }
+    .qcm-explication { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 7px; padding: 0.8rem 1rem; font-size: 0.82rem; color: #86efac; }
+    .qcm-explication strong { color: #4ade80; }
+    .alerte-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25); border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; padding: 1.2rem 1.4rem; }
+    .alerte-item { margin-bottom: 1rem; }
+    .alerte-item:last-child { margin-bottom: 0; }
+    .alerte-tag { display: inline-block; padding: 0.15rem 0.6rem; background: rgba(245,158,11,0.2); color: #fcd34d; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; margin-bottom: 0.4rem; }
+    .alerte-title { font-weight: 700; color: var(--text); font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .alerte-body { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+    .fiche-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .next-btn { display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.88rem; }
+    .footer-info { color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+  <div class="nav">
+    <a href="fiche-07-mif2.html">← Fiche 7</a>
+    <span class="nav-center">Fiche 8 / 12</span>
+    <a href="fiche-09-fiscalite.html">Fiche suivante →</a>
+  </div>
+
+  <div class="fiche-header">
+    <div class="fiche-num">Thème 8 · J10 — 24 avril 2026</div>
+    <h1>Lutte contre le blanchiment<br>et le financement du terrorisme (LCB-FT)</h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-questions">~8 questions à l'examen</span>
+      <span class="meta-pill pill-cat">Catégorie C dominante</span>
+      <span class="meta-pill pill-jour">J10 · 24 avril</span>
+    </div>
+  </div>
+
+  <section>
+    <div class="section-title">🔑 Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>Blanchiment</td><td>Processus visant à dissimuler l'origine illicite de fonds pour les réintégrer dans l'économie légale</td></tr>
+        <tr><td>Placement</td><td>1er stade : introduction des fonds illicites dans le système financier (dépôts en espèces, achats de valeurs)</td></tr>
+        <tr><td>Empilement</td><td>2e stade : multiplication des transactions pour brouiller la piste (virements, conversions en devises)</td></tr>
+        <tr><td>Intégration</td><td>3e stade : réintégration des fonds "propres" dans l'économie légale (achat immobilier, investissements)</td></tr>
+        <tr><td>TRACFIN</td><td>Traitement du renseignement et action contre les circuits financiers clandestins — cellule de renseignement financier française</td></tr>
+        <tr><td>DS (Déclaration de soupçon)</td><td>Signalement obligatoire à TRACFIN dès qu'une opération semble suspecte — confidentielle, ne pas alerter le client</td></tr>
+        <tr><td>PPE</td><td>Personne Politiquement Exposée — fonctionnaire ou dirigeant exposé à des risques de corruption → vigilance renforcée</td></tr>
+        <tr><td>Vigilance simple</td><td>Niveau standard de KYC — identification et vérification du client, surveillance des opérations</td></tr>
+        <tr><td>Vigilance renforcée</td><td>Mesures additionnelles pour les clients/opérations à haut risque (PPE, pays tiers à risque, montants élevés)</td></tr>
+        <tr><td>Vigilance allégée</td><td>Mesures réduites pour les clients à faible risque (établissements de crédit régulés, produits à risque limité)</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <div class="section-title">⭐ L'essentiel en 5 points</div>
+    <div class="points-list">
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">Les 3 stades du blanchiment — à connaître par cœur</div>
+        <div class="point-body">Placement → Empilement → Intégration. Voir mémo visuel. Ces 3 stades sont directement testés.</div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">La déclaration de soupçon (DS) — règles absolues</div>
+        <div class="point-body">
+          <ul>
+            <li>Obligatoire dès qu'une opération paraît suspecte, <span class="highlight">indépendamment du montant</span></li>
+            <li>Adressée à <span class="highlight">TRACFIN uniquement</span> — pas à l'AMF, pas à la police</li>
+            <li><span class="highlight">Strictement confidentielle</span> : ne jamais informer le client que la DS a été faite (délit de divulgation)</li>
+            <li>Le professionnel est protégé contre toute poursuite civile ou pénale de bonne foi</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">Les 3 niveaux de vigilance</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Allégée</span> : clients à faible risque (établissements financiers régulés, produits à risque limité)</li>
+            <li><span class="highlight">Standard / Simple</span> : niveau de base pour tous les clients — KYC complet, surveillance continue</li>
+            <li><span class="highlight">Renforcée</span> : PPE, pays tiers à risque élevé (liste GAFI), opérations complexes sans justification, relations à distance</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">PPE — Personne Politiquement Exposée</div>
+        <div class="point-body">
+          Sont considérés PPE : chefs d'État, membres du gouvernement, parlementaires, dirigeants de partis politiques, magistrats, directeurs de banques centrales, hauts militaires. <span class="highlight">Et leurs proches</span> (famille directe et associés). La vigilance renforcée s'applique pendant la fonction et <span class="highlight">pendant 12 mois après</span> la fin des fonctions.
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Le circuit de déclaration — qui fait quoi</div>
+        <div class="point-body">
+          PSI détecte le soupçon → Déclaration interne au RCLCB (Responsable Conformité LCB) → <span class="highlight">Déclaration de soupçon à TRACFIN</span> → TRACFIN analyse et transmet si nécessaire au Parquet. Le PSI peut continuer ou bloquer l'opération selon le risque.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">⚠️ Ce qui piège les candidats</div>
+    <div class="pieges-list">
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">La DS ne dépend pas d'un seuil de montant</div>
+        <div class="piege-body">Contrairement aux idées reçues, il n'existe pas de seuil monétaire déclenchant automatiquement une DS. C'est le <strong style="color:var(--text)">soupçon</strong> qui déclenche l'obligation, quel que soit le montant. Une transaction de 100 € peut nécessiter une DS si elle paraît suspecte.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">Ne jamais dire au client qu'une DS a été faite</div>
+        <div class="piege-body">Informer le client de la déclaration de soupçon est un <strong style="color:var(--text)">délit pénal</strong> (tipping-off). Cette interdiction est absolue, même si le client pose directement la question. Le professionnel doit rester neutre et ne rien divulguer.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">La DS est adressée à TRACFIN, pas à l'AMF</div>
+        <div class="piege-body">TRACFIN est la cellule de renseignement financier — c'est le seul destinataire de la DS. L'AMF peut recevoir des informations de TRACFIN mais les PSI ne lui déclarent pas directement les soupçons. Confondre les deux est une erreur classique.</div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🗺️ Mémo visuel — Les 3 stades du blanchiment</div>
+    <div class="stades">
+      <div class="stade-cell s1">
+        <div class="stade-num">Stade 1</div>
+        <div class="stade-name">Placement</div>
+        <div class="stade-desc">Introduire les fonds illicites dans le système financier légal.</div>
+        <div class="stade-ex">Dépôts en espèces fractionnés, achat de jetons de casino, achats de titres au porteur</div>
+      </div>
+      <div class="stade-cell s2">
+        <div class="stade-num">Stade 2</div>
+        <div class="stade-name">Empilement</div>
+        <div class="stade-desc">Multiplier les opérations pour brouiller la traçabilité des fonds.</div>
+        <div class="stade-ex">Virements internationaux multiples, conversions de devises, achats/reventes de valeurs mobilières</div>
+      </div>
+      <div class="stade-cell s3">
+        <div class="stade-num">Stade 3</div>
+        <div class="stade-name">Intégration</div>
+        <div class="stade-desc">Réintégrer les fonds "blanchis" dans l'économie légale.</div>
+        <div class="stade-ex">Achat immobilier, investissements dans des entreprises, prêts fictifs remboursés avec les fonds</div>
+      </div>
+    </div>
+
+    <div style="margin-top:1.2rem;">
+      <div style="font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:var(--muted); font-weight:700; margin-bottom:0.8rem;">Circuit de déclaration de soupçon</div>
+      <div class="circuit">
+        <div class="circuit-step">
+          <div class="circuit-num">1</div>
+          <div class="circuit-content">
+            <div class="circuit-title">PSI détecte une opération suspecte</div>
+            <div class="circuit-desc">Salarié, conseiller ou système de surveillance identifie un comportement anormal</div>
+          </div>
+        </div>
+        <div class="circuit-step">
+          <div class="circuit-num">2</div>
+          <div class="circuit-content">
+            <div class="circuit-title">Déclaration interne au RCLCB</div>
+            <div class="circuit-desc">Responsable de la Conformité LCB-FT — analyse et valide le soupçon</div>
+          </div>
+        </div>
+        <div class="circuit-step">
+          <div class="circuit-num">3</div>
+          <div class="circuit-content">
+            <div class="circuit-title">Déclaration de soupçon à TRACFIN</div>
+            <div class="circuit-desc" style="color:#fcd34d;">Confidentielle — ne jamais informer le client — délai : dès que possible</div>
+          </div>
+        </div>
+        <div class="circuit-step">
+          <div class="circuit-num">4</div>
+          <div class="circuit-content">
+            <div class="circuit-title">TRACFIN analyse et transmet si nécessaire</div>
+            <div class="circuit-desc">Au Parquet national financier ou aux services de police judiciaire si infraction caractérisée</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">📝 Questions-type d'entraînement</div>
+    <div class="qcm-list">
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un client demande à son conseiller financier si une déclaration de soupçon a été faite à son sujet. Quelle est la réponse correcte du conseiller ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Il doit répondre honnêtement et confirmer ou infirmer l'existence d'une déclaration</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>Il peut dire qu'une déclaration a été faite si le client insiste suffisamment</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>Il ne peut en aucun cas confirmer ni infirmer l'existence d'une déclaration de soupçon — c'est un délit pénal</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Le délit de "tipping-off" (divulgation d'une DS) est un délit pénal en droit français, quel que soit le contexte. Même une confirmation indirecte est interdite. Le conseiller doit rester totalement neutre.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un client vient d'être nommé ministre. Il souhaite poursuivre sa relation avec son établissement financier. Quelles mesures l'établissement doit-il mettre en place ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Aucune mesure particulière, le client étant déjà connu et identifié depuis longtemps</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>Mettre en place une vigilance renforcée : il est désormais PPE, quel que soit l'antériorité de la relation</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Clôturer le compte pour éviter tout risque réglementaire lié au statut de PPE</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Dès qu'un client acquiert le statut de PPE (ici, nomination ministérielle), l'établissement doit déclencher une vigilance renforcée — indépendamment de l'ancienneté de la relation. Il n'y a pas obligation de clôturer, mais de renforcer la surveillance.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="section-title">🚨 Alerte 2025-2026</div>
+    <div class="alerte-box">
+      <div class="alerte-item">
+        <div class="alerte-tag">6e directive LCB · Transposée 2024</div>
+        <div class="alerte-title">Renforcement des obligations et nouvelles entités assujetties</div>
+        <div class="alerte-body">La 6e directive européenne LCB-FT, transposée en France en 2024, étend le périmètre des entités assujetties (prestataires de services sur cryptoactifs, agents immobiliers en ligne, certaines plateformes…) et renforce les exigences de vigilance sur les bénéficiaires effectifs. Les CASP (prestataires crypto) sont désormais pleinement assujettis.</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="fiche-footer">
+    <div class="footer-info">Fiche 8 / 12 · Lutte contre le blanchiment (LCB-FT)<br>Examen AMF · 4 mai 2026</div>
+    <a href="fiche-09-fiscalite.html" class="next-btn">Fiche 9 — Fiscalité des produits financiers →</a>
+  </div>
+</div>
+</body>
+</html>
