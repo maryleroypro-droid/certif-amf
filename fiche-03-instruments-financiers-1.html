@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Fiche 3 — Instruments financiers et marchés (1/2)</title>
+  <style>
+    :root {
+      --bg: #0f1117;
+      --surface: #1a1d27;
+      --surface2: #22263a;
+      --accent: #4f8ef7;
+      --accent2: #7c5cfc;
+      --green: #22c55e;
+      --orange: #f59e0b;
+      --red: #ef4444;
+      --text: #e2e8f0;
+      --muted: #94a3b8;
+      --border: #2d3348;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      line-height: 1.7;
+      padding: 2rem 1rem;
+    }
+    .container { max-width: 860px; margin: 0 auto; }
+
+    .nav { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem; font-size: 0.82rem; }
+    .nav a { color: var(--accent); text-decoration: none; padding: 0.3rem 0.8rem; border: 1px solid var(--accent); border-radius: 6px; transition: background 0.2s; }
+    .nav a:hover { background: rgba(79,142,247,0.1); }
+    .nav-center { color: var(--muted); }
+
+    .fiche-header { background: linear-gradient(135deg, #1a1d27, #22263a); border: 1px solid var(--border); border-top: 3px solid var(--accent2); border-radius: 12px; padding: 2rem; margin-bottom: 2rem; position: relative; overflow: hidden; }
+    .fiche-header::before { content: ''; position: absolute; top: -60%; right: -20%; width: 300px; height: 300px; background: radial-gradient(circle, rgba(124,92,252,0.08) 0%, transparent 60%); pointer-events: none; }
+    .fiche-num { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; color: var(--accent2); font-weight: 700; margin-bottom: 0.4rem; }
+    .fiche-header h1 { font-size: 1.8rem; font-weight: 800; color: var(--text); margin-bottom: 1rem; }
+    .fiche-meta { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .meta-pill { padding: 0.3rem 0.9rem; border-radius: 999px; font-size: 0.78rem; font-weight: 600; }
+    .pill-questions { background: rgba(79,142,247,0.15); color: #93c5fd; border: 1px solid rgba(79,142,247,0.3); }
+    .pill-cat { background: rgba(124,92,252,0.15); color: #c4b5fd; border: 1px solid rgba(124,92,252,0.3); }
+    .pill-jour { background: rgba(34,197,94,0.15); color: #86efac; border: 1px solid rgba(34,197,94,0.3); }
+
+    section { margin-bottom: 2rem; }
+    .section-title { display: flex; align-items: center; gap: 0.7rem; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: 1rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); }
+    .section-icon { width: 24px; height: 24px; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 0.9rem; }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; background: var(--surface); border-radius: 10px; overflow: hidden; border: 1px solid var(--border); }
+    th { background: var(--surface2); padding: 0.7rem 1rem; text-align: left; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--muted); font-weight: 600; }
+    td { padding: 0.7rem 1rem; border-top: 1px solid var(--border); vertical-align: top; font-size: 0.85rem; }
+    td:first-child { font-weight: 700; color: var(--accent); white-space: nowrap; }
+    tr:hover td { background: rgba(255,255,255,0.02); }
+
+    .points-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .point-item { background: var(--surface); border: 1px solid var(--border); border-left: 3px solid var(--accent2); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .point-num { font-size: 0.7rem; font-weight: 800; color: var(--accent2); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .point-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.95rem; }
+    .point-body { color: var(--muted); font-size: 0.875rem; }
+    .point-body ul { padding-left: 1.2rem; margin-top: 0.3rem; }
+    .point-body li { margin-bottom: 0.25rem; }
+    .highlight { color: var(--text); font-weight: 600; }
+
+    .pieges-list { display: flex; flex-direction: column; gap: 0.8rem; }
+    .piege-item { background: rgba(239,68,68,0.06); border: 1px solid rgba(239,68,68,0.2); border-left: 3px solid var(--red); border-radius: 0 8px 8px 0; padding: 1rem 1.2rem; }
+    .piege-label { font-size: 0.72rem; font-weight: 800; color: #fca5a5; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+    .piege-title { font-weight: 700; color: var(--text); margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .piege-body { color: var(--muted); font-size: 0.875rem; }
+
+    /* COMPARATIF INSTRUMENTS */
+    .comparatif {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .comp-cell { background: var(--surface); padding: 0.8rem 1rem; font-size: 0.82rem; }
+    .comp-cell.header { background: var(--surface2); font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.06em; color: var(--muted); font-weight: 700; padding: 0.6rem 1rem; }
+    .comp-cell.title-row { background: var(--surface2); font-weight: 800; font-size: 0.92rem; padding: 0.8rem 1rem; }
+    .comp-cell.label-col { background: var(--surface2); font-size: 0.75rem; color: var(--muted); font-weight: 600; text-transform: uppercase; letter-spacing: 0.04em; }
+    .col-action .title-row { color: #60a5fa; }
+    .col-oblig .title-row { color: #a78bfa; }
+    .col-hybrid .title-row { color: #34d399; }
+    .comp-value { color: var(--muted); line-height: 1.5; }
+    .badge-droit {
+      display: inline-block;
+      padding: 0.15rem 0.5rem;
+      border-radius: 4px;
+      font-size: 0.72rem;
+      font-weight: 700;
+      margin: 0.1rem 0.1rem 0.1rem 0;
+    }
+    .badge-vote { background: rgba(96,165,250,0.2); color: #93c5fd; }
+    .badge-div { background: rgba(52,211,153,0.2); color: #6ee7b7; }
+    .badge-coupon { background: rgba(167,139,250,0.2); color: #c4b5fd; }
+    .badge-capital { background: rgba(251,191,36,0.2); color: #fcd34d; }
+    .badge-conv { background: rgba(52,211,153,0.15); color: #6ee7b7; }
+
+    /* MARCHE SCHEMA */
+    .marche-flow {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 0;
+      align-items: center;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      overflow: hidden;
+    }
+    .marche-box { padding: 1.2rem; }
+    .marche-arrow { padding: 0 0.5rem; color: var(--muted); font-size: 1.4rem; text-align: center; background: var(--surface2); height: 100%; display: flex; align-items: center; justify-content: center; font-weight: 300; }
+    .marche-title { font-weight: 800; font-size: 0.95rem; margin-bottom: 0.5rem; }
+    .marche-primaire .marche-title { color: #60a5fa; }
+    .marche-secondaire .marche-title { color: #a78bfa; }
+    .marche-desc { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+    .marche-ex { font-size: 0.75rem; color: var(--border); margin-top: 0.5rem; }
+    .marche-ex span { color: #64748b; }
+
+    .qcm-list { display: flex; flex-direction: column; gap: 1.5rem; }
+    .qcm-item { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden; }
+    .qcm-header { background: var(--surface2); padding: 0.6rem 1rem; display: flex; justify-content: space-between; align-items: center; }
+    .qcm-cat { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; }
+    .cat-c { color: var(--accent); }
+    .cat-a { color: var(--accent2); }
+    .qcm-body { padding: 1.2rem; }
+    .qcm-question { font-weight: 600; color: var(--text); margin-bottom: 1rem; font-size: 0.92rem; line-height: 1.6; }
+    .qcm-choices { display: flex; flex-direction: column; gap: 0.5rem; margin-bottom: 1.2rem; }
+    .choice { display: flex; align-items: flex-start; gap: 0.7rem; padding: 0.6rem 0.9rem; border-radius: 7px; border: 1px solid var(--border); font-size: 0.875rem; background: var(--bg); }
+    .choice.correct { background: rgba(34,197,94,0.08); border-color: rgba(34,197,94,0.4); color: #86efac; }
+    .choice-letter { font-weight: 800; min-width: 18px; font-size: 0.85rem; }
+    .correct .choice-letter { color: var(--green); }
+    .qcm-explication { background: rgba(34,197,94,0.06); border: 1px solid rgba(34,197,94,0.2); border-radius: 7px; padding: 0.8rem 1rem; font-size: 0.82rem; color: #86efac; }
+    .qcm-explication strong { color: #4ade80; }
+
+    .alerte-box { background: rgba(245,158,11,0.06); border: 1px solid rgba(245,158,11,0.25); border-left: 3px solid var(--orange); border-radius: 0 10px 10px 0; padding: 1.2rem 1.4rem; }
+    .alerte-item { margin-bottom: 1rem; }
+    .alerte-item:last-child { margin-bottom: 0; }
+    .alerte-tag { display: inline-block; padding: 0.15rem 0.6rem; background: rgba(245,158,11,0.2); color: #fcd34d; border-radius: 4px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; margin-bottom: 0.4rem; }
+    .alerte-title { font-weight: 700; color: var(--text); font-size: 0.92rem; margin-bottom: 0.3rem; }
+    .alerte-body { color: var(--muted); font-size: 0.86rem; line-height: 1.6; }
+
+    .fiche-footer { margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 1rem; }
+    .next-btn { display: inline-block; padding: 0.7rem 1.5rem; background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white; text-decoration: none; border-radius: 8px; font-weight: 700; font-size: 0.88rem; transition: opacity 0.2s; }
+    .next-btn:hover { opacity: 0.85; }
+    .footer-info { color: var(--muted); font-size: 0.8rem; }
+  </style>
+</head>
+<body>
+<div class="container">
+
+  <!-- NAV -->
+  <div class="nav">
+    <a href="fiche-02-deontologie.html">← Fiche 2</a>
+    <span class="nav-center">Fiche 3 / 12</span>
+    <a href="fiche-04-instruments-financiers-2.html">Fiche suivante →</a>
+  </div>
+
+  <!-- HEADER -->
+  <div class="fiche-header">
+    <div class="fiche-num">Thème 3 · J3 — 17 avril 2026</div>
+    <h1>Instruments financiers<br>et marchés <span style="color:var(--accent2); font-size:1.2rem;">(1/2)</span></h1>
+    <div class="fiche-meta">
+      <span class="meta-pill pill-questions">~15 questions à l'examen</span>
+      <span class="meta-pill pill-cat">Catégories A & C — mixte</span>
+      <span class="meta-pill pill-jour">J3 · 17 avril</span>
+    </div>
+  </div>
+
+  <!-- MOTS CLES -->
+  <section>
+    <div class="section-title"><div class="section-icon">🔑</div>Mots-clés à retenir</div>
+    <table>
+      <thead><tr><th>Terme</th><th>Définition en 1 ligne</th></tr></thead>
+      <tbody>
+        <tr><td>Action</td><td>Titre de propriété représentant une fraction du capital d'une société — donne droit au vote et aux dividendes</td></tr>
+        <tr><td>Obligation</td><td>Titre de créance — l'émetteur emprunte et s'engage à rembourser le capital + intérêts (coupons) à échéance</td></tr>
+        <tr><td>Valeur nominale</td><td>Valeur faciale d'un titre inscrite dans les statuts — sert de base au calcul du coupon pour une obligation</td></tr>
+        <tr><td>Coupon</td><td>Intérêt versé périodiquement par l'émetteur d'une obligation (= taux × valeur nominale)</td></tr>
+        <tr><td>Dividende</td><td>Quote-part du bénéfice distribuée aux actionnaires — décidée en assemblée générale, non garantie</td></tr>
+        <tr><td>Marché primaire</td><td>Marché d'émission des titres neufs — l'émetteur lève des fonds directement auprès des investisseurs</td></tr>
+        <tr><td>Marché secondaire</td><td>Marché de revente des titres déjà émis — la Bourse — les transactions n'apportent pas de fonds à l'émetteur</td></tr>
+        <tr><td>OPA</td><td>Offre Publique d'Achat — proposition faite aux actionnaires d'une société de racheter leurs titres à un prix fixé</td></tr>
+        <tr><td>Titre hybride</td><td>Instrument à mi-chemin entre action et obligation (ex : obligation convertible, action de préférence)</td></tr>
+        <tr><td>Droit préférentiel de souscription (DPS)</td><td>Droit accordé aux actionnaires existants de souscrire en priorité à une augmentation de capital</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- 5 POINTS -->
+  <section>
+    <div class="section-title"><div class="section-icon">⭐</div>L'essentiel en 5 points</div>
+    <div class="points-list">
+
+      <div class="point-item">
+        <div class="point-num">Point 1</div>
+        <div class="point-title">Action vs Obligation — la distinction fondamentale</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Action</span> : l'investisseur devient <strong style="color:var(--text)">associé</strong> — il supporte le risque de l'entreprise, participe aux bénéfices (dividende) et aux pertes</li>
+            <li><span class="highlight">Obligation</span> : l'investisseur devient <strong style="color:var(--text)">créancier</strong> — il est remboursé en priorité sur l'actionnaire en cas de liquidation, mais ne vote pas</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 2</div>
+        <div class="point-title">Les droits attachés à une action ordinaire</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Droit de vote</span> en Assemblée Générale (ordinaire et extraordinaire)</li>
+            <li><span class="highlight">Droit aux dividendes</span> — si bénéfices et si l'AG vote leur distribution</li>
+            <li><span class="highlight">Droit préférentiel de souscription (DPS)</span> en cas d'augmentation de capital</li>
+            <li><span class="highlight">Droit au boni de liquidation</span> — en dernier rang après tous les créanciers</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 3</div>
+        <div class="point-title">Caractéristiques d'une obligation à retenir</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Valeur nominale</span> : montant emprunté par titre (ex : 1 000 €)</li>
+            <li><span class="highlight">Taux nominal</span> : taux du coupon (ex : 3%) → coupon annuel = 30 €</li>
+            <li><span class="highlight">Maturité</span> : durée jusqu'au remboursement (ex : 5 ans)</li>
+            <li><span class="highlight">Prix d'émission</span> : peut être au-dessus (prime) ou en dessous (discount) du pair</li>
+            <li>Relation inverse prix/taux : si les taux montent, le prix de l'obligation baisse</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 4</div>
+        <div class="point-title">Marché primaire vs marché secondaire</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Primaire</span> : émission de titres neufs — l'entreprise reçoit les fonds (IPO, augmentation de capital, émission obligataire)</li>
+            <li><span class="highlight">Secondaire</span> : revente entre investisseurs — l'entreprise ne reçoit rien — c'est la Bourse au quotidien</li>
+          </ul>
+          Mnémotechnique : <em style="color:var(--text)">primaire = premier acheteur = l'émetteur encaisse</em>
+        </div>
+      </div>
+
+      <div class="point-item">
+        <div class="point-num">Point 5</div>
+        <div class="point-title">Les titres hybrides — entre action et obligation</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Obligation convertible</span> : obligation qui peut être convertie en actions à l'initiative du porteur — coupon + potentiel de hausse</li>
+            <li><span class="highlight">Action de préférence</span> : action sans droit de vote mais avec dividende prioritaire garanti</li>
+            <li><span class="highlight">OBSAR</span> : obligation avec bon de souscription d'action — droit d'acheter des actions à prix fixé</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- PIEGES -->
+  <section>
+    <div class="section-title"><div class="section-icon">⚠️</div>Ce qui piège les candidats</div>
+    <div class="pieges-list">
+
+      <div class="piege-item">
+        <div class="piege-label">Piège 1</div>
+        <div class="piege-title">Le marché secondaire ne finance pas l'entreprise</div>
+        <div class="piege-body">
+          Acheter une action en Bourse (marché secondaire) ne rapporte pas un centime à l'entreprise — les fonds vont au vendeur précédent. Seule une augmentation de capital (marché primaire) apporte de l'argent frais à l'émetteur. L'examen teste souvent ce point.
+        </div>
+      </div>
+
+      <div class="piege-item">
+        <div class="piege-label">Piège 2</div>
+        <div class="piege-title">Taux d'intérêt en hausse = prix de l'obligation en baisse</div>
+        <div class="piege-body">
+          C'est contre-intuitif mais fondamental : quand les taux du marché montent, les obligations existantes à taux fixe deviennent moins attractives → leur prix baisse. Et inversement. Cette relation inverse est systématiquement testée à l'examen.
+        </div>
+      </div>
+
+      <div class="piege-item">
+        <div class="piege-label">Piège 3</div>
+        <div class="piege-title">Le dividende n'est pas garanti, le coupon si (sauf défaut)</div>
+        <div class="piege-body">
+          L'actionnaire ne reçoit un dividende que si l'AG le décide — il peut être nul. L'obligataire reçoit son coupon contractuellement, sauf si l'émetteur fait défaut. L'action est donc plus risquée mais potentiellement plus rémunératrice.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- MEMO VISUEL -->
+  <section>
+    <div class="section-title"><div class="section-icon">🗺️</div>Mémo visuel — Comparatif action / obligation / hybride</div>
+
+    <div class="comparatif">
+      <div class="comp-cell header col-action">Action</div>
+      <div class="comp-cell header col-oblig">Obligation</div>
+      <div class="comp-cell header col-hybrid">Titre hybride</div>
+
+      <div class="comp-cell title-row col-action">Action ordinaire</div>
+      <div class="comp-cell title-row col-oblig">Obligation à taux fixe</div>
+      <div class="comp-cell title-row col-hybrid">Obligation convertible</div>
+
+      <div class="comp-cell label-col">Statut</div>
+      <div class="comp-cell comp-value">Associé / Propriétaire</div>
+      <div class="comp-cell comp-value">Créancier / Prêteur</div>
+      <div class="comp-cell comp-value">Créancier → potentiel associé</div>
+
+      <div class="comp-cell label-col">Rémunération</div>
+      <div class="comp-cell comp-value"><span class="badge-droit badge-div">Dividende</span> non garanti</div>
+      <div class="comp-cell comp-value"><span class="badge-droit badge-coupon">Coupon</span> garanti contractuellement</div>
+      <div class="comp-cell comp-value"><span class="badge-droit badge-coupon">Coupon</span> + <span class="badge-droit badge-conv">option conversion</span></div>
+
+      <div class="comp-cell label-col">Droits</div>
+      <div class="comp-cell comp-value"><span class="badge-droit badge-vote">Vote AG</span> <span class="badge-droit badge-div">DPS</span> <span class="badge-droit badge-capital">Boni liquidation</span></div>
+      <div class="comp-cell comp-value">Remboursement prioritaire sur actionnaires</div>
+      <div class="comp-cell comp-value">Remboursement OU conversion en actions</div>
+
+      <div class="comp-cell label-col">Risque</div>
+      <div class="comp-cell comp-value" style="color:#f87171;">Élevé — dernier rang en liquidation</div>
+      <div class="comp-cell comp-value" style="color:#86efac;">Modéré — prioritaire sur actionnaires</div>
+      <div class="comp-cell comp-value" style="color:#fcd34d;">Intermédiaire</div>
+
+      <div class="comp-cell label-col">Marché primaire</div>
+      <div class="comp-cell comp-value">IPO, augmentation de capital</div>
+      <div class="comp-cell comp-value">Émission obligataire</div>
+      <div class="comp-cell comp-value">Émission d'OC</div>
+    </div>
+
+    <div style="margin-top: 1.2rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; overflow: hidden;">
+      <div style="display:grid; grid-template-columns: 1fr auto 1fr; gap:0; align-items:stretch;">
+        <div style="padding:1.2rem; background:var(--surface);">
+          <div style="font-weight:800; color:#60a5fa; margin-bottom:0.5rem;">Marché PRIMAIRE</div>
+          <div style="font-size:0.82rem; color:var(--muted); line-height:1.6;">Émission de titres neufs<br>L'émetteur reçoit les fonds<br><span style="color:#64748b; font-size:0.75rem;">Ex : IPO, augmentation de capital, émission obligataire</span></div>
+        </div>
+        <div style="background:var(--surface2); display:flex; align-items:center; justify-content:center; padding:0 1rem; color:var(--muted); font-size:1.2rem;">→</div>
+        <div style="padding:1.2rem; background:var(--surface);">
+          <div style="font-weight:800; color:#a78bfa; margin-bottom:0.5rem;">Marché SECONDAIRE</div>
+          <div style="font-size:0.82rem; color:var(--muted); line-height:1.6;">Revente entre investisseurs<br>L'émetteur ne reçoit rien<br><span style="color:#64748b; font-size:0.75rem;">Ex : transactions quotidiennes en Bourse (Euronext)</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QCM -->
+  <section>
+    <div class="section-title"><div class="section-icon">📝</div>Questions-type d'entraînement</div>
+    <div class="qcm-list">
+
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem; color:var(--muted);">Question 1</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">
+            Un investisseur achète des actions d'une société cotée sur le marché secondaire. Quel est l'effet direct de cette transaction sur la trésorerie de la société émettrice ?
+          </div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>La société reçoit le produit de la vente, ce qui augmente sa trésorerie</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>La société reçoit une partie du produit de la vente selon le prix d'émission initial</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>La transaction n'a aucun effet sur la trésorerie de la société émettrice</span></div>
+          </div>
+          <div class="qcm-explication">
+            <strong>Explication :</strong> Sur le marché secondaire, les titres s'échangent entre investisseurs. Le produit de la vente va au vendeur, pas à la société. Seul le marché primaire (émission de nouveaux titres) apporte des fonds à l'émetteur.
+          </div>
+        </div>
+      </div>
+
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem; color:var(--muted);">Question 2</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">
+            Une obligation d'une valeur nominale de 1 000 € porte un coupon annuel de 4%. Les taux d'intérêt du marché remontent à 6% après son émission. Quelle est la conséquence sur le prix de marché de cette obligation ?
+          </div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Le prix de l'obligation augmente car le coupon devient plus attractif</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>Le prix de l'obligation reste stable car le coupon est contractuellement fixé</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>Le prix de l'obligation baisse pour que son rendement effectif s'ajuste au niveau des taux du marché</span></div>
+          </div>
+          <div class="qcm-explication">
+            <strong>Explication :</strong> Relation inverse taux/prix. Si les taux montent à 6%, une obligation rapportant 4% est moins attractive — son prix baisse jusqu'à ce que son rendement effectif atteigne 6%. C'est la loi fondamentale des marchés obligataires.
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ALERTE -->
+  <section>
+    <div class="section-title"><div class="section-icon">🚨</div>Alerte 2025-2026</div>
+    <div class="alerte-box">
+      <div class="alerte-item">
+        <div class="alerte-tag">Tendance 2025</div>
+        <div class="alerte-title">Green bonds et obligations durables — présence croissante à l'examen</div>
+        <div class="alerte-body">
+          Les <strong style="color:var(--text)">obligations vertes (green bonds)</strong> et obligations durables (sustainability-linked bonds) financent des projets à impact environnemental ou social. Elles suivent les mêmes mécanismes qu'une obligation classique mais l'utilisation des fonds est contractuellement fléchée vers des projets ESG. Ce point fait le lien avec le thème Finance durable (Fiche 5).
+        </div>
+      </div>
+      <div class="alerte-item">
+        <div class="alerte-tag">À retenir</div>
+        <div class="alerte-title">Actions à droit de vote double — Loi Florange</div>
+        <div class="alerte-body">
+          La <strong style="color:var(--text)">loi Florange (2014)</strong> accorde automatiquement un droit de vote double aux actionnaires détenant leurs titres depuis plus de 2 ans, sauf si les statuts s'y opposent. Ce mécanisme peut être testé dans des questions sur les droits des actionnaires.
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <div class="fiche-footer">
+    <div class="footer-info">
+      Fiche 3 / 12 · Instruments financiers et marchés (1/2)<br>
+      Examen AMF · 4 mai 2026
+    </div>
+    <a href="fiche-04-instruments-financiers-2.html" class="next-btn">Fiche 4 — Instruments financiers (2/2) →</a>
+  </div>
+
+</div>
+</body>
+</html>
