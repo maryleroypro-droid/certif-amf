@@ -102,7 +102,12 @@
         <tr><td>Analyse technique</td><td>Prévision des cours à partir des graphiques de prix et volumes — sans référence aux fondamentaux</td></tr>
         <tr><td>Notation crédit (rating)</td><td>Évaluation par une agence (S&P, Moody's, Fitch) de la capacité d'un émetteur à honorer ses dettes</td></tr>
         <tr><td>Investment Grade</td><td>Notation ≥ BBB- (S&P) ou Baa3 (Moody's) — obligations de qualité, risque de défaut limité</td></tr>
-        <tr><td>High Yield (Haut rendement)</td><td>Notation < BBB- — obligations spéculatives, risque élevé mais rendement supérieur</td></tr>
+        <tr><td>High Yield (Haut rendement)</td><td>Notation &lt; BBB- — obligations spéculatives, risque élevé mais rendement supérieur</td></tr>
+        <tr><td>DCF (Discounted Cash Flow)</td><td>Méthode d'évaluation par actualisation des flux de trésorerie futurs — donne la valeur intrinsèque d'une entreprise</td></tr>
+        <tr><td>WACC</td><td>Weighted Average Cost of Capital — coût moyen pondéré du capital, utilisé comme taux d'actualisation dans le DCF</td></tr>
+        <tr><td>EBE (EBITDA en français)</td><td>Excédent Brut d'Exploitation = chiffre d'affaires – charges d'exploitation hors amortissements</td></tr>
+        <tr><td>BFR</td><td>Besoin en Fonds de Roulement — décalage de trésorerie entre les encaissements et décaissements d'exploitation</td></tr>
+        <tr><td>Free Cash Flow (FCF)</td><td>Flux de trésorerie libre = EBITDA – variation du BFR – investissements (capex) – impôts</td></tr>
       </tbody>
     </table>
   </section>
@@ -155,6 +160,60 @@
           Actif = Passif. <span class="highlight">Actif</span> : immobilisations (long terme) + actif circulant (court terme). <span class="highlight">Passif</span> : capitaux propres + dettes long terme + dettes court terme. Le ratio <span class="highlight">dette nette / EBITDA</span> mesure le levier financier : au-delà de 4x, considéré comme élevé.
         </div>
       </div>
+      <div class="point-item">
+        <div class="point-num">Point 6 — CRUCIAL</div>
+        <div class="point-title">La méthode DCF — valoriser par les flux futurs</div>
+        <div class="point-body">
+          Le <span class="highlight">DCF (Discounted Cash Flow)</span> calcule la valeur d'une entreprise en actualisant ses flux de trésorerie futurs.
+          <ul>
+            <li><strong style="color:var(--text);">Étape 1</strong> : Projeter les Free Cash Flows (FCF) sur 5-10 ans</li>
+            <li><strong style="color:var(--text);">Étape 2</strong> : Calculer une <span class="highlight">valeur terminale</span> au-delà de la période de projection</li>
+            <li><strong style="color:var(--text);">Étape 3</strong> : Actualiser tous ces flux au <span class="highlight">WACC</span> pour obtenir la valeur d'entreprise (EV)</li>
+            <li><strong style="color:var(--text);">Étape 4</strong> : Valeur des capitaux propres = EV – dette nette</li>
+            <li>Sensibilité : une hausse du WACC fait baisser la valeur DCF (actualisation plus forte des flux futurs)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 7 — CRUCIAL</div>
+        <div class="point-title">Le WACC — coût moyen pondéré du capital</div>
+        <div class="point-body">
+          Le <span class="highlight">WACC</span> est le taux de rendement exigé par l'ensemble des financeurs (actionnaires + créanciers).
+          <ul>
+            <li><span class="highlight">WACC = [E/(E+D)] × ke + [D/(E+D)] × kd × (1–t)</span></li>
+            <li>E = capitaux propres · D = dette · ke = coût des capitaux propres · kd = coût de la dette · t = taux d'impôt</li>
+            <li>La dette bénéficie d'un <span class="highlight">avantage fiscal</span> : les intérêts sont déductibles → d'où le terme (1–t)</li>
+            <li>Plus l'entreprise est risquée, plus le WACC est élevé → valeur DCF plus faible</li>
+            <li>Le coût des capitaux propres (ke) est calculé via le MEDAF : ke = rf + β × (rm – rf)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 8</div>
+        <div class="point-title">Les Soldes Intermédiaires de Gestion (SIG) — cascades du compte de résultat</div>
+        <div class="point-body">
+          Cascade de soldes à connaître :
+          <ul>
+            <li><span class="highlight">CA</span> – Achats et charges externes = <span class="highlight">Valeur Ajoutée (VA)</span></li>
+            <li>VA – charges de personnel = <span class="highlight">EBE (Excédent Brut d'Exploitation / EBITDA en français)</span></li>
+            <li>EBE – dotations aux amortissements = <span class="highlight">REX (Résultat d'Exploitation / EBIT)</span></li>
+            <li>REX ± résultat financier ± exceptionnel – impôts = <span class="highlight">Résultat net</span></li>
+            <li>L'EBE et le REX sont les plus utilisés pour comparer la performance opérationnelle entre entreprises</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 9</div>
+        <div class="point-title">Le BFR — piège de trésorerie à connaître</div>
+        <div class="point-body">
+          Le <span class="highlight">BFR (Besoin en Fonds de Roulement)</span> = stocks + créances clients – dettes fournisseurs.
+          <ul>
+            <li>Un BFR positif signifie que l'entreprise finance son cycle d'exploitation (besoin de trésorerie)</li>
+            <li>Un BFR négatif est favorable (ex : grande distribution : les clients paient comptant, les fournisseurs à crédit)</li>
+            <li><strong style="color:var(--text)">Piège</strong> : une forte croissance du CA entraîne souvent une hausse du BFR → risque de "crise de croissance" même avec un résultat bénéficiaire</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -175,6 +234,16 @@
         <div class="piege-label">Piège 3</div>
         <div class="piege-title">EBITDA ≠ cash-flow</div>
         <div class="piege-body">L'EBITDA est un indicateur comptable, pas un flux de trésorerie réel. Il ne tient pas compte des variations du besoin en fonds de roulement, des investissements (capex) ni des remboursements de dette. Une entreprise peut avoir un EBITDA positif et manquer de liquidités.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 4</div>
+        <div class="piege-title">Hausse du WACC = baisse de la valeur DCF (relation inverse)</div>
+        <div class="piege-body">Plus le WACC est élevé, plus les flux futurs sont "pénalisés" par l'actualisation → la valeur DCF baisse. Si le risque de l'entreprise augmente (beta plus élevé, plus de dette), le WACC monte et la valeur calculée par DCF diminue. C'est une relation inverse fondamentale.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 5</div>
+        <div class="piege-title">EBE ≠ REX : les amortissements font la différence</div>
+        <div class="piege-body">L'EBE (EBITDA) exclut les dotations aux amortissements et provisions — c'est un indicateur de performance opérationnelle brute. Le REX (EBIT = résultat d'exploitation) intègre ces dotations. Pour des entreprises très capitalistiques (industrie lourde, télécom), l'écart entre EBE et REX est considérable.</div>
       </div>
     </div>
   </section>
@@ -247,6 +316,36 @@
             <div class="choice"><span class="choice-letter">C</span><span>30 — bénéfice net divisé par le cours</span></div>
           </div>
           <div class="qcm-explication"><strong>Explication :</strong> BPA = 150M / 50M = 3 €. PER = cours / BPA = 45 / 3 = 15. Le ratio P/B serait : cours / (CP/actions) = 45 / (900M/50M) = 45 / 18 = 2,5. Ce sont deux ratios différents — ne pas les confondre.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 3</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Dans un modèle DCF, quelle est la conséquence d'une augmentation du WACC sur la valeur estimée de l'entreprise ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>La valeur augmente — un WACC plus élevé reflète un meilleur rendement pour les investisseurs</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>La valeur diminue — un WACC plus élevé actualise davantage les flux futurs et réduit leur valeur présente</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>La valeur reste inchangée — le WACC n'affecte que la structure de financement, pas la valeur</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Dans le DCF, les flux futurs sont actualisés au WACC. Plus le WACC est élevé, plus les flux lointains sont "dépréciés". Une hausse du WACC de 1% peut réduire la valeur d'entreprise de 10-20% pour une entreprise avec des flux long terme. C'est pourquoi la hausse des taux directeurs pèse sur les valorisations boursières.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Calcul / Application</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 4</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Une entreprise réalise un chiffre d'affaires de 100 M€, des achats et charges externes de 40 M€, des charges de personnel de 35 M€, et des dotations aux amortissements de 10 M€. Quel est son EBE (EBITDA) ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>15 M€ — en déduisant les amortissements</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>25 M€ — CA – achats – charges de personnel (sans amortissements)</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>60 M€ — CA – achats uniquement</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Cascade SIG : CA (100) – charges externes (40) = Valeur Ajoutée (60). VA (60) – charges de personnel (35) = EBE/EBITDA = 25 M€. Les amortissements (10 M€) ne sont pas déduits de l'EBE. Le REX = EBE – amortissements = 25 – 10 = 15 M€. L'EBE exclut les amortissements par définition.</div>
         </div>
       </div>
     </div>

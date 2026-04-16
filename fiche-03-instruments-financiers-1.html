@@ -186,6 +186,11 @@
         <tr><td>OPA</td><td>Offre Publique d'Achat — proposition faite aux actionnaires d'une société de racheter leurs titres à un prix fixé</td></tr>
         <tr><td>Titre hybride</td><td>Instrument à mi-chemin entre action et obligation (ex : obligation convertible, action de préférence)</td></tr>
         <tr><td>Droit préférentiel de souscription (DPS)</td><td>Droit accordé aux actionnaires existants de souscrire en priorité à une augmentation de capital</td></tr>
+        <tr><td>Duration (sensibilité)</td><td>Mesure la sensibilité du prix d'une obligation à une variation de taux — exprimée en années · Duration de Macaulay</td></tr>
+        <tr><td>Taux actuariel (rendement)</td><td>Taux de rendement réel d'une obligation tenant compte du prix d'achat, des coupons et du prix de remboursement</td></tr>
+        <tr><td>Spread de crédit</td><td>Écart de rendement entre une obligation risquée et un emprunt d'État de même maturité — rémunère le risque de défaut</td></tr>
+        <tr><td>OAT</td><td>Obligation Assimilable du Trésor — titre de dette souveraine émis par l'État français, référence obligataire euro</td></tr>
+        <tr><td>Courbe des taux</td><td>Représentation graphique du rendement des emprunts d'État selon leur maturité — normalement croissante (taux court &lt; taux long)</td></tr>
       </tbody>
     </table>
   </section>
@@ -256,6 +261,57 @@
           </ul>
         </div>
       </div>
+      <div class="point-item">
+        <div class="point-num">Point 6 — CRUCIAL</div>
+        <div class="point-title">La Duration — mesurer la sensibilité d'une obligation aux taux</div>
+        <div class="point-body">
+          La <span class="highlight">duration</span> (ou duration de Macaulay) mesure la durée de vie moyenne pondérée des flux d'une obligation. C'est aussi une mesure de la <strong style="color:var(--text)">sensibilité au risque de taux</strong>.
+          <ul>
+            <li>Plus la duration est élevée, plus l'obligation est sensible aux variations de taux</li>
+            <li>Duration d'une obligation zéro coupon = maturité (cas extrême)</li>
+            <li>Duration d'une obligation avec coupon &lt; maturité (les coupons raccourcissent la duration)</li>
+            <li><span class="highlight">Sensibilité ≈ –Duration / (1 + taux)</span> — si les taux montent de 1%, le prix baisse d'environ "sensibilité" %</li>
+            <li>Exemple : duration 5 ans, taux actuariel 4% → sensibilité = –5/1,04 ≈ –4,8% pour +1% de taux</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 7 — CRUCIAL</div>
+        <div class="point-title">Taux actuariel — le vrai rendement d'une obligation</div>
+        <div class="point-body">
+          Le <span class="highlight">taux actuariel</span> (ou taux de rendement à maturité / yield to maturity) est le taux qui égalise le prix d'achat de l'obligation à la somme actualisée de tous ses flux futurs (coupons + remboursement).
+          <ul>
+            <li>Si l'obligation est achetée <strong style="color:var(--text)">en dessous du pair</strong> (ex : 950 € pour un nominal de 1000 €) → taux actuariel &gt; taux nominal</li>
+            <li>Si achetée <strong style="color:var(--text)">au-dessus du pair</strong> → taux actuariel &lt; taux nominal</li>
+            <li>Le taux actuariel est la mesure de rendement de référence pour comparer des obligations différentes</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 8</div>
+        <div class="point-title">Spread de crédit et notation — Investment Grade vs High Yield</div>
+        <div class="point-body">
+          Le <span class="highlight">spread de crédit</span> est l'écart de rendement entre une obligation d'entreprise et un emprunt d'État (OAT) de même maturité. Il rémunère le risque de défaut.
+          <ul>
+            <li><span class="highlight">Investment Grade</span> : notation AAA à BBB- (S&amp;P) — spread faible, émetteurs solides</li>
+            <li><span class="highlight">High Yield</span> (ou junk bonds) : notation BB+ et en dessous — spread élevé, risque de défaut significatif</li>
+            <li>En cas de crise, les spreads s'écartent (credit spread widening) → les prix des obligations d'entreprises baissent</li>
+            <li>OAT = obligation d'État français · Bund = obligation d'État allemand (référence "sans risque" en zone euro)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 9</div>
+        <div class="point-title">La courbe des taux — normale, inversée, plate</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Courbe normale</span> : taux longs &gt; taux courts — situation habituelle, rémunère le risque de durée</li>
+            <li><span class="highlight">Courbe inversée</span> : taux courts &gt; taux longs — signal d'anticipation de récession, souvent précurseur de ralentissement</li>
+            <li><span class="highlight">Courbe plate</span> : taux courts ≈ taux longs — phase de transition</li>
+            <li>La BCE pilote les taux courts (taux directeurs) ; les taux longs sont déterminés par le marché</li>
+          </ul>
+        </div>
+      </div>
 
     </div>
   </section>
@@ -287,6 +343,16 @@
         <div class="piege-body">
           L'actionnaire ne reçoit un dividende que si l'AG le décide — il peut être nul. L'obligataire reçoit son coupon contractuellement, sauf si l'émetteur fait défaut. L'action est donc plus risquée mais potentiellement plus rémunératrice.
         </div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 4 — Calcul fréquent</div>
+        <div class="piege-title">Duration ≠ maturité sauf pour le zéro coupon</div>
+        <div class="piege-body">La duration est toujours inférieure ou égale à la maturité. Elle est égale à la maturité uniquement pour une obligation zéro coupon. Pour une obligation avec coupon, la duration est plus courte car les coupons intermédiaires raccourcissent la durée de vie moyenne pondérée des flux.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 5</div>
+        <div class="piege-title">Taux actuariel &gt; taux nominal si l'obligation cote en dessous du pair</div>
+        <div class="piege-body">Si vous achetez une obligation 950 € pour un nominal de 1 000 €, vous bénéficiez d'un gain supplémentaire de 50 € au remboursement, en plus des coupons. Le taux actuariel intègre ce gain — il est donc supérieur au taux nominal. À retenir : prix bas = rendement élevé (et vice versa).</div>
       </div>
 
     </div>
@@ -387,6 +453,44 @@
           </div>
           <div class="qcm-explication">
             <strong>Explication :</strong> Relation inverse taux/prix. Si les taux montent à 6%, une obligation rapportant 4% est moins attractive — son prix baisse jusqu'à ce que son rendement effectif atteigne 6%. C'est la loi fondamentale des marchés obligataires.
+          </div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Calcul</span>
+          <span style="font-size:0.75rem; color:var(--muted);">Question 3</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">
+            Une obligation a une duration de Macaulay de 6 ans et un taux actuariel de 4%. Si les taux d'intérêt augmentent de 1 point de pourcentage, quelle est l'estimation de la variation de prix de cette obligation ?
+          </div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>+5,77% — une hausse des taux fait monter le prix de l'obligation</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>–6% — la variation est égale à la duration en valeur absolue</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>–5,77% — sensibilité = –6 / 1,04 ≈ –5,77%</span></div>
+          </div>
+          <div class="qcm-explication">
+            <strong>Explication :</strong> Sensibilité (duration modifiée) = –Duration / (1 + taux actuariel) = –6 / 1,04 = –5,77. Pour une hausse de taux de 1%, le prix baisse d'environ 5,77%. La duration de 6 ans ne signifie pas une baisse de 6% — il faut diviser par (1 + taux). C'est la formule à connaître.
+          </div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem; color:var(--muted);">Question 4</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">
+            Une obligation d'entreprise notée BB+ est cotée avec un spread de 250 points de base par rapport à l'OAT de même maturité. À quelle catégorie appartient-elle ?
+          </div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Investment Grade — BB+ est une notation solide</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>High Yield (spéculative) — BB+ est en dessous du seuil Investment Grade (BBB-)</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Défaut — BB+ signifie que l'émetteur est en cessation de paiement</span></div>
+          </div>
+          <div class="qcm-explication">
+            <strong>Explication :</strong> Investment Grade commence à BBB- (S&P / Fitch) ou Baa3 (Moody's). BB+ est en dessous → High Yield. Le spread de 250 bps (2,5%) reflète le risque de défaut plus élevé. Ce type d'obligation offre un rendement supérieur mais avec un risque de défaut significatif.
           </div>
         </div>
       </div>

@@ -117,6 +117,10 @@
         <tr><td>KYC</td><td>Know Your Customer — procédure de connaissance client obligatoire avant toute relation d'affaires</td></tr>
         <tr><td>DIC / KID</td><td>Document d'Information Clé — document standardisé synthétisant les caractéristiques d'un produit complexe (PRIIPs)</td></tr>
         <tr><td>Opt-in / Opt-out</td><td>Possibilité pour un client de demander à changer de catégorie (non-pro → pro ou inversement)</td></tr>
+        <tr><td>Inducement (rétrocession)</td><td>Commission versée par un tiers à un PSI en contrepartie de services fournis au client — réglementé ou interdit selon le service</td></tr>
+        <tr><td>Product governance (POG)</td><td>Règles MIF2 obligeant les producteurs et distributeurs à définir un marché cible pour chaque produit financier</td></tr>
+        <tr><td>Marché cible</td><td>Catégorie de clients pour lesquels un produit est conçu et approprié (concept clé du product governance)</td></tr>
+        <tr><td>Reporting post-trade</td><td>Obligation de déclarer les transactions à l'AMF et au client — inclut le reporting des coûts et frais (ex-post)</td></tr>
       </tbody>
     </table>
   </section>
@@ -166,6 +170,42 @@
           Document standardisé de <span class="highlight">maximum 3 pages</span> obligatoire pour tout produit packagé complexe (PRIIP). Contient : description, risques (indicateur synthétique 1-7), scénarios de performance, coûts, durée recommandée. Doit être remis avant toute souscription.
         </div>
       </div>
+      <div class="point-item">
+        <div class="point-num">Point 6 — CRUCIAL</div>
+        <div class="point-title">Inducements (rétrocessions) — ce qui est permis et ce qui est interdit</div>
+        <div class="point-body">
+          Les <span class="highlight">inducements</span> sont des commissions versées par des tiers (ex : fonds) au PSI pour la distribution de produits.
+          <ul>
+            <li><strong style="color:#f87171;">Interdits</strong> : en cas de <span class="highlight">conseil indépendant</span> ou de <span class="highlight">gestion sous mandat discrétionnaire</span> — le PSI doit restituer les rétrocessions perçues au client</li>
+            <li><strong style="color:#86efac;">Autorisés</strong> : en cas de conseil non indépendant ou de réception-transmission d'ordres, si l'inducement est <span class="highlight">destiné à améliorer la qualité du service</span> rendu au client et que le client en est informé</li>
+            <li>Obligation de <span class="highlight">transparence</span> : le montant des inducements doit être communiqué au client avant la prestation, puis en détail ex-post (reporting annuel des coûts et frais)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 7</div>
+        <div class="point-title">Product Governance (POG) — marché cible</div>
+        <div class="point-body">
+          Obligation pour le <span class="highlight">producteur</span> (fabricant du produit) de définir un <span class="highlight">marché cible</span> — la catégorie de clients pour qui le produit est conçu. Le <span class="highlight">distributeur</span> doit vérifier que les produits qu'il vend correspondent au marché cible défini.
+          <ul>
+            <li>Le marché cible est défini selon : type de client, objectifs d'investissement, tolérance au risque, situation financière, connaissances/expérience</li>
+            <li>Un distributeur ne peut pas vendre un produit à un client en dehors du marché cible sans justification documentée</li>
+            <li>Marché cible <span class="highlight">négatif</span> possible : clients pour lesquels le produit ne convient explicitement pas</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 8</div>
+        <div class="point-title">Reporting des coûts et frais — transparence ex-ante et ex-post</div>
+        <div class="point-body">
+          MIF2 impose une double transparence sur les coûts :
+          <ul>
+            <li><span class="highlight">Ex-ante</span> : avant la prestation, le PSI doit communiquer une estimation de tous les coûts (frais de gestion, frais de transaction, inducements) exprimés en montant et en %</li>
+            <li><span class="highlight">Ex-post</span> : chaque année, rapport détaillé des coûts réellement supportés par le client</li>
+            <li>Les coûts doivent être présentés de façon <span class="highlight">agrégée</span> (tous les frais combinés) pour permettre une comparaison réelle</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -186,6 +226,16 @@
         <div class="piege-label">Piège 3</div>
         <div class="piege-title">La best execution ne signifie pas forcément le meilleur prix</div>
         <div class="piege-body">Best execution prend en compte 5 facteurs, pas uniquement le prix. Pour un ordre urgent, la rapidité d'exécution peut primer. Pour un ordre très large, la probabilité d'exécution totale peut être déterminante. C'est une obligation de moyens, pas de résultat.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 4 — Très fréquent</div>
+        <div class="piege-title">Inducements : interdits en conseil indépendant et gestion discrétionnaire — pas en conseil non indépendant</div>
+        <div class="piege-body">L'erreur classique : croire que les rétrocessions sont totalement interdites. Non — elles sont interdites uniquement pour le conseil indépendant et la gestion sous mandat. Pour le conseil non indépendant (la majorité des CGP en France), les rétrocessions sont autorisées sous conditions de transparence et d'amélioration du service. À l'examen, vérifier systématiquement le type de service.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 5</div>
+        <div class="piege-title">Le marché cible négatif est distinct du marché cible positif</div>
+        <div class="piege-body">Le product governance définit non seulement à qui le produit est destiné (marché cible positif) mais aussi à qui il ne doit pas être distribué (marché cible négatif). Exemple : un produit à capital non garanti avec effet de levier sera en marché cible négatif pour un client à faible tolérance au risque. Ce concept de marché cible négatif est souvent testé.</div>
       </div>
     </div>
   </section>
@@ -257,6 +307,36 @@
             <div class="choice"><span class="choice-letter">C</span><span>Non, les 3 critères doivent être remplis simultanément pour accéder au statut professionnel</span></div>
           </div>
           <div class="qcm-explication"><strong>Explication :</strong> L'opt-in professionnel nécessite 2 critères sur 3. Ici : portefeuille ≥500k€ ✓ et ≥10 opérations/trimestre sur 4 trimestres ✓. Il manque le 3e critère (expérience pro ≥1 an) mais ce n'est pas nécessaire. La demande doit être faite par écrit et le PSI doit avertir des protections perdues.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 3</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un PSI qui fournit un service de conseil en investissement indépendant perçoit des rétrocessions (inducements) d'une société de gestion pour la distribution de ses fonds. Que doit-il faire de ces rétrocessions selon MIF2 ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Les conserver, à condition d'en informer le client par écrit avant la prestation</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>Les conserver, elles sont toujours autorisées si elles améliorent la qualité du service</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>Les restituer intégralement au client — les inducements sont interdits en conseil indépendant</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> En conseil indépendant et gestion sous mandat discrétionnaire, les inducements sont strictement interdits par MIF2. Le PSI doit restituer au client toute rémunération perçue de tiers. Cette règle ne s'applique pas au conseil non indépendant, où les rétrocessions sont autorisées sous conditions de transparence.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Application / Raisonnement</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 4</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Dans le cadre du product governance (POG), qu'est-ce qu'un marché cible négatif ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Un produit dont la performance attendue est négative selon les scénarios de stress</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>La catégorie de clients pour lesquels le produit ne convient pas et à qui il ne doit pas être distribué</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>Un produit retiré du marché suite à une sanction de l'AMF</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Le product governance oblige à définir un marché cible positif (à qui le produit est destiné) ET un marché cible négatif (à qui il ne doit pas être vendu). Exemple : un produit structuré à effet de levier sera en marché cible négatif pour des clients non professionnels avec faible tolérance au risque. Le distributeur doit respecter ces deux définitions.</div>
         </div>
       </div>
     </div>

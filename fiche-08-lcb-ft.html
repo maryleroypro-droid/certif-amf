@@ -121,6 +121,9 @@
         <tr><td>Vigilance simple</td><td>Niveau standard de KYC — identification et vérification du client, surveillance des opérations</td></tr>
         <tr><td>Vigilance renforcée</td><td>Mesures additionnelles pour les clients/opérations à haut risque (PPE, pays tiers à risque, montants élevés)</td></tr>
         <tr><td>Vigilance allégée</td><td>Mesures réduites pour les clients à faible risque (établissements de crédit régulés, produits à risque limité)</td></tr>
+        <tr><td>Bénéficiaire effectif</td><td>Personne physique qui détient ou contrôle en dernier ressort un client personne morale — seuil de 25% du capital ou des droits de vote</td></tr>
+        <tr><td>Conservation des documents</td><td>Obligation légale de conserver les pièces KYC et les enregistrements d'opérations pendant 5 ans après la fin de la relation</td></tr>
+        <tr><td>GAFI (FATF)</td><td>Groupe d'Action Financière — organisme intergouvernemental qui publie les listes de pays à risque élevé en matière LCB-FT</td></tr>
       </tbody>
     </table>
   </section>
@@ -170,6 +173,44 @@
           PSI détecte le soupçon → Déclaration interne au RCLCB (Responsable Conformité LCB) → <span class="highlight">Déclaration de soupçon à TRACFIN</span> → TRACFIN analyse et transmet si nécessaire au Parquet. Le PSI peut continuer ou bloquer l'opération selon le risque.
         </div>
       </div>
+      <div class="point-item">
+        <div class="point-num">Point 6 — CRUCIAL</div>
+        <div class="point-title">Le bénéficiaire effectif — définition et seuil de 25%</div>
+        <div class="point-body">
+          Le <span class="highlight">bénéficiaire effectif</span> est la personne physique qui, en dernier ressort, possède ou contrôle le client (personne morale).
+          <ul>
+            <li>Seuil de détention : <span class="highlight">25%</span> des parts, actions, droits de vote ou droits aux bénéfices</li>
+            <li>Si aucune personne physique n'atteint 25% : le représentant légal est considéré comme bénéficiaire effectif</li>
+            <li>Les établissements assujettis doivent <span class="highlight">identifier et vérifier</span> l'identité des bénéficiaires effectifs avant toute entrée en relation</li>
+            <li>Registre national des bénéficiaires effectifs (RNE) disponible sur Infogreffe — obligatoire pour les sociétés françaises</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 7</div>
+        <div class="point-title">Conservation des documents — 5 ans</div>
+        <div class="point-body">
+          L'obligation de conservation est de <span class="highlight">5 ans</span> après la fin de la relation d'affaires (ou après la réalisation d'une opération occasionnelle).
+          <ul>
+            <li>Documents conservés : pièces d'identité, justificatifs de domicile, documents KYC, enregistrements des transactions</li>
+            <li>Objectif : permettre aux autorités de reconstituer les transactions en cas d'enquête</li>
+            <li>Cette règle est <strong style="color:var(--text)">indépendante</strong> des règles de conservation de droit commun (droit commercial = 10 ans)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 8</div>
+        <div class="point-title">Pays à risque — listes GAFI et Union européenne</div>
+        <div class="point-body">
+          Le <span class="highlight">GAFI (Groupe d'Action Financière / FATF)</span> publie deux listes :
+          <ul>
+            <li><strong style="color:#f87171;">Liste noire</strong> (pays sous surveillance renforcée, dits "juridictions sous appel à l'action") : pays qui ne coopèrent pas — Iran, Corée du Nord</li>
+            <li><strong style="color:#fcd34d;">Liste grise</strong> (pays "sous surveillance accrue") : pays qui coopèrent mais ont des insuffisances — liste évolutive</li>
+            <li>Pour tout client ou opération lié à un pays listé, la <span class="highlight">vigilance renforcée est obligatoire</span></li>
+            <li>L'UE publie aussi sa propre liste de pays tiers à haut risque — peut différer de la liste GAFI</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -190,6 +231,16 @@
         <div class="piege-label">Piège 3</div>
         <div class="piege-title">La DS est adressée à TRACFIN, pas à l'AMF</div>
         <div class="piege-body">TRACFIN est la cellule de renseignement financier — c'est le seul destinataire de la DS. L'AMF peut recevoir des informations de TRACFIN mais les PSI ne lui déclarent pas directement les soupçons. Confondre les deux est une erreur classique.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 4 — Seuil précis</div>
+        <div class="piege-title">Bénéficiaire effectif : 25% du capital OU des droits de vote (pas seulement du capital)</div>
+        <div class="piege-body">Le seuil de 25% s'applique au capital, aux droits de vote, ou aux droits aux bénéfices — selon celui des trois qui est le plus élevé. Un actionnaire à 24% du capital mais 26% des droits de vote est un bénéficiaire effectif. Ne pas se limiter au seul capital social.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 5</div>
+        <div class="piege-title">La vigilance renforcée pour les PPE s'applique 12 mois après la fin des fonctions</div>
+        <div class="piege-body">La vigilance renforcée ne s'arrête pas le jour où le PPE quitte ses fonctions. Elle continue pendant <strong style="color:var(--text)">12 mois après la fin des fonctions</strong>. Un ex-ministre reste PPE pendant un an. C'est une erreur classique de croire que la vigilance renforcée cesse dès la sortie de fonction.</div>
       </div>
     </div>
   </section>

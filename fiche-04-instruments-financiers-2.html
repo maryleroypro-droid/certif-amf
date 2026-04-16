@@ -112,6 +112,11 @@
         <tr><td>SICAV</td><td>Société d'Investissement à Capital Variable — OPCVM avec personnalité morale, l'investisseur est actionnaire</td></tr>
         <tr><td>FCP</td><td>Fonds Commun de Placement — OPCVM sans personnalité morale, l'investisseur est porteur de parts</td></tr>
         <tr><td>Produit structuré</td><td>Combinaison d'un placement à capital garanti et d'un dérivé offrant une participation conditionnelle à la hausse</td></tr>
+        <tr><td>Delta</td><td>Sensibilité du prix d'une option à la variation du sous-jacent — entre 0 et 1 pour un call, entre –1 et 0 pour un put</td></tr>
+        <tr><td>Volatilité implicite</td><td>Niveau de volatilité anticipé par le marché, extrait du prix de l'option — mesure le "prix du risque" de marché</td></tr>
+        <tr><td>Règle 5/10/40</td><td>Règle de diversification des OPCVM : max 5% par émetteur (sauf dérogations jusqu'à 10%), et max 40% total dans les émetteurs à plus de 5%</td></tr>
+        <tr><td>IRS</td><td>Interest Rate Swap — échange d'un taux fixe contre un taux variable (ex : Euribor) sur un nominal notionnel</td></tr>
+        <tr><td>CDS</td><td>Credit Default Swap — "assurance" contre le défaut d'un émetteur : l'acheteur paye une prime, le vendeur paye si défaut</td></tr>
       </tbody>
     </table>
   </section>
@@ -170,6 +175,55 @@
           Structure typique : <span class="highlight">obligation zéro coupon</span> (garantit le capital à terme) + <span class="highlight">option</span> (offre participation à la hausse d'un indice). Le capital est garanti à 100% à échéance mais la performance est conditionnelle et limitée. Risque si revente avant échéance.
         </div>
       </div>
+      <div class="point-item">
+        <div class="point-num">Point 6 — CRUCIAL</div>
+        <div class="point-title">Le Delta d'une option — sensibilité au sous-jacent</div>
+        <div class="point-body">
+          Le <span class="highlight">delta</span> mesure la variation du prix d'une option pour une variation de 1 € du sous-jacent.
+          <ul>
+            <li>Call : delta entre <span class="highlight">0 et +1</span> — si delta = 0,6 et le sous-jacent monte de 1 €, le call monte de 0,60 €</li>
+            <li>Put : delta entre <span class="highlight">–1 et 0</span> — si delta = –0,4 et le sous-jacent monte de 1 €, le put baisse de 0,40 €</li>
+            <li><span class="highlight">ATM (At The Money)</span> : option dont le strike = cours du sous-jacent → delta ≈ 0,5 pour un call</li>
+            <li><span class="highlight">Deep ITM (In The Money)</span> : delta → 1 pour un call (se comporte comme l'actif)</li>
+            <li><span class="highlight">Deep OTM (Out of The Money)</span> : delta → 0 (très peu de sensibilité)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 7</div>
+        <div class="point-title">Volatilité implicite — le "prix de la peur"</div>
+        <div class="point-body">
+          La <span class="highlight">volatilité implicite</span> est extraite du prix de marché des options. Elle reflète l'anticipation du marché sur la volatilité future du sous-jacent.
+          <ul>
+            <li>Plus la volatilité implicite est élevée, plus les options sont chères (vendeur exposé à un risque plus grand)</li>
+            <li>En période de crise, la volatilité implicite monte fortement (ex : VIX, indice de volatilité du S&amp;P 500)</li>
+            <li>La volatilité implicite diffère de la volatilité historique (passée)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 8 — CRUCIAL</div>
+        <div class="point-title">Règle de diversification des OPCVM — 5/10/40</div>
+        <div class="point-body">
+          Pour les OPCVM harmonisés (UCITS), la règle <span class="highlight">5/10/40</span> limite la concentration :
+          <ul>
+            <li>Maximum <span class="highlight">5%</span> du portefeuille dans les titres d'un même émetteur (règle de base)</li>
+            <li>Cette limite peut être portée à <span class="highlight">10%</span> pour certains émetteurs, mais alors le total des émetteurs dépassant 5% ne peut pas excéder <span class="highlight">40%</span> du portefeuille</li>
+            <li>Exception : les titres d'État peuvent représenter jusqu'à 35% (voire 100% si même émetteur d'État et si 6 émissions différentes)</li>
+            <li>Cette règle oblige à diversifier et protège l'investisseur du risque de concentration</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 9</div>
+        <div class="point-title">IRS et CDS — les swaps à connaître</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">IRS (Interest Rate Swap)</span> : une partie paye un taux fixe et reçoit un taux variable (ex : Euribor 3 mois), l'autre fait l'inverse. Outil clé de gestion du risque de taux pour les entreprises.</li>
+            <li><span class="highlight">CDS (Credit Default Swap)</span> : l'acheteur paye une prime périodique ; si l'émetteur de référence fait défaut, le vendeur paye la perte. C'est une assurance contre le risque de crédit. Les CDS peuvent être spéculatifs (sans exposition sous-jacente).</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -190,6 +244,16 @@
         <div class="piege-label">Piège 3</div>
         <div class="piege-title">Capital garanti ≠ sans risque</div>
         <div class="piege-body">Un produit structuré à capital garanti ne garantit le capital qu'à l'échéance contractuelle. En cas de revente anticipée, le prix de marché peut être inférieur au capital investi. De plus, la garantie dépend de la solvabilité de l'émetteur.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 4</div>
+        <div class="piege-title">Delta d'un call ≠ delta d'un put en valeur absolue</div>
+        <div class="piege-body">Pour une même option (même strike, même maturité), |delta call| + |delta put| ≠ 1 forcément — bien que ce soit une approximation courante. La parité put-call s'exprime comme : call – put = S – K·e^(–rt). Le delta d'un call et d'un put de même strike sont liés mais ne sont pas simplement complémentaires à 1.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 5</div>
+        <div class="piege-title">La règle 5/10/40 ne s'applique pas aux titres d'État</div>
+        <div class="piege-body">Les titres souverains (OAT, Bund, Treasuries) bénéficient d'une dérogation. Un OPCVM peut détenir jusqu'à 35% (voire 100% si 6 émissions au moins du même État) en titres d'un seul État. Cette exception est souvent testée avec des cas pratiques de portefeuille.</div>
       </div>
     </div>
   </section>
@@ -255,6 +319,36 @@
             <div class="choice"><span class="choice-letter">C</span><span>100 € — le prix d'exercice du call</span></div>
           </div>
           <div class="qcm-explication"><strong>Explication :</strong> Le cours (95 €) est inférieur au strike (100 €) → l'investisseur n'a aucun intérêt à exercer son call. Il abandonne l'option. Sa perte est limitée à la prime de 5 €. C'est l'avantage de l'acheteur d'option : risque maximal = prime payée.</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-a">Catégorie A — Calcul/Application</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 3</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un call sur action ABC a un delta de 0,65. Le cours de l'action augmente de 2 €. De combien varie approximativement la prime du call ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>–1,30 € — le delta d'un call est négatif</span></div>
+            <div class="choice correct"><span class="choice-letter">B ✓</span><span>+1,30 € — variation = delta × variation du sous-jacent = 0,65 × 2</span></div>
+            <div class="choice"><span class="choice-letter">C</span><span>+2 € — le call suit exactement la variation du sous-jacent</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> Variation de la prime ≈ delta × variation du sous-jacent = 0,65 × 2 = 1,30 €. Le delta d'un call est positif (entre 0 et +1). Un delta de 0,65 signifie que le call "capture" 65% de la variation du sous-jacent. Ce n'est qu'une approximation car le delta lui-même varie (gamma).</div>
+        </div>
+      </div>
+      <div class="qcm-item">
+        <div class="qcm-header">
+          <span class="qcm-cat cat-c">Catégorie C — Connaissance directe</span>
+          <span style="font-size:0.75rem;color:var(--muted);">Question 4</span>
+        </div>
+        <div class="qcm-body">
+          <div class="qcm-question">Un OPCVM harmonisé (UCITS) souhaite investir 12% de son portefeuille dans les obligations d'un même émetteur privé. Est-ce conforme à la règle 5/10/40 ?</div>
+          <div class="qcm-choices">
+            <div class="choice"><span class="choice-letter">A</span><span>Oui, sans condition — la règle 5/10/40 ne s'applique pas aux obligations</span></div>
+            <div class="choice"><span class="choice-letter">B</span><span>Oui, à condition que le total des émetteurs dépassant 5% ne dépasse pas 40% du portefeuille</span></div>
+            <div class="choice correct"><span class="choice-letter">C ✓</span><span>Non — la limite maximale est de 10% par émetteur pour un OPCVM UCITS, et 12% dépasse ce plafond</span></div>
+          </div>
+          <div class="qcm-explication"><strong>Explication :</strong> La règle 5/10/40 limite à 5% par défaut, extensible à 10% maximum. 12% dépasse le plafond absolu de 10% par émetteur privé. Il faudrait réduire cette position. Note : pour les émetteurs souverains, la limite peut aller jusqu'à 35%.</div>
         </div>
       </div>
     </div>

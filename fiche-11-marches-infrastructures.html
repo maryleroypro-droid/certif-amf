@@ -109,6 +109,10 @@
         <tr><td>J+2</td><td>Délai standard de règlement-livraison en Europe — 2 jours ouvrés après la date d'exécution</td></tr>
         <tr><td>Ordre au marché</td><td>Ordre exécuté immédiatement au meilleur prix disponible — priorité à la rapidité sur le prix</td></tr>
         <tr><td>Ordre à cours limité</td><td>Ordre exécuté uniquement si le prix est ≤ au seuil fixé (achat) ou ≥ (vente) — priorité au prix</td></tr>
+        <tr><td>Vente à découvert (VAD)</td><td>Vendre un titre que l'on ne possède pas en empruntant les titres, en anticipant une baisse — encadrée strictement par le règlement européen</td></tr>
+        <tr><td>Dark pool</td><td>Plateforme de négociation sans transparence pré-trade — les ordres ne sont pas visibles avant exécution (utilisée par les institutionnels pour les gros ordres)</td></tr>
+        <tr><td>Fixing</td><td>Mode de cotation par confrontation ponctuelle des ordres à heure fixe (ex : ouverture/clôture) — opposé à la cotation en continu</td></tr>
+        <tr><td>Cotation en continu</td><td>Négociation permanente durant toute la séance boursière — les ordres s'exécutent dès qu'une contrepartie est disponible</td></tr>
       </tbody>
     </table>
   </section>
@@ -160,6 +164,43 @@
           En Europe, les transactions actions se règlent en J+2 (deux jours ouvrés après l'exécution). Pendant ce délai, l'acheteur doit avoir les fonds et le vendeur les titres. Euroclear France gère ce processus pour les titres français. Le passage à J+1 est en discussion au niveau européen.
         </div>
       </div>
+      <div class="point-item">
+        <div class="point-num">Point 6 — CRUCIAL</div>
+        <div class="point-title">Vente à découvert (VAD) — règles et encadrement</div>
+        <div class="point-body">
+          La <span class="highlight">vente à découvert</span> consiste à vendre des titres que l'on n'a pas, en les empruntant, dans l'espoir de les racheter moins cher.
+          <ul>
+            <li>En Europe : régie par le <span class="highlight">Règlement européen sur la vente à découvert (SSR)</span></li>
+            <li>Obligation de <span class="highlight">déclaration à l'AMF</span> dès que la position courte dépasse <span class="highlight">0,1%</span> du capital de l'émetteur</li>
+            <li>Publication obligatoire des positions nettes courtes ≥ <span class="highlight">0,5%</span> du capital (visible sur le site AMF)</li>
+            <li>L'AMF peut <span class="highlight">interdire temporairement</span> les VAD en cas de grave perturbation de marché (ex : mars 2020 lors de la COVID)</li>
+            <li><span class="highlight">VAD nue</span> (naked short selling) : vente à découvert sans avoir emprunté les titres au préalable — <strong style="color:#f87171;">Interdite en Europe</strong></li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 7</div>
+        <div class="point-title">Fixing vs cotation en continu — deux modes de cotation</div>
+        <div class="point-body">
+          <ul>
+            <li><span class="highlight">Fixing</span> : confrontation des ordres à des moments fixes (ex : 9h et 17h35 à Paris). Tous les ordres sont centralisés et le cours est fixé pour maximiser le volume. Utilisé pour les valeurs peu liquides et pour les prix d'ouverture/clôture des grandes valeurs.</li>
+            <li><span class="highlight">Cotation en continu</span> : les ordres s'exécutent en temps réel dès qu'une contrepartie est disponible. Mode dominant pour les grandes capitalisations (CAC 40) de 9h00 à 17h30.</li>
+            <li>À Paris : ouverture et clôture se font par fixing, la séance se déroule en continu</li>
+          </ul>
+        </div>
+      </div>
+      <div class="point-item">
+        <div class="point-num">Point 8</div>
+        <div class="point-title">Dark pools — négociation sans transparence pré-trade</div>
+        <div class="point-body">
+          Les <span class="highlight">dark pools</span> sont des plateformes (généralement des MTF) où les ordres ne sont pas visibles avant l'exécution.
+          <ul>
+            <li>Utilisés par les institutionnels pour exécuter de gros ordres sans dévoiler leurs intentions au marché (éviter le slippage)</li>
+            <li>MIF2 a limité leur usage : <span class="highlight">double cap de volume</span> — un dark pool ne peut pas traiter plus de 4% du volume d'un titre, et l'ensemble des dark pools pas plus de 8%</li>
+            <li>La post-trade transparency reste obligatoire (publication après exécution)</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -180,6 +221,16 @@
         <div class="piege-label">Piège 3</div>
         <div class="piege-title">Un ordre au marché peut être exécuté à un prix très différent du cours affiché</div>
         <div class="piege-body">Sur un marché peu liquide, un ordre au marché de grande taille peut "consommer" plusieurs niveaux du carnet d'ordres — phénomène de slippage. L'ordre à cours limité évite ce risque mais peut rester inexécuté si le marché ne touche pas le seuil fixé.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 4</div>
+        <div class="piege-title">Vente à découvert nue (naked) ≠ vente à découvert couverte — seule la nue est interdite</div>
+        <div class="piege-body">La VAD "couverte" (avec emprunt préalable des titres) est légale en Europe sous conditions de déclaration. La VAD "nue" (sans emprunt préalable) est interdite par le règlement européen SSR. À l'examen, si la question précise "sans avoir emprunté les titres" → réponse = interdit.</div>
+      </div>
+      <div class="piege-item">
+        <div class="piege-label">Piège 5</div>
+        <div class="piege-title">Le fixing d'ouverture et de clôture s'applique aussi aux grandes valeurs du CAC 40</div>
+        <div class="piege-body">Même pour les grandes capitalisations cotées en continu, l'ouverture (9h00) et la clôture (17h35) se font par fixing. En dehors de ces moments, la cotation est continue de 9h00 à 17h30 (suivi d'un fixing de clôture). Ne pas croire que le fixing ne concerne que les petites valeurs.</div>
       </div>
     </div>
   </section>
